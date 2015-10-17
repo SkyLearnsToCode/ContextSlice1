@@ -1,0 +1,31 @@
+.person{
+	background-color: orange;
+}
+
+.location{
+	background-color: #33CC33;
+}
+
+.organization{
+	background-color: #FF6699;
+}
+
+.money{
+	background-color: yellow;
+}
+
+.miscellanea{
+	background-color: #CC66FF;
+}
+
+.phone{
+	background-color: #FF66CC;
+}
+
+.interesting{
+	background-color: #00FFFF;
+}
+
+.date{
+	background-color: #33CCFF;
+}

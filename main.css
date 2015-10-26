@@ -1,31 +1,3 @@
-.person{
-	background-color: #FFA500;
-}
-
-.location{
-	background-color: #33CC33;
-}
-
-.organization{
-	background-color: #FF6699;
-}
-
-.money{
-	background-color: #FFFF00;
-}
-
-.miscellanea{
-	background-color: #CC66FF;
-}
-
-.phone{
-	background-color: #D3D3D3;
-}
-
-.interesting{
-	background-color: #8B0000;
-}
-
-.date{
-	background-color: #33CCFF;
+#addCate{
+	float: right;
 }

@@ -1,5 +1,5 @@
 .person{
-	background-color: orange;
+	background-color: #FFA500;
 }
 
 .location{
@@ -11,7 +11,7 @@
 }
 
 .money{
-	background-color: yellow;
+	background-color: #FFFF00;
 }
 
 .miscellanea{
@@ -19,11 +19,11 @@
 }
 
 .phone{
-	background-color: #FF66CC;
+	background-color: #D3D3D3;
 }
 
 .interesting{
-	background-color: #00FFFF;
+	background-color: #8B0000;
 }
 
 .date{

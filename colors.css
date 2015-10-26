@@ -1,0 +1,42 @@
+.person{
+	background-color: #FFFF00;
+}
+
+.location{
+	background-color: #B8860B;
+}
+
+.organization{
+	background-color: #FF00FF;
+}
+
+.money{
+	background-color: #32CD32;
+}
+
+.miscellanea{
+	background-color: #FFBF00;
+}
+
+.phone{
+	background-color: #A9A9F5;
+}
+
+.interesting{
+	background-color: #FF6347;
+}
+
+.date{
+	background-color: #00CED1;
+}
+
+.other{
+	background-color: #4B0082;
+}
+
+.unused{
+	background-color: #FF0000;
+}
+.btn1{
+	float: right;
+}

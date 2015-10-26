@@ -8,7 +8,9 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<!-- Latest compiled JavaScript -->
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="main.css">
+		<!-- The color sheet and the color map for step 1 -->
+		<link rel="stylesheet" type="text/css" href="colors.css">
+		
 	</head>
 	<body>
 		<div id="documentContents" class="container">
@@ -18,7 +20,7 @@
 					<div class="panel-group">
 						<div class="panel panel-default">
 							<h3 class="panel panel-heading">Doc1</h3>
-							<p class="panel panel-body">Report Date 22 April, 2003. FBI: Hani al Hallak, of North Bergen NJ, has deposited checks in his bank account that were drawn on First Union Bank account number 1070173749003 in Springfield VA in the name Abdul Ramazi. The latest check is dated 16 April, 2003 and was in the amount of $8500.</p>
+							<p class="panel panel-body">Report Date 22 April, 2003. FBI: <em class="person">Hani al Hallak</em>, of <em class="location">North Bergen NJ</em>, has deposited checks in his bank account that were drawn on <em class="organization">First Union Bank</em> account number <em class="miscellanea">1070173749003</em> in <em class ="location">Springfield VA</em> in the name <em class="person">Abdul Ramazi</em>. The latest check is dated <em class="date">16 April, 2003</em> and was in the amount of <em class="money">$8500</em>.</p>
 						</div>
 						<!--<div class="panel panel-default">
 							<h3 class="panel panel-heading">Doc2</h3>
@@ -31,14 +33,15 @@
 					</div>
 				</div>
 				<div class="col-lg-5 panel panel-default">
-					<h1 class="jumbotron">Find Name Entities</h1>
+					<h1 class="jumbotron">Edit Name Entities</h1>
 					<div class="panel panel-default">
 						<div class="panel panel-body">
 							<form class="form-horizontal" role="form">
 								<div class="form-group">
 									<label class="control-label" for="nameEntity">Name Entity: </label>
-									<input type="text" class="form-control" id="nameEntity">
-								</div>
+									<div><textarea></textarea></div> 
+									 <!-- <input type="text" class="form-control" id="nameEntity"> -->
+								</div> 
 								<div class="form-group">
 									<label class="control-label" for="category">Category: </label>
 									<select class="form-control" id="category">
@@ -53,7 +56,8 @@
 									</select>
 								</div>
 								<div class="form-group">
-									<button type="button" class="btn btn-default">Add</button>
+									<button type="button" class="btn btn-default">Modify</button>									
+										<button type="button" class="btn1">Finish and Go Back To Mechanical Turk</button> 
 								</div>
 							</form>
 						</div>

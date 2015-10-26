@@ -20,15 +20,21 @@
 					<h1 class="jumbotron">Document Contents</h1>
 						<div class="panel-group">
 							<div id = "legend" class="panel panel-default">
-							<h3 class="panel panel-heading">Categories<button class="btn-sm" id="addCate">Add New Category</button></h3>
-							<button class="btn-sm legend person">person</button>
-							<button class="btn-sm legend location">location</button>
-							<button class="btn-sm legend organization">organization</button>
-							<button class="btn-sm legend money">money</button>
-							<button class="btn-sm legend miscellanea">miscellanea</button>
-							<button class="btn-sm legend phone">phone</button>
-							<button class="btn-sm legend interesting">interesting</button>
-							<button class="btn-sm legend date">date</button>
+							<h3 class="panel panel-heading">Categories</h3>
+							<div class="panel panel-default">
+								<p id="errorAlert"></p>
+								<input type="text" class="form-control" id="newCat"><button class="btn btn-info" id="addCate">Add New Category</button>
+								<div class="panel-body btn-group" id="catGroup">
+								  	<button class="btn btn-sm legend person">person</button>
+									<button class="btn btn-sm legend location">location</button>
+									<button class="btn btn-sm legend organization">organization</button>
+									<button class="btn btn-sm legend money">money</button>
+									<button class="btn btn-sm legend miscellanea">miscellanea</button>
+									<button class="btn btn-sm legend phone">phone</button>
+									<button class="btn btn-sm legend interesting">interesting</button>
+									<button class="btn btn-sm legend date">date</button>
+								</div>
+							</div>
 						</div>
 						<div class="panel panel-default">
 							<h3 class="panel panel-heading">Doc1</h3>
@@ -42,27 +48,15 @@
 						<div class="panel panel-body">
 							<form class="form-horizontal" role="form">
 								<div class="form-group">
-									<label class="control-label" for="nameEntity">Name Entity: </label>
-									<div><textarea></textarea></div> 
+									<label class="control-label" for="nameEntity">Edit by:</label>
+										<input class="panel-body work-mode" type="radio" name="editType" value="seq" checked> sequence
+										<input class="panel-body work-mode" type="radio" name="editType" value="cat"> category<br>
+									<label class="control-label" for="nameEntity" id="summary-cat">Category: </label>
+									<div class="panel panel-body"><textarea></textarea></div> 
 									 <!-- <input type="text" class="form-control" id="nameEntity"> -->
 								</div> 
-								<div class="form-group">
-									<label class="control-label" for="category">Category: </label>
-									<select class="form-control" id="category">
-										<option class="person">person</option>
-										<option class="location">location</option>
-										<option class="organization">organization</option>
-										<option class="miscellanea">miscellanea</option>
-										<option class="date">date</option>
-										<option class="money">money</option>
-										<option class="interesting">interesting</option>
-										<option class="phone">phone</option>
-									</select>
-								</div>
-								<div class="form-group">
-									<button type="button" class="btn btn-default">Modify</button>									
-										<button type="button" class="btn1">Finish and Go Back To Mechanical Turk</button> 
-								</div>
+								<!---->
+								<button type="button" class="btn btn-success submit">Finish and Go Back To Mechanical Turk</button> 
 							</form>
 						</div>
 					</div>

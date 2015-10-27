@@ -1,3 +1,16 @@
+var colorMap = {
+	person : "#FFFF00",
+	location : "#B8860B",
+	organization : "#FF00FF",
+	money : "#32CD32",
+	miscellanea : "#FFBF00",
+	phone : "#A9A9F5",
+	interesting : "#FF6347",
+	date : "#00CED1",
+	other : "#4B0082",
+	unused : "#FF0000"
+}
+
 function cancelCurrent(event){
 	//event.preventDefault();
 	var currentEntity = $(this).html().toString();
@@ -79,10 +92,37 @@ function addCategory(event){
 	        class: "btn btn-sm legend "+cateName
     	}))
 	}
+	$("input#newCat").val("");
 }
 
+function goBack(event){
+	document.write("<h1>Thank you!</h1><h3>Redirecting to Mechanical Turk...</h3>");
+}
+
+function toggleCat(event){
+	var cls = $(this).html().toString();
+	
+	if ($("em#"+cls).is("."+cls)){
+		$("em#"+cls).removeClass(cls);
+	}else{
+		$("em#"+cls).addClass(cls);
+	}
+  //$("em").toggleClass(cls);
+}
+
+$("button._ALL").click(function(){
+	if ($(this).is("._SHOW")){
+		for (var i = 0; i < $("em").length; i++){
+			$($("em").get(i)).addClass($($("em").get(i)).attr("id"));
+		}
+	}else{
+		$("em").removeClass();
+	}
+})
 
 $("p").delegate(".entity","dblclick", cancelCurrent);
 $("div").delegate(".legend","click", addNewCat);
 $("#addCate").on("click",addCategory);
+$("#finish").on("click",goBack);
+$("li").delegate(".category","click",toggleCat)
 

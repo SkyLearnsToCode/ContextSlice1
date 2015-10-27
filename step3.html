@@ -1,4 +1,4 @@
-kk<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>Step3</title>
@@ -6,6 +6,7 @@ kk<!DOCTYPE html>
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<!-- jQuery library -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
 		<!-- Latest compiled JavaScript -->
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 		<!-- D3.js -->
@@ -21,14 +22,20 @@ kk<!DOCTYPE html>
 					<div id = "legend" class="panel panel-default">
 						<h3 class="panel panel-heading">Legend</h3>
 						<ul class="panel panel-body list-inline" style="border-style: none">	
-							<li><button class="btn-sm person"><br></button>  person</li>
-							<li><button class="btn-sm location"><br></button>  location</li>
-							<li><button class="btn-sm organization"><br></button>  organization</li>
-							<li><button class="btn-sm money"><br></button>  money</li>
-							<li><button class="btn-sm miscellanea"><br></button>  miscellanea</li>
-							<li><button class="btn-sm phone"><br></button>  phone</li>
-							<li><button class="btn-sm interesting"><br></button>  interesting</li>
-							<li><button class="btn-sm date"><br></button>  date</li>
+							<li>
+								<button class="btn-sm category person">person</button>
+								<button class="btn-sm category location">location</button>
+								<button class="btn-sm category organization">organization</button>
+								<button class="btn-sm category money">money</button>
+								<button class="btn-sm category miscellanea">miscellanea</button>
+								<button class="btn-sm category phone">phone</button>
+								<button class="btn-sm category interesting">interesting</button>
+								<button class="btn-sm category date">date</button>
+							</li>
+							<li>
+								<button class="btn-info _SHOW _ALL">Show All Category Highlight</button>
+								<button class="btn-info _HIDE _ALL">Hide All Category Highlight</button>
+							</li>
 						</ul>
 					</div>
 						<ul class="nav nav-tabs">
@@ -40,17 +47,17 @@ kk<!DOCTYPE html>
 							<div id = "doc1" class="tab-pane fade in active">
 							<h3 class="panel panel-heading">Doc1</h3>
 							<h5 class="panel panel-footer">Report Date:22 April, 2003</h5>
-							<p class="panel panel-body"><em class="person">Hani al Hallak</em>, of <em class="location">North Bergen NJ</em>, has deposited checks in his bank account that were drawn on <em class="organization">First Union Bank</em> account number <em class="miscellanea">1070173749003</em> in <em class="location">Springfield VA</em> in the name <em class="person">Abdul Ramazi</em>. The latest check is dated <em class="date">16 April, 2003</em> and was in the amount of <em class="money">$8500</em>.</p>
+							<p class="panel panel-body"><em id="person" class="person">Hani al Hallak</em>, of <em id="location" class="location">North Bergen NJ</em>, has deposited checks in his bank account that were drawn on <em id="organization" class="organization">First Union Bank</em> account number <em id="miscellanea" class="miscellanea">1070173749003</em> in <em id="location" class="location">Springfield VA</em> in the name <em id="person" class="person">Abdul Ramazi</em>. The latest check is dated <em id="date" class="date">16 April, 2003</em> and was in the amount of <em id="money" class="money">$8500</em>.</p>
 							</div>
 							<div id = "doc2" class="tab-pane fade">
 							<h3 class="panel panel-heading">Doc2</h3>
 							<h5 class="panel panel-footer">Report Date 22 April, 2003. CIA [From Dutch Security]</h5>
-							<p class="panel panel-body">Two men were arrested on <em class="date">April 20, 2003</em> by Dutch police in <em class="location">Haarlem, The Netherlands</em> after leaving the scene of an accident in which they were involved. Later on <em class="date">April 21, 2003</em> these men were identified as <em class="person">Tawfiq al Adel</em> and <em class="person">Saeed Khaliad</em> who have been wanted in <em class="location">Hamburg. Germany</em> in connection with investigations of <em class="miscellanea">Al Qaeda operations</em> in Europe. They were driving a panel truck rented in <em class="location">Hamburg, Germany</em>. <em class="interesting">Radioactive traces</em> were found in bed of this truck.</p>
+							<p class="panel panel-body">Two men were arrested on <em id="date" class="date">April 20, 2003</em> by Dutch police in <em id="location" class="location">Haarlem, The Netherlands</em> after leaving the scene of an accident in which they were involved. Later on <em id="date" class="date">April 21, 2003</em> these men were identified as <em id="person" class="person">Tawfiq al Adel</em> and <em id="person" class="person">Saeed Khaliad</em> who have been wanted in <em id="location" class="location">Hamburg. Germany</em> in connection with investigations of <em id="miscellanea" class="miscellanea">Al Qaeda operations</em> in Europe. They were driving a panel truck rented in <em id="location" class="location">Hamburg, Germany</em>. <em id="interesting" class="interesting">Radioactive traces</em> were found in bed of this truck.</p>
 						</div>
 						<div id = "doc3" class="tab-pane fade">
 							<h3 class="panel panel-heading">Doc3</h3>
 							<h5 class="panel panel-footer">Report Date 27 April, 2003.</h5>
-							<p class="panel panel-body">Intercept of cell phone <em class="phone">804-774-8920</em>. In a very brief call from this number to phone number <em class="phone">703-659-2317</em> on <em class="date">26 April, 2003</em>, the caller speaks in Arabic. A translation reads: "We are now prepared to <em class="interesting">take the crescent to victory</em>".</p>
+							<p class="panel panel-body">Intercept of cell phone <em id="phone" class="phone">804-774-8920</em>. In a very brief call from this number to phone number <em id="phone" class="phone">703-659-2317</em> on <em id="date" class="date">26 April, 2003</em>, the caller speaks in Arabic. A translation reads: "We are now prepared to <em id="interesting" class="interesting">take the crescent to victory</em>".</p>
 						</div>
 					</div>
 				</div>
@@ -113,5 +120,6 @@ kk<!DOCTYPE html>
 			</div>
 		</div>
 	<script type="text/javascript" src="main.js"></script>
+	<script type="text/javascript" src="highlight.js"></script>
 	</body>
 </html>

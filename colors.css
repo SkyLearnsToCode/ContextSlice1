@@ -37,6 +37,53 @@
 .unused{
 	background-color: #FF0000;
 }
+
+.btn-sm{
+	white-space:nowrap;
+	top: 0px;
+	border-radius: 5px;
+  	position: relative;
+  	font-family: 'Roboto', sans-serif;
+  	width: 75px;
+  	height: 30px;
+  	cursor: pointer;
+  	transition: 0.1s all ease;
+  	font-size : 11px;
+  	font-weight: 400;
+  	color: #5c5c5c;  /*777*/
+  	border-bottom: 1.5px solid #ccc;
+  	box-shadow: 0px 0px 0px 0px #e6e6e6;
+
+}
+
+
+#show{
+	position: relative;
+	padding: 6px 7px;  /*20px*/
+	margin: 2px 10px 2px 0px;
+	float: left;
+	border-radius: 10px;
+	font-family: 'Helvetica', cursive;
+	font-size: 12px;
+	color: #FFF;
+	background-color: #3498DB;
+	border-bottom: 5px solid #2980B9;
+	text-shadow: 0px -2px #2980B9;
+}
+
+#hide{
+	position: relative;
+	padding: 6px 10px;   /*23*/
+	margin: 0px 10px 10px 0px;
+	float: left;
+	border-radius: 10px;
+	font-family: 'Helvetica', cursive;
+	font-size: 12px;
+	color: #FFF;
+	background-color: #3498DB;
+	border-bottom: 5px solid #2980B9;
+	text-shadow: 0px -2px #2980B9;
+}
 .submit{
 	float: right;
 }

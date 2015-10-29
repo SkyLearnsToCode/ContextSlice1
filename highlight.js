@@ -7,8 +7,8 @@ var colorMap = {
 	phone : "#A9A9F5",
 	interesting : "#FF6347",
 	date : "#00CED1",
-	other : "#4B0082",
-	unused : "#FF0000"
+	nuId: "#4B0082",
+	unused : "#3333FF"
 }
 
 function cancelCurrent(event){
@@ -88,8 +88,8 @@ function addCategory(event){
 	}
 	if(add && cateName!=""){
 		$("#catGroup").append($('<button/>', {
-	        text: cateName, 
-	        class: "btn btn-sm legend "+cateName
+	        text: cateName,
+	        class: "btn btn-sm legend"+cateName
     	}))
 	}
 	$("input#newCat").val("");
@@ -121,8 +121,8 @@ $("button._ALL").click(function(){
 })
 
 $("p").delegate(".entity","dblclick", cancelCurrent);
-$("div").delegate(".legend","click", addNewCat);
-$("#addCate").on("click",addCategory);
+$("div").delegate(".legend","click", addNewCat); //adds the categories present
+$("#addCate").on("click",addCategory); //on click adds new category!
 $("#finish").on("click",goBack);
 $("li").delegate(".category","click",toggleCat)
 

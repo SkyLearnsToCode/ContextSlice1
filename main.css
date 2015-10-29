@@ -2,6 +2,11 @@
 	float: right;
 }
 
-textarea{
+textarea{ 
 	/*border: 0pt;*/
+	height: 150px; 
+	width: 420px;
+}
+#nuId{
+	background-color: "#4B0082";
 }

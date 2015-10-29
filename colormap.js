@@ -1,10 +1,11 @@
 $(document).ready(function(){
-  $('person').css({"background-color":"orange"});
-  $('location').css({"background-color":"green"});
+  $('person').css({"background-color":"green"});
+  $('location').css({"background-color":"brown"});
   $('organization').css({"background-color":"pink"});
   $('money').css({"background-color":"yellow"});
   $('miscellanea').css({"background-color":"purple"});
   $('phone').css({"background-color":"gray"});
   $('interesting').css({"background-color":"red"});
   $('date').css({"background-color":"blue"});
+  $('nuId').css({"background-color":"purple"});
 });

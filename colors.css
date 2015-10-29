@@ -1,32 +1,32 @@
-.person{
+.highlight.person{
 	background-color: #FFFF00;
 }
 
-.location{
+.highlight.location{
 	background-color: #B8860B;
 }
 
-.organization{
+.highlight.organization{
 	background-color: #FF00FF;
 }
 
-.money{
+.highlight.money{
 	background-color: #32CD32;
 }
 
-.miscellanea{
+.highlight.miscellanea{
 	background-color: #FFBF00;
 }
 
-.phone{
+.highlight.phone{
 	background-color: #A9A9F5;
 }
 
-.interesting{
+.highlight.interesting{
 	background-color: #FF6347;
 }
 
-.date{
+.highlight.date{
 	background-color: #00CED1;
 }
 
@@ -56,10 +56,29 @@
 
 }
 
+.submit{
+	float: right;
+}
 
-#show{
+/***
+
+#hide{
 	position: relative;
-	padding: 6px 7px;  /*20px*/
+	padding: 6px 10px;   //23
+	margin: 0px 10px 10px 0px;
+	float: left;
+	border-radius: 10px;
+	font-family: 'Helvetica', cursive;
+	font-size: 12px;
+	color: #FFF;
+	background-color: #3498DB;
+	border-bottom: 5px solid #2980B9;
+	text-shadow: 0px -2px #2980B9;
+}
+
+.toggleAllHighlight{
+	position: relative;
+	padding: 6px 7px;  //20px
 	margin: 2px 10px 2px 0px;
 	float: left;
 	border-radius: 10px;
@@ -71,19 +90,4 @@
 	text-shadow: 0px -2px #2980B9;
 }
 
-#hide{
-	position: relative;
-	padding: 6px 10px;   /*23*/
-	margin: 0px 10px 10px 0px;
-	float: left;
-	border-radius: 10px;
-	font-family: 'Helvetica', cursive;
-	font-size: 12px;
-	color: #FFF;
-	background-color: #3498DB;
-	border-bottom: 5px solid #2980B9;
-	text-shadow: 0px -2px #2980B9;
-}
-.submit{
-	float: right;
-}
+***/

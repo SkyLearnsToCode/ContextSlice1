@@ -11,6 +11,7 @@ var colorMap = {
 	unused : "#3333FF"
 }
 
+//Step 1
 //makes sure that the element within the paragraph element no longer has the
 //entity class or anything else.
 function cancelCurrent(event){
@@ -28,6 +29,7 @@ function cancelCurrent(event){
 	parent[0].normalize();
 }
 
+//Step 1
 //displays the currently selected entities in the textarea box
 function displayCategoryEntitiesInSummary (category){
 	$("#summary-cat").html("Category["+category+"]: ");
@@ -68,7 +70,7 @@ function addNewEntity(event){
 	}
 }
 
-
+//Step 1
 //appends the a new button category to #catGroup div
 function addCategory(event){
 	$("#errorAlert").html("");
@@ -94,6 +96,7 @@ function addCategory(event){
 
 
 //Toggles the category highlighting of words in the paragraph document
+/*
 function toggleCat(event){
 	var htmlClassString = $(this).html().toString();
 
@@ -103,7 +106,17 @@ function toggleCat(event){
 		$("em#"+htmlClassString).addClass(htmlClassString);
 	}
 }
+*/
 
+//Alternative to toggleCat(event)
+function toggleCategoryHighlight(event){
+	var category = $(this).html().toString();
+
+	$("em."+category).toggleClass("highlight");
+}
+
+//Show all category highlight
+/*
 $("button._ALL").click(function(){
 	if ($(this).is("._SHOW")){
 		for (var i = 0; i < $("em").length; i++){
@@ -113,6 +126,18 @@ $("button._ALL").click(function(){
 		$("em").removeClass();
 	}
 })
+*/
+
+//Show/Hide all category highlight
+function toggleAllHighlight(event){
+	$("em").toggleClass("highlight");
+	$(this).toggleClass("btn-info");
+	if($("em").is(".highlight")){
+		$(this).html("Hide");
+	}else{
+		$(this).html("Show");
+	}
+}
 
 function goBack(event){
 	document.write("<h1>Thank you!</h1><h3>Redirecting to Mechanical Turk...</h3>");
@@ -128,8 +153,11 @@ $("div").delegate(".legend","click", addNewEntity);
 //appends the a new button category to #catGroup div based on addCate button
 $("#addCate").on("click",addCategory);
 
-//attaches toggleCat handler to any 'li' AND 'category' element for onclick event
-$("li").delegate(".category","click",toggleCat)
+//attaches toggleCategory handler to any 'li' AND 'category' element for onclick event
+$("li").delegate(".category","click",toggleCategoryHighlight);
+
+//attach toggleAllHighlight handler our '.toggleAllHighlight' button in 'li' element for onclick event
+$("li").delegate("button.toggleAllHighlight","click",toggleAllHighlight);
 
 //redirects for the worker
 $("#finish").on("click",goBack);

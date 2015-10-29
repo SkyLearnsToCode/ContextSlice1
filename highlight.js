@@ -94,14 +94,13 @@ function addCategory(event){
 
 
 //Toggles the category highlighting of words in the paragraph document
-//QUESTION what does cls stand for?
 function toggleCat(event){
-	var cls = $(this).html().toString();
+	var htmlClassString = $(this).html().toString();
 
-	if ($("em#"+cls).is("."+cls)){
-		$("em#"+cls).removeClass(cls);
+	if ($("em#"+htmlClassString).is("."+htmlClassString)){
+		$("em#"+htmlClassString).removeClass(htmlClassString);
 	}else{
-		$("em#"+cls).addClass(cls);
+		$("em#"+htmlClassString).addClass(htmlClassString);
 	}
 }
 

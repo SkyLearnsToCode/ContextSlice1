@@ -11,25 +11,25 @@ var colorMap = {
 	unused : "#3333FF"
 }
 
+//makes sure that the element within the paragraph element no longer has the
+//entity class or anything else.
 function cancelCurrent(event){
-	//event.preventDefault();
 	var currentEntity = $(this).html().toString();
 	var separate = currentEntity.split(" ");
 	var newEntity = "";
 	var parent = $(this).parent();
 	for (word in  separate){
-		//newEntity += separate[word].anchor(word);
 		newEntity += separate[word]
 		if(word != separate.length -1){
 			newEntity += " ";
 		}
 	}
-	//$(this).before(newEntity);
 	$(this).replaceWith(newEntity);
 	parent[0].normalize();
 }
 
-function displayCategory (category){
+//displays the currently selected entities in the textarea box
+function displayCategoryEntitiesInSummary (category){
 	$("#summary-cat").html("Category["+category+"]: ");
 	var entityList = "";
 	var cateEntities = $("em."+category);
@@ -40,39 +40,36 @@ function displayCategory (category){
 	$("textarea").html(entityList);
 }
 
-function addNewCat(event){
-	//event.preventDefault();
+//gets the user's highlighted words, adds them
+//QUESTION what is the else part doing here?
+function addNewEntity(event){
 	var classN = $(this).html();
 	if (window.getSelection) {  // all browsers, except IE before version 9
-		var entitySelect = document.getSelection(); 
-		var entityStr = entitySelect.toString();  
-		//alert(entitySelect.rangeCount);                                     
+		var entitySelect = document.getSelection();
+		var entityStr = entitySelect.toString();
 		if(entitySelect.rangeCount && entityStr!=""){
 			var entityRange = entitySelect.getRangeAt(0);
-			//alert(entityRange);
 			var entityNode = document.createElement("em");
 			entityNode.className = "entity "+classN;
 			entityNode.appendChild(document.createTextNode(entityStr));
 			entityRange.deleteContents();
 			entityRange.insertNode(entityNode);
 		}
-	} 
+	}
 	else{
 		if (document.selection && document.selection.createRange) { // Internet Explorer
 	    	var entitySelect = document.selection.createRange();
 	    	var entityStr = entitySelect.text;
-	    	//alert (range.text);
 	    }
 	}
-	displayCategory(classN);
+	displayCategoryEntitiesInSummary(classN);
 	if ($('input[name="editType"]:checked').val() == "cat"){
-		addNewCat(event);
+		addNewEntity(event);
 	}
-	//addNewCat(event);
-		//alert(entity.anchorNode.appendChild(entity.anchorNode));
-		//toString().anchor()
 }
 
+
+//appends the a new button category to #catGroup div
 function addCategory(event){
 	$("#errorAlert").html("");
 	var cateName = $("input#newCat").val();
@@ -89,25 +86,22 @@ function addCategory(event){
 	if(add && cateName!=""){
 		$("#catGroup").append($('<button/>', {
 	        text: cateName,
-	        class: "btn btn-sm legend"+cateName
+	        class: "btn btn-sm legend "+cateName
     	}))
 	}
 	$("input#newCat").val("");
 }
 
-function goBack(event){
-	document.write("<h1>Thank you!</h1><h3>Redirecting to Mechanical Turk...</h3>");
-}
 
+//Toggles the category highlighting of words in the paragraph document
 function toggleCat(event){
-	var cls = $(this).html().toString();
-	
-	if ($("em#"+cls).is("."+cls)){
-		$("em#"+cls).removeClass(cls);
+	var htmlClassString = $(this).html().toString();
+
+	if ($("em#"+htmlClassString).is("."+htmlClassString)){
+		$("em#"+htmlClassString).removeClass(htmlClassString);
 	}else{
-		$("em#"+cls).addClass(cls);
+		$("em#"+htmlClassString).addClass(htmlClassString);
 	}
-  //$("em").toggleClass(cls);
 }
 
 $("button._ALL").click(function(){
@@ -120,9 +114,22 @@ $("button._ALL").click(function(){
 	}
 })
 
+function goBack(event){
+	document.write("<h1>Thank you!</h1><h3>Redirecting to Mechanical Turk...</h3>");
+}
+
+//on double click, cancelCurrent gets called for any element within the paragraph document
+//that has the class entity
 $("p").delegate(".entity","dblclick", cancelCurrent);
-$("div").delegate(".legend","click", addNewCat); //adds the categories present
-$("#addCate").on("click",addCategory); //on click adds new category!
-$("#finish").on("click",goBack);
+
+//switches the entity list to show entities of that category
+$("div").delegate(".legend","click", addNewEntity);
+
+//appends the a new button category to #catGroup div based on addCate button
+$("#addCate").on("click",addCategory);
+
+//attaches toggleCat handler to any 'li' AND 'category' element for onclick event
 $("li").delegate(".category","click",toggleCat)
 
+//redirects for the worker
+$("#finish").on("click",goBack);

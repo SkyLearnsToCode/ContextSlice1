@@ -11,8 +11,8 @@
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 		<!-- D3.js -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
-
 		<link rel="stylesheet" type="text/css" href="colors.css">
+		<link rel="stylesheet" type="text/css" href="graph.css">
 	</head>
 	<body>
 		<div id="documentContents" class="container">
@@ -22,9 +22,9 @@
 					<div id = "legend" class="panel panel-default">
 						<h3 class="panel panel-heading">Category Legend</h3>
 						<ul class="panel panel-body list-inline" style="border-style: none">
-							<li> 
+							<li>
 								<button class="btn toggleAllHighlight">Hide</button> <label class="toggleAllHighlight">All Category Highlight</label>
-							</li>	
+							</li>
 							<li>
 								<button class="btn-sm category highlight person">person</button>
 								<button class="btn-sm category highlight location">location</button>
@@ -33,8 +33,8 @@
 								<button class="btn-sm category highlight miscellanea">miscellanea</button>
 								<button class="btn-sm category highlight phone">phone</button>
 								<button class="btn-sm category highlight interesting">interesting</button>
-								<button class="btn-sm category highlight date">date</button>			
-							 </li> 
+								<button class="btn-sm category highlight date">date</button>
+							 </li>
 						</ul>
 					</div>
 						<ul class="nav nav-tabs">
@@ -74,7 +74,7 @@
 					<div class="panel panel-default" id="newgraph">
 						<h2 class="jumbotron panel panel-heading">Your Graph</h2>
 						<div class="panel panel-body">
-							<svg width="700px" height="150px" align="center">
+							<svg id="graph-editor" width="700px" height="700px" align="center">
 							</svg>
 							<form class="form-horizontal" role="form" >
 								<div class="form-group">
@@ -110,7 +110,7 @@
 									</select>
 								</div>
 								<div class="form-group">
-									<button type="button" class="btn btn-default">Add Edge<br></button>  
+									<button type="button" class="btn btn-default">Add Edge<br></button>
 								</div>
 							</form>
 						</div>
@@ -120,5 +120,6 @@
 		</div>
 	<script type="text/javascript" src="main.js"></script>
 	<script type="text/javascript" src="highlight.js"></script>
+	<script type="text/javascript" src="graph_editor.js"></script>
 	</body>
 </html>

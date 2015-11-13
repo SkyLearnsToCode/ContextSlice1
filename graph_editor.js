@@ -3,39 +3,54 @@ var width = 700,
 
 var color = d3.scale.category20();
 
-var force = d3.layout.force()
-    .charge(-120)
-    .linkDistance(30)
-    .size([width, height]);
-
-var svg = d3.select("#graph-editor").append("svg")
+var svg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height);
 
-d3.json("miserables.json", function(error, graph) {
+var force = d3.layout.force()
+    .gravity(.05)
+    .distance(100)
+    .charge(-100)
+    .size([width, height]);
+
+var svg = d3.select("#graph-editor").append("svg")
+.attr("width", width)
+.attr("height", height);
+
+d3.json("graph.json", function(error, json) {
   if (error) throw error;
 
   force
-      .nodes(graph.nodes)
-      .links(graph.links)
+      .nodes(json.nodes)
+      .links(json.links)
       .start();
 
   var link = svg.selectAll(".link")
-      .data(graph.links)
+      .data(json.links)
     .enter().append("line")
-      .attr("class", "link")
-      .style("stroke-width", function(d) { return Math.sqrt(d.value); });
+      .attr("class", "link");
 
   var node = svg.selectAll(".node")
-      .data(graph.nodes)
-    .enter().append("circle")
+      .data(json.nodes)
+    .enter().append("g")
       .attr("class", "node")
+      .call(force.drag);
+    node.append("circle")
       .attr("r", 5)
       .style("fill", function(d) { return color(d.group); })
-      .call(force.drag);
 
-  node.append("title")
-      .text(function(d) { return d.name; });
+
+  // node.append("image")
+  //     .attr("xlink:href", "https://github.com/favicon.ico")
+  //     .attr("x", -8)
+  //     .attr("y", -8)
+  //     .attr("width", 16)
+  //     .attr("height", 16);
+
+  node.append("text")
+      .attr("dx", 12)
+      .attr("dy", ".35em")
+      .text(function(d) { return d.name });
 
   force.on("tick", function() {
     link.attr("x1", function(d) { return d.source.x; })
@@ -43,7 +58,6 @@ d3.json("miserables.json", function(error, graph) {
         .attr("x2", function(d) { return d.target.x; })
         .attr("y2", function(d) { return d.target.y; });
 
-    node.attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; });
+    node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
   });
 });

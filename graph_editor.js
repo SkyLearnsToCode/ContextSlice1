@@ -1,6 +1,10 @@
 var width = 700,
     height = 700;
 
+// mouse event vars
+var selected_node = null,
+    selected_link = null
+
 var color = d3.scale.category20();
 
 var svg = d3.select("body").append("svg")
@@ -32,7 +36,8 @@ d3.json("graph.json", function(error, json) {
 
   var node = svg.selectAll(".node")
       .data(json.nodes)
-    .enter().append("g")
+      .enter().append("g")
+      .on("click", click)
       .attr("class", "node")
       .call(force.drag);
     node.append("circle")
@@ -60,4 +65,12 @@ d3.json("graph.json", function(error, json) {
 
     node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
   });
+
+  // action to take on mouse click
+  function click() {
+      d3.select(this).select("circle").transition()
+          .duration(750)
+          .attr("r", 16)
+          .style("fill", "lightsteelblue");
+  }
 });

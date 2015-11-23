@@ -46,7 +46,7 @@ def cooccur(item1, item2):
 # 		item_item.append(row)
 # 	return item_item
 
-tree = ET.parse('datafiles/crescent.xml')
+tree = ET.parse('sample_data_input/crescent.xml')
 root = tree.getroot()
 
 #build aliases dictionary
@@ -84,20 +84,26 @@ for name in root.iter('alias'):
 
 #find items
 items = []
+nodes = []
 for doc in root.iter('document'):
 	for child in doc:
 		item = child.text
+		tag = child.tag
 		if item not in items and item != None and child.tag != 'docID' and child.tag != 'docText':
 			if child.tag in aliasedType:
+				#deal with duplication
 				item = filter(item, child.tag, aliases)
 			items.append(item)
+			node = {'name':item,'category':tag}
+			nodes.append(node)
 items.sort()
 
 item_item = []
 
 graph = {"nodes":[],"links":[]}
-for idx, node_name in enumerate(items):
-    graph["nodes"].append({"group":idx,"name":node_name})
+#for idx, node_name in enumerate(items):
+#    graph["nodes"].append({"group":idx,"name":node_name})
+graph["nodes"] = nodes;
 
 link_count = 0
 

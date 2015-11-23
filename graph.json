@@ -1,1140 +1,1140 @@
 {
     "nodes": [
         {
-            "group": 0,
-            "name": "$13,000"
-        },
-        {
-            "group": 1,
-            "name": "$20,000"
-        },
-        {
-            "group": 2,
-            "name": "$35,000"
-        },
-        {
-            "group": 3,
-            "name": "$8500"
-        },
-        {
-            "group": 4,
-            "name": "01 1207670734"
-        },
-        {
-            "group": 5,
-            "name": "1 April, 2003"
-        },
-        {
-            "group": 6,
-            "name": "10 April, 2003"
-        },
-        {
-            "group": 7,
-            "name": "1070173"
-        },
-        {
-            "group": 8,
-            "name": "1070173749003"
-        },
-        {
-            "group": 9,
-            "name": "11 April, 2003"
-        },
-        {
-            "group": 10,
-            "name": "12 April, 2003"
-        },
-        {
-            "group": 11,
-            "name": "12 Feb. 1997"
-        },
-        {
-            "group": 12,
-            "name": "13 April, 2003"
-        },
-        {
-            "group": 13,
-            "name": "14 April, 2003"
-        },
-        {
-            "group": 14,
-            "name": "15 April, 2003"
-        },
-        {
-            "group": 15,
-            "name": "16 April, 2003"
-        },
-        {
-            "group": 16,
-            "name": "18 April, 2003"
-        },
-        {
-            "group": 17,
-            "name": "19 April, 2003"
-        },
-        {
-            "group": 18,
-            "name": "1987 - 1993"
-        },
-        {
-            "group": 19,
-            "name": "1990 - 1992"
-        },
-        {
-            "group": 20,
-            "name": "1994"
-        },
-        {
-            "group": 21,
-            "name": "1996"
-        },
-        {
-            "group": 22,
-            "name": "2 December, 2001"
-        },
-        {
-            "group": 23,
-            "name": "20 April, 2003"
-        },
-        {
-            "group": 24,
-            "name": "21 April, 2003"
-        },
-        {
-            "group": 25,
-            "name": "22 April, 2003"
-        },
-        {
-            "group": 26,
-            "name": "22 December, 2001"
-        },
-        {
-            "group": 27,
-            "name": "23 April, 2003"
-        },
-        {
-            "group": 28,
-            "name": "24 April, 2003"
-        },
-        {
-            "group": 29,
-            "name": "25 April, 2003"
-        },
-        {
-            "group": 30,
-            "name": "26 April, 2003"
-        },
-        {
-            "group": 31,
+            "category": "Date",
             "name": "27 April, 2003"
         },
         {
-            "group": 32,
-            "name": "29 April, 1930"
-        },
-        {
-            "group": 33,
-            "name": "29 April, 1930hrs"
-        },
-        {
-            "group": 34,
-            "name": "29 April, 2003"
-        },
-        {
-            "group": 35,
-            "name": "2932 University Drive"
-        },
-        {
-            "group": 36,
-            "name": "30 March, 2003"
-        },
-        {
-            "group": 37,
-            "name": "5 April, 2003"
-        },
-        {
-            "group": 38,
-            "name": "6 April, 2003"
-        },
-        {
-            "group": 39,
-            "name": "7 April, 2003"
-        },
-        {
-            "group": 40,
+            "category": "Phone",
             "name": "703-659-2317"
         },
         {
-            "group": 41,
-            "name": "703-734-0104"
-        },
-        {
-            "group": 42,
-            "name": "706-437-6673"
-        },
-        {
-            "group": 43,
-            "name": "713-556-9213"
-        },
-        {
-            "group": 44,
-            "name": "718-352-8479"
-        },
-        {
-            "group": 45,
-            "name": "732-455-6392"
-        },
-        {
-            "group": 46,
-            "name": "8 April, 2002"
-        },
-        {
-            "group": 47,
-            "name": "8 April, 2003"
-        },
-        {
-            "group": 48,
-            "name": "804-759-6302"
-        },
-        {
-            "group": 49,
+            "category": "Phone",
             "name": "804-774-8920"
         },
         {
-            "group": 50,
-            "name": "9 April, 2003"
+            "category": "Date",
+            "name": "26 April, 2003"
         },
         {
-            "group": 51,
-            "name": "AMTRAK"
-        },
-        {
-            "group": 52,
-            "name": "Abdelhak Kherbane"
-        },
-        {
-            "group": 53,
-            "name": "Abdul Ramazi"
-        },
-        {
-            "group": 54,
-            "name": "Abdul al Hada"
-        },
-        {
-            "group": 55,
-            "name": "Abdulla Ramzi"
-        },
-        {
-            "group": 56,
-            "name": "Abu al Masri"
-        },
-        {
-            "group": 57,
-            "name": "Abul Hassan Salman"
-        },
-        {
-            "group": 58,
-            "name": "Afghanistan"
-        },
-        {
-            "group": 59,
-            "name": "Ahmed Yassin"
-        },
-        {
-            "group": 60,
-            "name": "Al Qaeda"
-        },
-        {
-            "group": 61,
-            "name": "Alder St"
-        },
-        {
-            "group": 62,
-            "name": "Alwan"
-        },
-        {
-            "group": 63,
-            "name": "American Airlines"
-        },
-        {
-            "group": 64,
-            "name": "American Diplomatic Mission Headquarters"
-        },
-        {
-            "group": 65,
-            "name": "Amsterdam"
-        },
-        {
-            "group": 66,
-            "name": "Apex Paper Products Company"
-        },
-        {
-            "group": 67,
-            "name": "April 18, 2003"
-        },
-        {
-            "group": 68,
-            "name": "April 20, 2003"
-        },
-        {
-            "group": 69,
-            "name": "April 2003"
-        },
-        {
-            "group": 70,
-            "name": "April 21, 2003"
-        },
-        {
-            "group": 71,
-            "name": "April 25, 2003"
-        },
-        {
-            "group": 72,
-            "name": "April 26, 2003"
-        },
-        {
-            "group": 73,
-            "name": "April 30"
-        },
-        {
-            "group": 74,
+            "category": "Misc",
             "name": "Arabic"
         },
         {
-            "group": 75,
-            "name": "Army CID"
+            "category": "Phone",
+            "name": "804-759-6302"
         },
         {
-            "group": 76,
-            "name": "Arnaldo Gueterrez"
+            "category": "Date",
+            "name": "22 April, 2003"
         },
         {
-            "group": 77,
-            "name": "Aryan Nations"
+            "category": "Date",
+            "name": "24 April, 2003"
         },
         {
-            "group": 78,
-            "name": "Atlanta"
+            "category": "Phone",
+            "name": "718-352-8479"
         },
         {
-            "group": 79,
-            "name": "Bagwant Dhaliwal"
+            "category": "Phone",
+            "name": "01 1207670734"
         },
         {
-            "group": 80,
-            "name": "Ben Hassine"
+            "category": "Date",
+            "name": "April 30"
         },
         {
-            "group": 81,
-            "name": "Beth Israel"
-        },
-        {
-            "group": 82,
-            "name": "Border Patrol"
-        },
-        {
-            "group": 83,
-            "name": "Boston"
-        },
-        {
-            "group": 84,
-            "name": "Bowling Green"
-        },
-        {
-            "group": 85,
-            "name": "Bremerhaven"
-        },
-        {
-            "group": 86,
-            "name": "British"
-        },
-        {
-            "group": 87,
-            "name": "British Special Branch"
-        },
-        {
-            "group": 88,
-            "name": "Bronx"
-        },
-        {
-            "group": 89,
-            "name": "Budget Storage Units"
-        },
-        {
-            "group": 90,
-            "name": "Buenos Aires"
-        },
-        {
-            "group": 91,
-            "name": "Bush Intercontinental Airport"
-        },
-        {
-            "group": 92,
-            "name": "C-4"
-        },
-        {
-            "group": 93,
-            "name": "CIA"
-        },
-        {
-            "group": 94,
-            "name": "Cairo"
-        },
-        {
-            "group": 95,
-            "name": "California"
-        },
-        {
-            "group": 96,
-            "name": "Camp George West Military Reservation"
-        },
-        {
-            "group": 97,
-            "name": "Canada"
-        },
-        {
-            "group": 98,
-            "name": "Canadian"
-        },
-        {
-            "group": 99,
-            "name": "Capitol Ave."
-        },
-        {
-            "group": 100,
-            "name": "Carl Louis"
-        },
-        {
-            "group": 101,
-            "name": "Central Bank of Dubai"
-        },
-        {
-            "group": 102,
-            "name": "Charlottesville"
-        },
-        {
-            "group": 103,
-            "name": "Chicago"
-        },
-        {
-            "group": 104,
-            "name": "City Computer Services Corp."
-        },
-        {
-            "group": 105,
-            "name": "City Park"
-        },
-        {
-            "group": 106,
-            "name": "Clark & Co"
-        },
-        {
-            "group": 107,
-            "name": "Clark Adams"
-        },
-        {
-            "group": 108,
-            "name": "Clark Webster"
-        },
-        {
-            "group": 109,
-            "name": "Coal Mine Road"
-        },
-        {
-            "group": 110,
-            "name": "Coast Guard"
-        },
-        {
-            "group": 111,
-            "name": "Colfax Avenue"
-        },
-        {
-            "group": 112,
-            "name": "Colorado"
-        },
-        {
-            "group": 113,
-            "name": "Columbus"
-        },
-        {
-            "group": 114,
-            "name": "Continental Airlines"
-        },
-        {
-            "group": 115,
-            "name": "Cuba"
-        },
-        {
-            "group": 116,
-            "name": "Culver City"
-        },
-        {
-            "group": 117,
-            "name": "Denver"
-        },
-        {
-            "group": 118,
-            "name": "Detroit"
-        },
-        {
-            "group": 119,
-            "name": "Dulles Airport"
-        },
-        {
-            "group": 120,
-            "name": "Dutch"
-        },
-        {
-            "group": 121,
-            "name": "Egypt"
-        },
-        {
-            "group": 122,
-            "name": "Egyptian"
-        },
-        {
-            "group": 123,
-            "name": "El Paso"
-        },
-        {
-            "group": 124,
-            "name": "El Segundo"
-        },
-        {
-            "group": 125,
-            "name": "Empire State Vending Services"
-        },
-        {
-            "group": 126,
-            "name": "Europe"
-        },
-        {
-            "group": 127,
-            "name": "FBI"
-        },
-        {
-            "group": 128,
-            "name": "Faysal Goba"
-        },
-        {
-            "group": 129,
-            "name": "First Union Bank"
-        },
-        {
-            "group": 130,
-            "name": "First Union National Bank"
-        },
-        {
-            "group": 131,
-            "name": "Floyd Ave."
-        },
-        {
-            "group": 132,
-            "name": "France"
-        },
-        {
-            "group": 133,
-            "name": "French"
-        },
-        {
-            "group": 134,
-            "name": "Georgia"
-        },
-        {
-            "group": 135,
-            "name": "German Intelligence"
-        },
-        {
-            "group": 136,
-            "name": "Germany"
-        },
-        {
-            "group": 137,
-            "name": "Green Bay"
-        },
-        {
-            "group": 138,
-            "name": "Greenlawn Ave."
-        },
-        {
-            "group": 139,
-            "name": "Guantanamo"
-        },
-        {
-            "group": 140,
-            "name": "Haarlem"
-        },
-        {
-            "group": 141,
-            "name": "Hamburg"
-        },
-        {
-            "group": 142,
-            "name": "Hamid Alwan"
-        },
-        {
-            "group": 143,
-            "name": "Hani al Hallak"
-        },
-        {
-            "group": 144,
+            "category": "Person",
             "name": "Hans Pakes"
         },
         {
-            "group": 145,
-            "name": "Hezboliah"
-        },
-        {
-            "group": 146,
-            "name": "Holland Queen"
-        },
-        {
-            "group": 147,
-            "name": "Home Depot"
-        },
-        {
-            "group": 148,
-            "name": "Houston"
-        },
-        {
-            "group": 149,
-            "name": "Howell St."
-        },
-        {
-            "group": 150,
-            "name": "Hubbard St."
-        },
-        {
-            "group": 151,
-            "name": "Hudspeth County"
-        },
-        {
-            "group": 152,
-            "name": "I2 December, 20011"
-        },
-        {
-            "group": 153,
-            "name": "INS"
-        },
-        {
-            "group": 154,
-            "name": "Illinois"
-        },
-        {
-            "group": 155,
-            "name": "Imperial Highway"
-        },
-        {
-            "group": 156,
-            "name": "Indian"
-        },
-        {
-            "group": 157,
-            "name": "Jamal Kalifa"
-        },
-        {
-            "group": 158,
-            "name": "Jamil Musawi"
-        },
-        {
-            "group": 159,
-            "name": "January 1996"
-        },
-        {
-            "group": 160,
-            "name": "Jelte Nijboer"
-        },
-        {
-            "group": 161,
-            "name": "Joseph Nizar"
-        },
-        {
-            "group": 162,
-            "name": "Kandahar"
-        },
-        {
-            "group": 163,
-            "name": "Karm Bensaid"
-        },
-        {
-            "group": 164,
-            "name": "Kentucky"
-        },
-        {
-            "group": 165,
-            "name": "Keswick"
-        },
-        {
-            "group": 166,
-            "name": "Khalfan Maulid"
-        },
-        {
-            "group": 167,
-            "name": "LAX"
-        },
-        {
-            "group": 168,
-            "name": "Latin American"
-        },
-        {
-            "group": 169,
-            "name": "Laurel Avenue"
-        },
-        {
-            "group": 170,
-            "name": "Lebanese"
-        },
-        {
-            "group": 171,
-            "name": "Lee Highway"
-        },
-        {
-            "group": 172,
-            "name": "Little York Rd."
-        },
-        {
-            "group": 173,
-            "name": "London"
-        },
-        {
-            "group": 174,
-            "name": "Los Angeles"
-        },
-        {
-            "group": 175,
-            "name": "Lublin"
-        },
-        {
-            "group": 176,
-            "name": "M15"
-        },
-        {
-            "group": 177,
-            "name": "Manhattan"
-        },
-        {
-            "group": 178,
-            "name": "March of 2003"
-        },
-        {
-            "group": 179,
-            "name": "March, 1993"
-        },
-        {
-            "group": 180,
-            "name": "Mark Davis"
-        },
-        {
-            "group": 181,
-            "name": "Marshall Avenue"
-        },
-        {
-            "group": 182,
-            "name": "Marvel Corporation"
-        },
-        {
-            "group": 183,
-            "name": "Masood Yaser"
-        },
-        {
-            "group": 184,
-            "name": "McNary"
-        },
-        {
-            "group": 185,
-            "name": "McRae Blvd"
-        },
-        {
-            "group": 186,
-            "name": "Merrifield"
-        },
-        {
-            "group": 187,
-            "name": "Mexicans"
-        },
-        {
-            "group": 188,
-            "name": "Miami"
-        },
-        {
-            "group": 189,
-            "name": "Michigan"
-        },
-        {
-            "group": 190,
-            "name": "Middle Eastern"
-        },
-        {
-            "group": 191,
-            "name": "Minneapolis"
-        },
-        {
-            "group": 192,
-            "name": "Minnesota"
-        },
-        {
-            "group": 193,
-            "name": "Moslem"
-        },
-        {
-            "group": 194,
-            "name": "Muhammad Shamzi"
-        },
-        {
-            "group": 195,
-            "name": "Muhammed bin Harazi"
-        },
-        {
-            "group": 196,
-            "name": "Mukhtar Galab"
-        },
-        {
-            "group": 197,
-            "name": "Myrtle Ave"
-        },
-        {
-            "group": 198,
-            "name": "New Jersey"
-        },
-        {
-            "group": 199,
-            "name": "New Orleans"
-        },
-        {
-            "group": 200,
-            "name": "New York"
-        },
-        {
-            "group": 201,
-            "name": "New York City"
-        },
-        {
-            "group": 202,
-            "name": "New York Stock Exchange"
-        },
-        {
-            "group": 203,
-            "name": "North Bergen"
-        },
-        {
-            "group": 204,
-            "name": "O'Hare"
-        },
-        {
-            "group": 205,
-            "name": "Office Supplies Co."
-        },
-        {
-            "group": 206,
-            "name": "Omar Bakri Qatada"
-        },
-        {
-            "group": 207,
-            "name": "Omar Clark"
-        },
-        {
-            "group": 208,
-            "name": "Paddington"
-        },
-        {
-            "group": 209,
-            "name": "Pakistani"
-        },
-        {
-            "group": 210,
-            "name": "Paris"
-        },
-        {
-            "group": 211,
-            "name": "Passport Agency"
-        },
-        {
-            "group": 212,
-            "name": "Penn Station NYC"
-        },
-        {
-            "group": 213,
-            "name": "Pentaerythritol"
-        },
-        {
-            "group": 214,
-            "name": "Pentagon"
-        },
-        {
-            "group": 215,
-            "name": "Poland"
-        },
-        {
-            "group": 216,
-            "name": "Pyramid Bank of Cairo"
-        },
-        {
-            "group": 217,
-            "name": "Qatada"
-        },
-        {
-            "group": 218,
-            "name": "Queens"
-        },
-        {
-            "group": 219,
-            "name": "Ralph Goode"
-        },
-        {
-            "group": 220,
-            "name": "Reagan National Airport"
-        },
-        {
-            "group": 221,
-            "name": "Rhinelander Platz."
-        },
-        {
-            "group": 222,
-            "name": "Richard Reid"
-        },
-        {
-            "group": 223,
-            "name": "Richmond"
-        },
-        {
-            "group": 224,
-            "name": "Riduan bin Attash"
-        },
-        {
-            "group": 225,
-            "name": "Rio Grande"
-        },
-        {
-            "group": 226,
-            "name": "Rue St. Sebastien"
-        },
-        {
-            "group": 227,
-            "name": "Ryder Truck Rental"
-        },
-        {
-            "group": 228,
-            "name": "Saeed Khaliad"
-        },
-        {
-            "group": 229,
-            "name": "Saeed Khallad"
-        },
-        {
-            "group": 230,
-            "name": "Sahim Albakri"
-        },
-        {
-            "group": 231,
-            "name": "Saleh al Ahdal"
-        },
-        {
-            "group": 232,
-            "name": "San Gabriel"
-        },
-        {
-            "group": 233,
-            "name": "Saudi"
-        },
-        {
-            "group": 234,
-            "name": "Sealink Container Corp."
-        },
-        {
-            "group": 235,
-            "name": "Seattle"
-        },
-        {
-            "group": 236,
-            "name": "Select Gourmet Foods"
-        },
-        {
-            "group": 237,
-            "name": "Sheldon St."
-        },
-        {
-            "group": 238,
-            "name": "Shiela Watson"
-        },
-        {
-            "group": 239,
-            "name": "Social Security"
-        },
-        {
-            "group": 240,
-            "name": "Spanish"
-        },
-        {
-            "group": 241,
-            "name": "Springfield"
-        },
-        {
-            "group": 242,
-            "name": "Springfield Mall"
-        },
-        {
-            "group": 243,
-            "name": "Springfield VA"
-        },
-        {
-            "group": 244,
-            "name": "Sprint"
-        },
-        {
-            "group": 245,
-            "name": "St. Mary 's Terrace"
-        },
-        {
-            "group": 246,
-            "name": "St. Mary's Road"
-        },
-        {
-            "group": 247,
-            "name": "Steven Clark"
-        },
-        {
-            "group": 248,
-            "name": "Stinger"
-        },
-        {
-            "group": 249,
-            "name": "Sudan"
-        },
-        {
-            "group": 250,
-            "name": "Taliban"
-        },
-        {
-            "group": 251,
-            "name": "Tawfiq al Adel"
-        },
-        {
-            "group": 252,
-            "name": "Texas"
-        },
-        {
-            "group": 253,
+            "category": "Location",
             "name": "The Netherlands"
         },
         {
-            "group": 254,
-            "name": "The Powhatan Company"
+            "category": "Person",
+            "name": "Bagwant Dhaliwal"
         },
         {
-            "group": 255,
-            "name": "Trenton"
+            "category": "Person",
+            "name": "Clark Webster"
         },
         {
-            "group": 256,
-            "name": "Trenton Avenue"
+            "category": "Location",
+            "name": "Richmond"
         },
         {
-            "group": 257,
-            "name": "Triacetone Triperoxide"
-        },
-        {
-            "group": 258,
-            "name": "U-haul"
-        },
-        {
-            "group": 259,
-            "name": "US"
-        },
-        {
-            "group": 260,
-            "name": "US Post Office"
-        },
-        {
-            "group": 261,
-            "name": "United"
-        },
-        {
-            "group": 262,
-            "name": "United Arab Emirates"
-        },
-        {
-            "group": 263,
-            "name": "United Connector"
-        },
-        {
-            "group": 264,
-            "name": "University Drive"
-        },
-        {
-            "group": 265,
-            "name": "University of Texas"
-        },
-        {
-            "group": 266,
-            "name": "University of Virginia"
-        },
-        {
-            "group": 267,
-            "name": "Van Dyke Avenue"
-        },
-        {
-            "group": 268,
-            "name": "Vincent Cortez"
-        },
-        {
-            "group": 269,
-            "name": "Vincent Lozario"
-        },
-        {
-            "group": 270,
+            "category": "Location",
             "name": "Virginia"
         },
         {
-            "group": 271,
-            "name": "Virginia National Bank"
+            "category": "Location",
+            "name": "Amsterdam"
         },
         {
-            "group": 272,
-            "name": "Wallace Wilson"
+            "category": "Location",
+            "name": "Queens"
         },
         {
-            "group": 273,
-            "name": "Wash. DC"
+            "category": "Location",
+            "name": "New York City"
         },
         {
-            "group": 274,
+            "category": "Person",
+            "name": "Mukhtar Galab"
+        },
+        {
+            "category": "Location",
+            "name": "Charlottesville"
+        },
+        {
+            "category": "Date",
+            "name": "21 April, 2003"
+        },
+        {
+            "category": "Date",
+            "name": "20 April, 2003"
+        },
+        {
+            "category": "Location",
+            "name": "Myrtle Ave"
+        },
+        {
+            "category": "Location",
+            "name": "North Bergen"
+        },
+        {
+            "category": "Person",
+            "name": "Hani al Hallak"
+        },
+        {
+            "category": "Phone",
+            "name": "732-455-6392"
+        },
+        {
+            "category": "Date",
+            "name": "April 25, 2003"
+        },
+        {
+            "category": "Date",
+            "name": "30 March, 2003"
+        },
+        {
+            "category": "Organization",
+            "name": "Sprint"
+        },
+        {
+            "category": "Location",
+            "name": "Georgia"
+        },
+        {
+            "category": "Date",
+            "name": "10 April, 2003"
+        },
+        {
+            "category": "Date",
+            "name": "6 April, 2003"
+        },
+        {
+            "category": "Location",
+            "name": "Texas"
+        },
+        {
+            "category": "Location",
+            "name": "Houston"
+        },
+        {
+            "category": "Person",
+            "name": "Jamal Kalifa"
+        },
+        {
+            "category": "Location",
+            "name": "Columbus"
+        },
+        {
+            "category": "Person",
+            "name": "Ralph Goode"
+        },
+        {
+            "category": "Location",
+            "name": "Little York Rd."
+        },
+        {
+            "category": "Phone",
+            "name": "706-437-6673"
+        },
+        {
+            "category": "Phone",
+            "name": "713-556-9213"
+        },
+        {
+            "category": "Location",
+            "name": "St. Mary's Road"
+        },
+        {
+            "category": "Organization",
+            "name": "FBI"
+        },
+        {
+            "category": "Date",
+            "name": "16 April, 2003"
+        },
+        {
+            "category": "Misc",
+            "name": "Middle Eastern"
+        },
+        {
+            "category": "Date",
+            "name": "15 April, 2003"
+        },
+        {
+            "category": "Location",
             "name": "Washington"
         },
         {
-            "group": 275,
+            "category": "Organization",
+            "name": "US Post Office"
+        },
+        {
+            "category": "Location",
+            "name": "Seattle"
+        },
+        {
+            "category": "Location",
+            "name": "Howell St."
+        },
+        {
+            "category": "Location",
+            "name": "Alder St"
+        },
+        {
+            "category": "Location",
+            "name": "Paris"
+        },
+        {
+            "category": "Organization",
+            "name": "INS"
+        },
+        {
+            "category": "Date",
+            "name": "14 April, 2003"
+        },
+        {
+            "category": "Misc",
+            "name": "Dutch"
+        },
+        {
+            "category": "Organization",
+            "name": "Bush Intercontinental Airport"
+        },
+        {
+            "category": "Person",
+            "name": "Abul Hassan Salman"
+        },
+        {
+            "category": "Location",
+            "name": "France"
+        },
+        {
+            "category": "Organization",
+            "name": "Continental Airlines"
+        },
+        {
+            "category": "Organization",
+            "name": "Reagan National Airport"
+        },
+        {
+            "category": "Location",
+            "name": "Keswick"
+        },
+        {
+            "category": "Misc",
+            "name": "C-4"
+        },
+        {
+            "category": "Date",
+            "name": "11 April, 2003"
+        },
+        {
+            "category": "Organization",
+            "name": "The Powhatan Company"
+        },
+        {
+            "category": "Date",
+            "name": "13 April, 2003"
+        },
+        {
+            "category": "Person",
+            "name": "Clark Adams"
+        },
+        {
+            "category": "Organization",
+            "name": "Pentagon"
+        },
+        {
+            "category": "Organization",
+            "name": "Home Depot"
+        },
+        {
+            "category": "Location",
+            "name": "Lee Highway"
+        },
+        {
+            "category": "Location",
+            "name": "Merrifield"
+        },
+        {
+            "category": "Organization",
+            "name": "American Airlines"
+        },
+        {
+            "category": "Organization",
+            "name": "Border Patrol"
+        },
+        {
+            "category": "Location",
+            "name": "El Paso"
+        },
+        {
+            "category": "Location",
+            "name": "Hudspeth County"
+        },
+        {
+            "category": "Misc",
+            "name": "Mexicans"
+        },
+        {
+            "category": "Location",
+            "name": "Rio Grande"
+        },
+        {
+            "category": "Location",
+            "name": "McNary"
+        },
+        {
+            "category": "Misc",
+            "name": "Spanish"
+        },
+        {
+            "category": "Person",
+            "name": "Vincent Cortez"
+        },
+        {
+            "category": "Person",
+            "name": "Arnaldo Gueterrez"
+        },
+        {
+            "category": "Person",
+            "name": "Ben Hassine"
+        },
+        {
+            "category": "Person",
+            "name": "Ahmed Yassin"
+        },
+        {
+            "category": "Organization",
+            "name": "University of Texas"
+        },
+        {
+            "category": "Location",
+            "name": "McRae Blvd"
+        },
+        {
+            "category": "Money",
+            "name": "$20,000"
+        },
+        {
+            "category": "Location",
+            "name": "Denver"
+        },
+        {
+            "category": "Location",
+            "name": "Colorado"
+        },
+        {
+            "category": "Location",
+            "name": "Camp George West Military Reservation"
+        },
+        {
+            "category": "Person",
+            "name": "Wallace Wilson"
+        },
+        {
+            "category": "Misc",
+            "name": "Social Security"
+        },
+        {
+            "category": "Organization",
+            "name": "Apex Paper Products Company"
+        },
+        {
+            "category": "Organization",
+            "name": "Aryan Nations"
+        },
+        {
+            "category": "Organization",
+            "name": "Army CID"
+        },
+        {
+            "category": "Location",
+            "name": "US"
+        },
+        {
+            "category": "Location",
+            "name": "Los Angeles"
+        },
+        {
+            "category": "Organization",
+            "name": "Ryder Truck Rental"
+        },
+        {
+            "category": "Location",
+            "name": "Culver City"
+        },
+        {
+            "category": "Location",
+            "name": "California"
+        },
+        {
+            "category": "Person",
+            "name": "Karm Bensaid"
+        },
+        {
+            "category": "Location",
+            "name": "San Gabriel"
+        },
+        {
+            "category": "Location",
+            "name": "Greenlawn Ave."
+        },
+        {
+            "category": "Location",
+            "name": "Imperial Highway"
+        },
+        {
+            "category": "Location",
+            "name": "City Park"
+        },
+        {
+            "category": "Location",
+            "name": "El Segundo"
+        },
+        {
+            "category": "Location",
+            "name": "LAX"
+        },
+        {
+            "category": "Date",
+            "name": "8 April, 2003"
+        },
+        {
+            "category": "Date",
+            "name": "7 April, 2003"
+        },
+        {
+            "category": "Location",
+            "name": "Sheldon St."
+        },
+        {
+            "category": "Location",
+            "name": "Hubbard St."
+        },
+        {
+            "category": "Location",
+            "name": "New Jersey"
+        },
+        {
+            "category": "Location",
+            "name": "Canada"
+        },
+        {
+            "category": "Date",
+            "name": "April 26, 2003"
+        },
+        {
+            "category": "Organization",
+            "name": "Budget Storage Units"
+        },
+        {
+            "category": "Person",
+            "name": "Carl Louis"
+        },
+        {
+            "category": "Location",
+            "name": "Detroit"
+        },
+        {
+            "category": "Location",
+            "name": "Michigan"
+        },
+        {
+            "category": "Misc",
+            "name": "Lebanese"
+        },
+        {
+            "category": "Person",
+            "name": "Abdelhak Kherbane"
+        },
+        {
+            "category": "Organization",
+            "name": "Beth Israel"
+        },
+        {
+            "category": "Location",
+            "name": "Van Dyke Avenue"
+        },
+        {
+            "category": "Location",
+            "name": "Afghanistan"
+        },
+        {
+            "category": "Location",
+            "name": "Sudan"
+        },
+        {
+            "category": "Misc",
+            "name": "Saudi"
+        },
+        {
+            "category": "Person",
+            "name": "Mark Davis"
+        },
+        {
+            "category": "Misc",
+            "name": "Canadian"
+        },
+        {
+            "category": "Person",
+            "name": "Hamid Alwan"
+        },
+        {
+            "category": "Person",
+            "name": "Alwan"
+        },
+        {
+            "category": "Misc",
+            "name": "Holland Queen"
+        },
+        {
+            "category": "Date",
+            "name": "25 April, 2003"
+        },
+        {
+            "category": "Organization",
+            "name": "Coast Guard"
+        },
+        {
+            "category": "Location",
+            "name": "Boston"
+        },
+        {
+            "category": "Date",
+            "name": "29 April, 1930"
+        },
+        {
+            "category": "Date",
+            "name": "29 April, 1930hrs"
+        },
+        {
+            "category": "Person",
+            "name": "Abdulla Ramzi"
+        },
+        {
+            "category": "Location",
+            "name": "University Drive"
+        },
+        {
+            "category": "Person",
+            "name": "Abdul Ramazi"
+        },
+        {
+            "category": "Location",
+            "name": "Germany"
+        },
+        {
+            "category": "Location",
+            "name": "Hamburg"
+        },
+        {
+            "category": "Location",
+            "name": "Springfield"
+        },
+        {
+            "category": "Location",
+            "name": "Egypt"
+        },
+        {
+            "category": "Location",
+            "name": "Dulles Airport"
+        },
+        {
+            "category": "Location",
             "name": "Washington DC"
         },
         {
-            "group": 276,
-            "name": "Webster Ave."
+            "category": "Organization",
+            "name": "Passport Agency"
         },
         {
-            "group": 277,
-            "name": "Wisconsin"
+            "category": "Location",
+            "name": "Cairo"
         },
         {
-            "group": 278,
+            "category": "Phone",
+            "name": "703-734-0104"
+        },
+        {
+            "category": "Date",
+            "name": "5 April, 2003"
+        },
+        {
+            "category": "Date",
+            "name": "12 Feb. 1997"
+        },
+        {
+            "category": "Location",
+            "name": "Wash. DC"
+        },
+        {
+            "category": "Location",
+            "name": "Floyd Ave."
+        },
+        {
+            "category": "Person",
+            "name": "Faysal Goba"
+        },
+        {
+            "category": "Date",
+            "name": "23 April, 2003"
+        },
+        {
+            "category": "Person",
             "name": "Yasein Mosed"
         },
         {
-            "group": 279,
-            "name": "Yemeni"
+            "category": "Organization",
+            "name": "AMTRAK"
         },
         {
-            "group": 280,
-            "name": "Ziad al Shibh"
+            "category": "Location",
+            "name": "Atlanta"
         },
         {
-            "group": 281,
+            "category": "Organization",
+            "name": "Penn Station NYC"
+        },
+        {
+            "category": "Location",
+            "name": "New Orleans"
+        },
+        {
+            "category": "Date",
+            "name": "29 April, 2003"
+        },
+        {
+            "category": "Person",
+            "name": "Masood Yaser"
+        },
+        {
+            "category": "Location",
+            "name": "Coal Mine Road"
+        },
+        {
+            "category": "Location",
+            "name": "Colfax Avenue"
+        },
+        {
+            "category": "Organization",
+            "name": "U-haul"
+        },
+        {
+            "category": "Location",
+            "name": "Capitol Ave."
+        },
+        {
+            "category": "Misc",
+            "name": "1070173749003"
+        },
+        {
+            "category": "Organization",
+            "name": "First Union Bank"
+        },
+        {
+            "category": "Location",
+            "name": "Springfield VA"
+        },
+        {
+            "category": "Money",
+            "name": "$8500"
+        },
+        {
+            "category": "Phone",
+            "name": "1070173"
+        },
+        {
+            "category": "Organization",
+            "name": "Virginia National Bank"
+        },
+        {
+            "category": "Money",
+            "name": "$13,000"
+        },
+        {
+            "category": "Location",
+            "name": "O'Hare"
+        },
+        {
+            "category": "Location",
+            "name": "Chicago"
+        },
+        {
+            "category": "Location",
+            "name": "Illinois"
+        },
+        {
+            "category": "Person",
+            "name": "Omar Clark"
+        },
+        {
+            "category": "Person",
+            "name": "Joseph Nizar"
+        },
+        {
+            "category": "Organization",
+            "name": "United Connector"
+        },
+        {
+            "category": "Location",
+            "name": "Green Bay"
+        },
+        {
+            "category": "Location",
+            "name": "Wisconsin"
+        },
+        {
+            "category": "Organization",
+            "name": "United"
+        },
+        {
+            "category": "Organization",
+            "name": "Empire State Vending Services"
+        },
+        {
+            "category": "Location",
+            "name": "Manhattan"
+        },
+        {
+            "category": "Organization",
+            "name": "New York Stock Exchange"
+        },
+        {
+            "category": "Person",
+            "name": "Shiela Watson"
+        },
+        {
+            "category": "Date",
+            "name": "19 April, 2003"
+        },
+        {
+            "category": "Organization",
+            "name": "University of Virginia"
+        },
+        {
+            "category": "Date",
+            "name": "18 April, 2003"
+        },
+        {
+            "category": "Location",
+            "name": "2932 University Drive"
+        },
+        {
+            "category": "Person",
+            "name": "Steven Clark"
+        },
+        {
+            "category": "Organization",
+            "name": "City Computer Services Corp."
+        },
+        {
+            "category": "Organization",
+            "name": "Clark & Co"
+        },
+        {
+            "category": "Organization",
+            "name": "Office Supplies Co."
+        },
+        {
+            "category": "Location",
+            "name": "Webster Ave."
+        },
+        {
+            "category": "Location",
+            "name": "Bronx"
+        },
+        {
+            "category": "Date",
+            "name": "April 18, 2003"
+        },
+        {
+            "category": "Date",
+            "name": "2 December, 2001"
+        },
+        {
+            "category": "Location",
+            "name": "New York"
+        },
+        {
+            "category": "Date",
+            "name": "I2 December, 20011"
+        },
+        {
+            "category": "Date",
+            "name": "1 April, 2003"
+        },
+        {
+            "category": "Location",
+            "name": "United Arab Emirates"
+        },
+        {
+            "category": "Organization",
+            "name": "Select Gourmet Foods"
+        },
+        {
+            "category": "Location",
+            "name": "Springfield Mall"
+        },
+        {
+            "category": "Organization",
+            "name": "First Union National Bank"
+        },
+        {
+            "category": "Organization",
+            "name": "Pyramid Bank of Cairo"
+        },
+        {
+            "category": "Organization",
+            "name": "Central Bank of Dubai"
+        },
+        {
+            "category": "Money",
+            "name": "$35,000"
+        },
+        {
+            "category": "Organization",
+            "name": "CIA"
+        },
+        {
+            "category": "Person",
+            "name": "Tawfiq al Adel"
+        },
+        {
+            "category": "Person",
+            "name": "Saeed Khallad"
+        },
+        {
+            "category": "Person",
+            "name": "Riduan bin Attash"
+        },
+        {
+            "category": "Person",
+            "name": "Saleh al Ahdal"
+        },
+        {
+            "category": "Misc",
+            "name": "cesium 137"
+        },
+        {
+            "category": "Location",
+            "name": "Haarlem"
+        },
+        {
+            "category": "Person",
+            "name": "Jelte Nijboer"
+        },
+        {
+            "category": "Person",
             "name": "al Ahdal"
         },
         {
-            "group": 282,
+            "category": "Organization",
+            "name": "Sealink Container Corp."
+        },
+        {
+            "category": "Location",
+            "name": "Lublin"
+        },
+        {
+            "category": "Location",
+            "name": "Poland"
+        },
+        {
+            "category": "Person",
             "name": "bin Attash"
         },
         {
-            "group": 283,
-            "name": "cesium 137"
+            "category": "Organization",
+            "name": "Al Qaeda"
+        },
+        {
+            "category": "Person",
+            "name": "Saeed Khaliad"
+        },
+        {
+            "category": "Location",
+            "name": "Europe"
+        },
+        {
+            "category": "Date",
+            "name": "April 20, 2003"
+        },
+        {
+            "category": "Date",
+            "name": "April 21, 2003"
+        },
+        {
+            "category": "Organization",
+            "name": "Taliban"
+        },
+        {
+            "category": "Location",
+            "name": "Bremerhaven"
+        },
+        {
+            "category": "Misc",
+            "name": "Stinger"
+        },
+        {
+            "category": "Organization",
+            "name": "Marvel Corporation"
+        },
+        {
+            "category": "Location",
+            "name": "Trenton Avenue"
+        },
+        {
+            "category": "Location",
+            "name": "Trenton"
+        },
+        {
+            "category": "Organization",
+            "name": "German Intelligence"
+        },
+        {
+            "category": "Location",
+            "name": "Rhinelander Platz."
+        },
+        {
+            "category": "Organization",
+            "name": "American Diplomatic Mission Headquarters"
+        },
+        {
+            "category": "Location",
+            "name": "Buenos Aires"
+        },
+        {
+            "category": "Person",
+            "name": "Jamil Musawi"
+        },
+        {
+            "category": "Location",
+            "name": "Hezboliah"
+        },
+        {
+            "category": "Misc",
+            "name": "Latin American"
+        },
+        {
+            "category": "Location",
+            "name": "Guantanamo"
+        },
+        {
+            "category": "Person",
+            "name": "Ziad al Shibh"
+        },
+        {
+            "category": "Date",
+            "name": "1994"
+        },
+        {
+            "category": "Misc",
+            "name": "French"
+        },
+        {
+            "category": "Misc",
+            "name": "Egyptian"
+        },
+        {
+            "category": "Person",
+            "name": "Muhammad Shamzi"
+        },
+        {
+            "category": "Misc",
+            "name": "British"
+        },
+        {
+            "category": "Person",
+            "name": "Vincent Lozario"
+        },
+        {
+            "category": "Location",
+            "name": "Marshall Avenue"
+        },
+        {
+            "category": "Location",
+            "name": "Minneapolis"
+        },
+        {
+            "category": "Location",
+            "name": "Minnesota"
+        },
+        {
+            "category": "Person",
+            "name": "Khalfan Maulid"
+        },
+        {
+            "category": "Location",
+            "name": "Laurel Avenue"
+        },
+        {
+            "category": "Location",
+            "name": "Bowling Green"
+        },
+        {
+            "category": "Location",
+            "name": "Kentucky"
+        },
+        {
+            "category": "Date",
+            "name": "12 April, 2003"
+        },
+        {
+            "category": "Date",
+            "name": "8 April, 2002"
+        },
+        {
+            "category": "Location",
+            "name": "Rue St. Sebastien"
+        },
+        {
+            "category": "Person",
+            "name": "Abu al Masri"
+        },
+        {
+            "category": "Location",
+            "name": "Cuba"
+        },
+        {
+            "category": "Person",
+            "name": "Abdul al Hada"
+        },
+        {
+            "category": "Date",
+            "name": "9 April, 2003"
+        },
+        {
+            "category": "Date",
+            "name": "April 2003"
+        },
+        {
+            "category": "Date",
+            "name": "March of 2003"
+        },
+        {
+            "category": "Misc",
+            "name": "Pakistani"
+        },
+        {
+            "category": "Person",
+            "name": "Sahim Albakri"
+        },
+        {
+            "category": "Misc",
+            "name": "Indian"
+        },
+        {
+            "category": "Person",
+            "name": "Muhammed bin Harazi"
+        },
+        {
+            "category": "Date",
+            "name": "March, 1993"
+        },
+        {
+            "category": "Date",
+            "name": "1990 - 1992"
+        },
+        {
+            "category": "Date",
+            "name": "1987 - 1993"
+        },
+        {
+            "category": "Location",
+            "name": "Kandahar"
+        },
+        {
+            "category": "Misc",
+            "name": "Yemeni"
+        },
+        {
+            "category": "Date",
+            "name": "January 1996"
+        },
+        {
+            "category": "Date",
+            "name": "1996"
+        },
+        {
+            "category": "Organization",
+            "name": "British Special Branch"
+        },
+        {
+            "category": "Person",
+            "name": "Omar Bakri Qatada"
+        },
+        {
+            "category": "Location",
+            "name": "St. Mary 's Terrace"
+        },
+        {
+            "category": "Location",
+            "name": "Paddington"
+        },
+        {
+            "category": "Location",
+            "name": "London"
+        },
+        {
+            "category": "Person",
+            "name": "Qatada"
+        },
+        {
+            "category": "Person",
+            "name": "Richard Reid"
+        },
+        {
+            "category": "Location",
+            "name": "Miami"
+        },
+        {
+            "category": "Misc",
+            "name": "Moslem"
+        },
+        {
+            "category": "Date",
+            "name": "22 December, 2001"
+        },
+        {
+            "category": "Misc",
+            "name": "Pentaerythritol"
+        },
+        {
+            "category": "Misc",
+            "name": "Triacetone Triperoxide"
+        },
+        {
+            "category": "Organization",
+            "name": "M15"
         }
     ],
     "links": [

@@ -20,18 +20,18 @@ var colorMap = {
 //Step 1
 //displays the currently selected entityList in the textarea box
 function displayCategoryEntityListInSummary (category){
-
+	var description = "";
 	var li1 = "<li class=\"list-group-item\">";
 	var li2 = "</li>\n"
 	var entities = $("em."+category);
 	var display = "";
-	if (category == "other"){
-		$("#summary-cat").html("Category:\t"+category+" ("+entities.length+") -- "+$("#other-description").val());
-	}else{
-		$("#summary-cat").html("Category:\t"+category+" ("+entities.length+")");
-	}
+	$("#summary-cat").html("Category:\t"+category+" ("+entities.length+")");
 	for (i = 0; i<entities.length; i++){
-		display += li1+entities[i].innerHTML+li2;
+		if(category=="other"){
+			var class_names = entities[i].className.split(" ");
+			description = " ("+class_names[class_names.length-1]+")";
+		}
+		display += li1+entities[i].innerHTML+description+li2;
 	}
 	$("#category-display").html(display);
 }
@@ -60,23 +60,20 @@ function cancelCurrent(event){
 //QUESTION what is the else part doing here?
 function addNewEntity(event){
 	var class_name = $(this).html();
-	if (window.getSelection) {  // all browsers, except IE before version 9
-		var entitySelect = document.getSelection();
-		var entityStr = entitySelect.toString();
-		if(entitySelect.rangeCount && entityStr!=""){
-			var entityRange = entitySelect.getRangeAt(0);
-			var entityNode = document.createElement("em");
-			entityNode.className = "entity highlight "+class_name;
-			entityNode.appendChild(document.createTextNode(entityStr));
-			entityRange.deleteContents();
-			entityRange.insertNode(entityNode);
+	var entitySelect = document.getSelection();
+	var entityStr = entitySelect.toString();
+	if(entitySelect.rangeCount && entityStr!=""){
+		var entityRange = entitySelect.getRangeAt(0);
+		var entityNode = document.createElement("em");
+		entityNode.className = "entity highlight "+class_name;
+		var other = "";
+		if (class_name == "other"){
+			other = $("#other-description").val();
+			entityNode.className += " "+other;
 		}
-	}
-	else{
-		if (document.selection && document.selection.createRange) { // Internet Explorer
-	    	var entitySelect = document.selection.createRange();
-	    	var entityStr = entitySelect.text;
-	    }
+		entityNode.appendChild(document.createTextNode(entityStr));
+		entityRange.deleteContents();
+		entityRange.insertNode(entityNode);
 	}
 	displayCategoryEntityListInSummary(class_name);
 }

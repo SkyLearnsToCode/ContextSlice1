@@ -129,9 +129,9 @@ function toggleAllHighlight(event){
 	$("em").toggleClass("highlight");
 	$(this).toggleClass("btn-info");
 	if($("em").is(".highlight")){
-		$(this).html("Hide");
+		$(this).html("Hide All Category Highlight");
 	}else{
-		$(this).html("Show");
+		$(this).html("Show All Category Highlight");
 	}
 }
 

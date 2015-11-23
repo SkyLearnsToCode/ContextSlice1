@@ -12,3 +12,35 @@
   fill: #ff7f0e;
   stroke: #ff7f0e;
 }
+
+.Person{
+	fill: #FFFF00;
+}
+
+.Location{
+	fill: #B8860B;
+}
+
+.Organization{
+	fill: #FF00FF;
+}
+
+.Money{
+	fill: #32CD32;
+}
+
+.Miscellanea{
+	fill: #FFBF00;
+}
+
+.Phone{
+	fill: #A9A9F5;
+}
+
+.Interesting{
+	fill: #FF6347;
+}
+
+.Date{
+	fill: #00CED1;
+}

@@ -1,3 +1,15 @@
+var colorMap = {
+  person : "#FFFF00",
+  location : "#B8860B",
+  organization : "#FF00FF",
+  money : "#32CD32",
+  miscellanea : "#FFBF00",
+  phone : "#A9A9F5",
+  interesting : "#FF6347",
+  date : "#00CED1",
+  other : "#f2a6df"
+}
+
 var width = 700,
     height = 700;
 
@@ -5,7 +17,7 @@ var width = 700,
 var selected_node = null,
     selected_link = null
 
-var color = d3.scale.category20();
+//var color = d3.scale.category20();
 
 var svg = d3.select("body").append("svg")
     .attr("width", width)
@@ -42,7 +54,7 @@ d3.json("graph.json", function(error, json) {
       .call(force.drag);
     node.append("circle")
       .attr("r", 5)
-      .style("fill", function(d) { return color(d.group); })
+      .attr("class", function(d) { return d.category; });
 
 
   // node.append("image")

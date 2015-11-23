@@ -4,19 +4,6 @@ $(document).ready(function(){
   });
 });
 
-var colorMap = {
-	person : "#FFFF00",
-	location : "#B8860B",
-	organization : "#FF00FF",
-	money : "#32CD32",
-	miscellanea : "#FFBF00",
-	phone : "#A9A9F5",
-	interesting : "#FF6347",
-	date : "#00CED1",
-	unused1 : "#4B0082",
-	unused2 : "#3333FF"
-}
-
 //Step 1
 //displays the currently selected entityList in the textarea box
 function displayCategoryEntityListInSummary (category){

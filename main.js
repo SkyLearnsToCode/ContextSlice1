@@ -1,93 +1,175 @@
-// //prepare svg
-// var svgRect = document.getElementById("example").childNodes[3];
-// var canvasWidth = $(svgRect).width();
-// var canvasHeight = $(svgRect).height();
-//
-// var svgEg = document.getElementById("example").childNodes[3].childNodes[1];
-// var svgNew = document.getElementById("newgraph").childNodes[3].childNodes[1];
-//
-// //$(svgEg).width(canvasWidth);
-// //$(svgEg).height(canvasHeight);
-// $(svgNew).width(canvasWidth);
-// $(svgNew).height(canvasHeight);
-//
-// //graph property
-// var r = 5
-// var linewidth = 1
-//
-// //get all the nodes for workers to select
-// var optionlist = document.getElementsByClassName("nodelist");
-// var doc1 = document.getElementById("doc1");
-// var nodes = doc1.getElementsByTagName("em");
-// var xs = [];
-// var ys = [];
-//
-// for(i = 0; i < nodes.length; i++){
-//   var color = "black";
-//
-//   switch(nodes[i].className){
-//     case "person":
-//       color = "orange";
-//       break;
-//     case "location":
-//       color = "#33CC33";
-//       break;
-//     case "organization":
-//       color = "#FF6699";
-//       break;
-//     case "money":
-//       color = "yellow";
-//       break;
-//     case "miscellanea":
-//       color = "#CC66FF";
-//       break;
-//     case "phone":
-//       color = "#FF66CC";
-//       break;
-//     case "interesting":
-//       color = "#00FFFF";
-//       break;
-//     case "date":
-//       color = "#33CCFF";
-//   }
-//
-//   x = canvasWidth/2-30+Math.sin(360/(nodes.length-3)*i)*(canvasWidth-100)/2;
-//   xs.push(x);
-//   y = canvasHeight/2+Math.cos(360/(nodes.length-3)*i)*(canvasHeight-100)/2;
-//   ys.push(y);
-//   svgNew.innerHTML += "<circle id=" + i + " cx=" + x + " cy=" + y + " r=" + r + " stroke=\"black\" stroke-width="+ linewidth + " fill="+color+" />";
-//   svgNew.innerHTML += "<text x=" + x + " y=" + y + " fill=\"black\">"+nodes[i].innerHTML+"</text>"
-//   optionlist[0].innerHTML += "<option value="+i+">"+nodes[i].innerHTML+"</option>"
-// }
-//
-// //svgEg.innerHTML = svgNew.innerHTML;
-//
-// optionlist[1].innerHTML = optionlist[0].innerHTML;
-// //svgEg.innerHTML += "";
-// //var demo = document.getElementById("demo");
-// function connectDetail(){
-//   alert("yes!");
-// }
-//
-// $( "button" ).click(function( event ) {
-//   i1 = $("#node1").val();
-//   i2 = $("#node2").val();
-//   edgeNote = $("#edgeNote").val();
-//   if (edgeNote == "other"){
-//     edgeNote = $("#newNote").val();
-//   }
-//   edgeNote += "("+$("#docid").val()+")";
-//   svgNew.innerHTML += "<path d=\"M"+xs[i1]+" "+ys[i1]+" "+xs[i2]+" "+ys[i2]+"\" stroke=\"black\" stroke-width="+linewidth+" fill=\"none\"/><text x="+(xs[i1]+xs[i2])/2+" y="+(ys[i1]+ys[i2])/2+" fill=\"red\" onclick=\"editEdge(this)\">"+edgeNote+"</text>";
-//
-// });
-//
-// function editEdge(o){
-//   if (confirm("Do you want to delete this Edge?") == true){
-//     o.parentNode.removeChild(o.previousSibling);
-//     o.parentNode.removeChild(o);
-//   }
-// }
-//
-// function  changeContent(obj){
-//   o.innerHTML = obj.previousSibling.val();
-// }
+$(document).ready(function(){
+  $.getJSON( "parsed_documents.json", function( json_res ) {
+    $("#document-paragraph").append(String(json_res["Documents"][0]["DocText"]))
+  });
+});
+
+var colorMap = {
+	person : "#FFFF00",
+	location : "#B8860B",
+	organization : "#FF00FF",
+	money : "#32CD32",
+	miscellanea : "#FFBF00",
+	phone : "#A9A9F5",
+	interesting : "#FF6347",
+	date : "#00CED1",
+	unused1 : "#4B0082",
+	unused2 : "#3333FF"
+}
+
+//Step 1
+//displays the currently selected entityList in the textarea box
+function displayCategoryEntityListInSummary (category){
+
+	var li1 = "<li class=\"list-group-item\">";
+	var li2 = "</li>\n"
+	var entities = $("em."+category);
+	var display = "";
+	if (category == "other"){
+		$("#summary-cat").html("Category:\t"+category+" ("+entities.length+") -- "+$("#other-description").val());
+	}else{
+		$("#summary-cat").html("Category:\t"+category+" ("+entities.length+")");
+	}
+	for (i = 0; i<entities.length; i++){
+		display += li1+entities[i].innerHTML+li2;
+	}
+	$("#category-display").html(display);
+}
+
+//Step 1
+//makes sure that the element within the paragraph element no longer has the
+//entity class or anything else.
+function cancelCurrent(event){
+	var currentEntity = $(this).html().toString();
+	var class_name = $(this).attr('class').split(" ")[2];
+	var separate = currentEntity.split(" ");
+	var newEntity = "";
+	var parent = $(this).parent();
+	for (word in  separate){
+		newEntity += separate[word]
+		if(word != separate.length -1){
+			newEntity += " ";
+		}
+	}
+	$(this).replaceWith(newEntity);
+	parent[0].normalize();
+	displayCategoryEntityListInSummary(class_name);
+}
+
+//gets the user's highlighted words, adds them
+//QUESTION what is the else part doing here?
+function addNewEntity(event){
+	var class_name = $(this).html();
+	if (window.getSelection) {  // all browsers, except IE before version 9
+		var entitySelect = document.getSelection();
+		var entityStr = entitySelect.toString();
+		if(entitySelect.rangeCount && entityStr!=""){
+			var entityRange = entitySelect.getRangeAt(0);
+			var entityNode = document.createElement("em");
+			entityNode.className = "entity highlight "+class_name;
+			entityNode.appendChild(document.createTextNode(entityStr));
+			entityRange.deleteContents();
+			entityRange.insertNode(entityNode);
+		}
+	}
+	else{
+		if (document.selection && document.selection.createRange) { // Internet Explorer
+	    	var entitySelect = document.selection.createRange();
+	    	var entityStr = entitySelect.text;
+	    }
+	}
+	displayCategoryEntityListInSummary(class_name);
+}
+
+
+//Step 1
+//appends the a new button category to #catGroup div
+/*
+function addCategory(event){
+	$("#errorAlert").html("");
+	var cateName = $("input#newCat").val();
+	var existing = $("#catGroup button");
+	var add = true;
+	for (var n = 0; n < existing.length; n++){
+		if (cateName.toString().toLowerCase() === existing[n].innerHTML.toString().toLowerCase()){
+			var alertBanner = "<div class=\"alert alert-warning\"><strong>Error!</strong> This category already exists.</div>";
+			add = false;
+			$("#errorAlert").html(alertBanner);
+			break;
+		}
+	}
+	if(add && cateName!=""){
+		$("#catGroup").append($('<button/>', {
+	        text: cateName,
+	        class: "btn btn-sm legend "+cateName
+    	}))
+	}
+	$("input#newCat").val("");
+}
+*/
+
+//Toggles the category highlighting of words in the paragraph document
+/*
+function toggleCat(event){
+	var htmlClassString = $(this).html().toString();
+
+	if ($("em#"+htmlClassString).is("."+htmlClassString)){
+		$("em#"+htmlClassString).removeClass(htmlClassString);
+	}else{
+		$("em#"+htmlClassString).addClass(htmlClassString);
+	}
+}
+*/
+
+//Alternative to toggleCat(event)
+function toggleCategoryHighlight(event){
+	var category = $(this).html().toString();
+	$("em."+category).toggleClass("highlight");
+}
+
+//Show all category highlight
+/*
+$("button._ALL").click(function(){
+	if ($(this).is("._SHOW")){
+		for (var i = 0; i < $("em").length; i++){
+			$($("em").get(i)).addClass($($("em").get(i)).attr("id"));
+		}
+	}else{
+		$("em").removeClass();
+	}
+})
+*/
+
+//Show/Hide all category highlight
+function toggleAllHighlight(event){
+	$("em").toggleClass("highlight");
+	$(this).toggleClass("btn-info");
+	if($("em").is(".highlight")){
+		$(this).html("Hide");
+	}else{
+		$(this).html("Show");
+	}
+}
+
+function goBack(event){
+	document.write("<h1>Thank you!</h1><h3>Redirecting to Mechanical Turk...</h3>");
+}
+
+//on double click, cancelCurrent gets called for any element within the paragraph document
+//that has the class entity
+$("p").delegate(".entity","dblclick", cancelCurrent);
+
+//switches the entity list to show entities of that category
+$("div").delegate(".legend","click", addNewEntity);
+
+//appends the a new button category to #catGroup div based on addCate button
+//$("#addCate").on("click",addCategory);
+
+//attaches toggleCategory handler to any 'li' AND 'category' element for onclick event
+$("li").delegate(".category","click",toggleCategoryHighlight);
+
+//attach toggleAllHighlight handler our '.toggleAllHighlight' button in 'li' element for onclick event
+$("li").delegate("button.toggleAllHighlight","click",toggleAllHighlight);
+
+//redirects for the worker
+$("#finish").on("click",goBack);

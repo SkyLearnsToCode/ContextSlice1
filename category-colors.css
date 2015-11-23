@@ -31,11 +31,11 @@
 }
 
 .other{
-	background-color: #4B0082;
+	background-color: #f2a6df;
 }
 
 .unused{
-	background-color: #FF0000;
+	background-color: #4B0082;
 }
 
 .btn-sm{
@@ -43,13 +43,11 @@
 	top: 0px;
 	border-radius: 5px;
   	position: relative;
-  	font-family: 'Roboto', sans-serif;
-  	width: 75px;
-  	height: 30px;
   	cursor: pointer;
   	transition: 0.1s all ease;
   	font-size : 11px;
   	font-weight: 400;
+  	font-family: 'Roboto', sans-serif;
   	color: #5c5c5c;  /*777*/
   	border-bottom: 1.5px solid #ccc;
   	box-shadow: 0px 0px 0px 0px #e6e6e6;

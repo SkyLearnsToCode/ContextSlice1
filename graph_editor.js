@@ -13,11 +13,13 @@ var colorMap = {
 // global variables
 var width = 700,
     height = 700,
+    fill = d3.scale.category20(),
     d3_json;
 
 // mouse event vars
 var selected_node = null,
     selected_link = null;
+
 
 //the d3 global force variable
 var force = d3.layout.force()
@@ -27,14 +29,36 @@ var force = d3.layout.force()
     .size([width, height])
     .on("tick", tick);
 
+// init svg
+var outer = d3.select("#graph-editor")
+  .append("svg:svg")
+    .attr("width", width)
+    .attr("height", height)
+    .attr("pointer-events", "all");
 
-var svg = d3.select("#graph-editor").append("svg")
-  .attr("width", width)
-  .attr("height", height);
+var svg = outer
+  .append("svg:g")
+    .call(d3.behavior.zoom().on("zoom", rescale))
+    .on("dblclick.zoom", null)
+  .append("svg:g")
+    .on("mousedown", mousedown)
+
+svg.append('svg:rect')
+    .attr('width', width)
+    .attr('height', height)
+    .attr('fill', 'white');
 
 var link = svg.selectAll(".link"),
     node = svg.selectAll(".node");
 
+
+function mousedown() {
+  if (!selected_node) {
+    // allow panning if nothing is selected
+    svg.call(d3.behavior.zoom().on("zoom"), rescale);
+    return;
+  }
+}
 
 d3.json("graph.json", function(error, json) {
   if (error) throw error;
@@ -42,6 +66,16 @@ d3.json("graph.json", function(error, json) {
   d3_json = json;
   update();
 });
+
+// rescale g
+function rescale() {
+  trans=d3.event.translate;
+  scale=d3.event.scale;
+
+  svg.attr("transform",
+      "translate(" + trans + ")"
+      + " scale(" + scale + ")");
+}
 
 function update() {
 
@@ -82,9 +116,9 @@ function update() {
       .attr("dy", ".35em")
       .text(function(d) { return d.name });
 
-  // if(d3.event) {
-  //   d3.event.preventDefault();
-  // }
+  if(d3.event) {
+    d3.event.preventDefault();
+  }
 
   node.classed("node_selected", function(d) {
     return d === selected_node;

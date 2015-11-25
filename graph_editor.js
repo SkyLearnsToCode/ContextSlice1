@@ -10,79 +10,123 @@ var colorMap = {
   other : "#f2a6df"
 }
 
+// global variables
 var width = 700,
-    height = 700;
+    height = 700,
+    d3_json;
 
 // mouse event vars
 var selected_node = null,
-    selected_link = null
+    selected_link = null;
 
-//var color = d3.scale.category20();
-
-var svg = d3.select("body").append("svg")
-    .attr("width", width)
-    .attr("height", height);
-
+//the d3 global force variable
 var force = d3.layout.force()
     .gravity(.05)
     .distance(100)
     .charge(-100)
-    .size([width, height]);
+    .size([width, height])
+    .on("tick", tick);
+
 
 var svg = d3.select("#graph-editor").append("svg")
-.attr("width", width)
-.attr("height", height);
+  .attr("width", width)
+  .attr("height", height);
+
+var link = svg.selectAll(".link"),
+    node = svg.selectAll(".node");
+
 
 d3.json("graph.json", function(error, json) {
   if (error) throw error;
 
-  force
-      .nodes(json.nodes)
-      .links(json.links)
-      .start();
+  d3_json = json;
+  update();
+});
 
-  var link = svg.selectAll(".link")
-      .data(json.links)
+function update() {
+
+  //restart the force layout by using the force object
+  force
+    .nodes(d3_json.nodes)
+    .links(d3_json.links)
+    .start();
+
+  //update the links
+  link = svg.selectAll(".link")
+      .data(d3_json.links)
     .enter().append("line")
       .attr("class", "link");
 
-  var node = svg.selectAll(".node")
-      .data(json.nodes)
+  //update the nodes
+  node = svg.selectAll(".node")
+      .data(d3_json.nodes)
       .enter().append("g")
-      .on("click", click)
+      .on("click", node_click)
       .attr("class", "node")
       .call(force.drag);
+
     node.append("circle")
-      .attr("r", 5)
+      .attr("r", 10)
       .attr("class", function(d) { return d.category; });
 
-
+  //add an image to the circle
   // node.append("image")
   //     .attr("xlink:href", "https://github.com/favicon.ico")
   //     .attr("x", -8)
   //     .attr("y", -8)
   //     .attr("width", 16)
   //     .attr("height", 16);
-
+  //add text label to the nodes
   node.append("text")
       .attr("dx", 12)
       .attr("dy", ".35em")
       .text(function(d) { return d.name });
 
-  force.on("tick", function() {
-    link.attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
+  // if(d3.event) {
+  //   d3.event.preventDefault();
+  // }
 
-    node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+  node.classed("node_selected", function(d) {
+    return d === selected_node;
   });
+}
 
-  // action to take on mouse click
-  function click() {
-      d3.select(this).select("circle").transition()
-          .duration(750)
-          .attr("r", 16)
-          .style("fill", "lightsteelblue");
+function tick() {
+  link.attr("x1", function(d) { return d.source.x; })
+      .attr("y1", function(d) { return d.source.y; })
+      .attr("x2", function(d) { return d.target.x; })
+      .attr("y2", function(d) { return d.target.y; });
+
+  node.attr("transform", function(d) {
+    return "translate(" + d.x + "," + d.y + ")";
+  });
+}
+
+
+// action to take on mouse click of a node
+function node_click(d) {
+
+  // console.log(d)
+
+  // d.classed("node_selected")
+  // console.log(d3.select(this))
+  // console.log(d3.select(this).node());
+  console.log(d);
+  d3.select(this).classed("node_selected", selected_node === d);
+  if(selected_node == d){
+    selected_node = null;
+  }else{
+    selected_node = d;
   }
-});
+
+  // d.transition()
+  //   .duration(750)
+  //   .attr("r", 16)
+  //   .style("fill", "lightsteelblue");
+
+  // d3.select(this).select("circle").transition()
+  //     .duration(750)
+  //     .attr("r", 16)
+  //     .style("fill", "lightsteelblue");
+  // update();
+}

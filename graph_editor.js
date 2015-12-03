@@ -20,6 +20,7 @@ var width = 700,
 var selected_node = null,
     selected_link = null;
 
+var clicked = false;
 
 //the d3 global force variable
 var force = d3.layout.force()
@@ -190,19 +191,26 @@ function node_click(d) {
 
 // action to take on mouse click of an edge
 function edge_click(d){
-  var source = d.source.name;
-  var target = d.target.name;
-  var edge_decription = window.prompt("How is "+source+" related to "+target+" ?", "Edge Description Here...");
-  if (edge_decription != null){
-    d3.select(this.parentNode).select("text")
-      //.attr("dx", 12)
-      //.attr("dy", ".35em")
-      .attr("id",this.id)
-      .attr("x",(this.x1.baseVal.value+this.x2.baseVal.value)/2)
-      .attr("y",(this.y1.baseVal.value+this.y2.baseVal.value)/2)
-      .style("fill","black")
-      .style("font-size",35)
-      .text(edge_decription)
+  if (clicked == false){
+    clicked = true;
+    var source = d.source.name;
+    var target = d.target.name;
+    var edge_decription = window.prompt("How is "+source+" related to "+target+" ?", "Edge Description Here...");
+    if (edge_decription != null){
+      d3.select(this.parentNode).select("text")
+        //.attr("dx", 12)
+        //.attr("dy", ".35em")
+        .attr("id",this.id)
+        .attr("x",(this.x1.baseVal.value+this.x2.baseVal.value)/2)
+        .attr("y",(this.y1.baseVal.value+this.y2.baseVal.value)/2)
+        .style("fill","black")
+        .style("font-size",35)
+        .text(edge_decription)
+    }
+  }else{
+    clicked = false;
+    d3.select(this.parentNode)
+      .selectAll("text").remove();
   }
 }
 

@@ -95,7 +95,6 @@ function update() {
   link = svg.selectAll(".link")
       .data(d3_json.links)
     .enter().append("g")
-    .on("click", edge_click)
       .attr("class", function(d){
         return "link "+d.value;
       })
@@ -106,6 +105,7 @@ function update() {
       .style("stroke-width",function(d){
         return parseInt(d.value);
       })
+      .on("click", edge_click)
       .on("mouseover",handleMouseOver)
       .on("mouseout",handleMouseOut);
 
@@ -189,25 +189,29 @@ function node_click(d) {
 // action to take on mouse click of an edge
 function edge_click(d){
   console.log(d);
-  link.style("stroke-length",parseInt(d.value)*4);
 }
 
 function handleMouseOver(d){
   d3.select(this)
     .style("stroke-width",4)
-    .style("fill",orange)
+    .style("stroke","red");
+  d3.select(this.parentNode)
     .append("text")
-    .attr("id",d.id)
-    .attr("x",d.x)
-    .attr("y",d.y)
+    .attr("id",this.id)
+    .attr("x",(this.x1+this.x2)/2)
+    .attr("y",(this.y1+this.y2)/2)
+    .style("fill","black")
+    .style("font-size",55)
     .text(function(){
-      return d.id;
+      return this.id;
     });
-  }
+  console.log(this.parentNode);
+}
 
 function handleMouseOut(d){
   d3.select(this)
     .style("stroke-width",parseInt(d.value))
-    .style("fill","black")
-    .select("#"+d.id).remove();
+    .style("stroke","none");
+  d3.select(this.parentNode)
+    .select("text").remove();
 }

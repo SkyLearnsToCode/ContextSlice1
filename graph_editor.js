@@ -13,7 +13,7 @@ var colorMap = {
 // global variables
 var width = 700,
     height = 700,
-    fill = d3.scale.category20(),
+    //fill = d3.scale.category20(),
     d3_json;
 
 // mouse event vars
@@ -42,12 +42,12 @@ var svg = outer
     .on("dblclick.zoom", null)
   .append("svg:g")
     .on("mousedown", mousedown)
-
+/*
 svg.append('svg:rect')
     .attr('width', width)
     .attr('height', height)
     .attr('fill', 'white');
-
+*/
 var link = svg.selectAll(".link"),
     node = svg.selectAll(".node");
 

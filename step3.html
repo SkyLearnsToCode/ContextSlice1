@@ -15,90 +15,82 @@
 		<link rel="stylesheet" type="text/css" href="graph.css">
 	</head>
 	<body>
-		<div id="documentContents" class="container">
-			<div class="row">
-				<div class="col-lg-4 panel-group">
-					<div id = "legend" class="panel panel-default">
-						<ul class="list-inline" style="border-style: none">
-							<li>
-								<button class="btn toggleAllHighlight">Hide All Category Highlight</button>
-							</li>
-							<li>
-								<button class="btn-sm category highlight person">person</button>
-								<button class="btn-sm category highlight location">location</button>
-								<button class="btn-sm category highlight organization">organization</button>
-								<button class="btn-sm category highlight money">money</button>
-								<button class="btn-sm category highlight miscellanea">miscellanea</button>
-								<button class="btn-sm category highlight phone">phone</button>
-								<button class="btn-sm category highlight interesting">interesting</button>
-								<button class="btn-sm category highlight date">date</button>
-							 </li>
-						</ul>
-					</div>
-					<div class="panel panel-default">
-						<button type="button" class="btn btn-info doc-collapse">Collapse All</button>
-						<h3 class="panel panel-heading doc">Doc1</h3>
-						<div id = "Doc1" class="collapse in">
-							<h5 class="panel panel-footer">Report Date:22 April, 2003</h5>
-							<p class="panel panel-body"><em class="highlight person">Hani al Hallak</em>, of <em class="highlight location">North Bergen NJ</em>, has deposited checks in his bank account that were drawn on <em class="highlight organization">First Union Bank</em> account number <em class="highlight miscellanea">1070173749003</em> in <em class="highlight location">Springfield VA</em> in the name <em class="highlight person">Abdul Ramazi</em>. The latest check is dated <em class="highlight date">16 April, 2003</em> and was in the amount of <em class="highlight money">$8500</em>.</p>
-						</div>
-						<h3 class="panel panel-heading doc">Doc2</h3>
-						<div id = "Doc2" class="collapse in">
-							<h5 class="panel panel-footer">Report Date 22 April, 2003. CIA [From Dutch Security]</h5>
-							<p class="panel panel-body">Two men were arrested on <em class="highlight date">April 20, 2003</em> by Dutch police in <em class="highlight location">Haarlem, The Netherlands</em> after leaving the scene of an accident in which they were involved. Later on <em class="highlight date">April 21, 2003</em> these men were identified as <em class="highlight person">Tawfiq al Adel</em> and <em class="highlight person">Saeed Khaliad</em> who have been wanted in <em class="highlight location">Hamburg. Germany</em> in connection with investigations of <em class="highlight miscellanea">Al Qaeda operations</em> in Europe. They were driving a panel truck rented in <em class="highlight location">Hamburg, Germany</em>. <em class="highlight interesting">Radioactive traces</em> were found in bed of this truck.</p>
-						</div>
-						<h3 class="panel panel-heading doc">Doc3</h3>
-						<div id = "Doc3" class="collapse in">
-							<h5 class="panel panel-footer">Report Date 27 April, 2003.</h5>
-							<p class="panel panel-body">Intercept of cell phone <em class="highlight phone">804-774-8920</em>. In a very brief call from this number to phone number <em class="highlight phone">703-659-2317</em> on <em class="highlight date">26 April, 2003</em>, the caller speaks in Arabic. A translation reads: "We are now prepared to <em class="highlight interesting">take the crescent to victory</em>".</p>
-						</div>
-					</div>
+		<div class="col-lg-4 panel-group" id="doc-panel">
+			<div id = "legend" class="panel panel-default">
+				<ul class="list-inline" style="border-style: none">
+					<li>
+						<button class="btn toggleAllHighlight">Hide All Category Highlight</button>
+					</li>
+					<li>
+						<button class="btn-sm category highlight person">person</button>
+						<button class="btn-sm category highlight location">location</button>
+						<button class="btn-sm category highlight organization">organization</button>
+						<button class="btn-sm category highlight money">money</button>
+						<button class="btn-sm category highlight miscellanea">miscellanea</button>
+						<button class="btn-sm category highlight phone">phone</button>
+						<button class="btn-sm category highlight interesting">interesting</button>
+						<button class="btn-sm category highlight date">date</button>
+					 </li>
+				</ul>
+			</div>
+			<div id = "doc-contents" class="panel panel-default">
+				<button type="button" class="btn btn-info doc-collapse">Collapse All</button>
+				<h3 class="panel panel-heading doc-header">Doc1</h3>
+				<div id = "Doc1" class="collapse in">
+					<h5 class="panel panel-footer">Report Date:22 April, 2003</h5>
+					<p class="panel panel-body"><em class="highlight person">Hani al Hallak</em>, of <em class="highlight location">North Bergen NJ</em>, has deposited checks in his bank account that were drawn on <em class="highlight organization">First Union Bank</em> account number <em class="highlight miscellanea">1070173749003</em> in <em class="highlight location">Springfield VA</em> in the name <em class="highlight person">Abdul Ramazi</em>. The latest check is dated <em class="highlight date">16 April, 2003</em> and was in the amount of <em class="highlight money">$8500</em>.</p>
 				</div>
-				<div class="col-lg-8 panel-group">
-					<div class="panel panel-default" id="graph">
-						<div class="panel panel-body">
-							<form class="form-horizontal" role="form" >
-								<div class="form-group">
-									<label class="control-label" for="node1">*Node1: </label>
-									<select class="form-control nodelist" id="node1">
-										<option>Hani al Hallak</option>
-										<option>North Bergen NJ</option>
-										<option>First Union Bank</option>
-									</select>
-								</div>
-								<div class="form-group">
-									<label class="control-label" for="node2">*Node2: </label>
-									<select class="form-control nodelist" id="node2">
-										<option>Abdul Ramazi</option>
-										<option>1070173749003</option>
-										<option>Springfield VA</option>
-										<option>16 April, 2003</option>
-									</select>
-								</div>
-								<div class="form-group">
-									<label class="control-label" for="edgeNote">*Relationship: </label>
-									<input type="text" class="form-control" id="newNote" placeholder="Edit this field"/>
-								</div>
-								<div class="form-group">
-									<label class="control-label" for="depNode">Dependent node (if any)</label>
-									<select class="form-control" id="depNode">
-										<option>*</option>
-										<option>$8500</option>
-									</select>
-								</div>
-								<div class="form-group">
-									<button type="button" class="btn btn-default">OK<br></button>
-								</div>
-							</form>
-						</div>
-						<h2 class="jumbotron panel panel-heading">Your Graph</h2>
-						<div class="panel panel-body">
-							<svg id="graph-editor" width="700px" height="700px" align="center">
-							</svg>
-							
-						</div>
-					</div>
+				<h3 class="panel panel-heading doc-header">Doc2</h3>
+				<div id = "Doc2" class="collapse in">
+					<h5 class="panel panel-footer">Report Date 22 April, 2003. CIA [From Dutch Security]</h5>
+					<p class="panel panel-body">Two men were arrested on <em class="highlight date">April 20, 2003</em> by Dutch police in <em class="highlight location">Haarlem, The Netherlands</em> after leaving the scene of an accident in which they were involved. Later on <em class="highlight date">April 21, 2003</em> these men were identified as <em class="highlight person">Tawfiq al Adel</em> and <em class="highlight person">Saeed Khaliad</em> who have been wanted in <em class="highlight location">Hamburg. Germany</em> in connection with investigations of <em class="highlight miscellanea">Al Qaeda operations</em> in Europe. They were driving a panel truck rented in <em class="highlight location">Hamburg, Germany</em>. <em class="highlight interesting">Radioactive traces</em> were found in bed of this truck.</p>
 				</div>
+				<h3 class="panel panel-heading doc-header">Doc3</h3>
+				<div id = "Doc3" class="collapse in">
+					<h5 class="panel panel-footer">Report Date 27 April, 2003.</h5>
+					<p class="panel panel-body">Intercept of cell phone <em class="highlight phone">804-774-8920</em>. In a very brief call from this number to phone number <em class="highlight phone">703-659-2317</em> on <em class="highlight date">26 April, 2003</em>, the caller speaks in Arabic. A translation reads: "We are now prepared to <em class="highlight interesting">take the crescent to victory</em>".</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-8 panel-group" id="edit-panel">
+			<div class="panel panel-default">
+				<div class="panel panel-body" id="combo-box">
+					<form class="form-horizontal" role="form" >
+						<div class="form-group">
+							<label class="control-label" for="node1">*Node1: </label>
+							<select class="form-control nodelist" id="node1">
+								<option>Hani al Hallak</option>
+								<option>North Bergen NJ</option>
+								<option>First Union Bank</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label class="control-label" for="node2">*Node2: </label>
+							<select class="form-control nodelist" id="node2">
+								<option>Abdul Ramazi</option>
+								<option>1070173749003</option>
+								<option>Springfield VA</option>
+								<option>16 April, 2003</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label class="control-label" for="edgeNote">*Relationship: </label>
+							<input type="text" class="form-control" id="newNote" placeholder="Edit this field"/>
+						</div>
+						<div class="form-group">
+							<label class="control-label" for="depNode">Dependent node (if any)</label>
+							<select class="form-control" id="depNode">
+								<option>*</option>
+								<option>$8500</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<button type="button" class="btn btn-default">OK<br></button>
+						</div>
+					</form>
+				</div>
+				<h3 class="panel panel-heading">Connet Name Entities</h3>
+				<div class="panel panel-body" id="graph-editor"></div>
 			</div>
 		</div>
 	<script type="text/javascript" src="main.js"></script>

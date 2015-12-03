@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<documents>
+  <document>
+    <docID>fbi16</docID>
+    <docDate></docDate>
+    <docSource></docSource>
+    <docText>Report Date 22 April, 2003. FBI: Hani al Hallak, of North Bergen NJ, has deposited checks in his bank account that were drawn on First Union Bank account number 1070173749003 in Springfield VA in the name Abdul Ramazi. The latest check is dated 16 April, 2003 and was in the amount of $8500.</docText>
+    <Person>Abdul Ramazi</Person>
+    <Date>22 April, 2003</Date>
+    <Location>New Jersey</Location>
+    <Organization>FBI</Organization>
+    <Misc>1070173749003</Misc>
+    <Organization>First Union Bank</Organization>
+    <Location>North Bergen</Location>
+    <Date>16 April, 2003</Date>
+    <Location>Springfield VA</Location>
+    <Person>Hani al Hallak</Person>
+    <Money>$8500</Money>
+  </document>
+  <document>
+    <docID>cia9</docID>
+    <docDate></docDate>
+    <docSource></docSource>
+    <docText>Report date 25 April, 2003. CIA [From Dutch security]: Analysis of radioactive particles found in truck driven by Tawfiq al Adel and Saeed Khallad, and in the storage unit rented by Saleh al Ahdal and Riduan bin Attash, reveals them to be powdered cesium 137. One ounce of this substance could spread radioactive fallout over 60 city blocks.</docText>
+    <Organization>CIA</Organization>
+    <Misc>Dutch</Misc>
+    <Person>Tawfiq al Adel</Person>
+    <Person>Saeed Khallad</Person>
+    <Date>25 April, 2003</Date>
+    <Person>Riduan bin Attash</Person>
+    <Person>Saleh al Ahdal</Person>
+    <Misc>cesium 137</Misc>
+  </document>
+  <document>
+    <docID>se5</docID>
+    <docDate></docDate>
+    <docSource></docSource>
+    <docText>Report Date 27 April, 2003. Intercept of cell phone 804-774-8920. In a very brief call from this number to phone number 703-659-2317 on 26 April, 2003, the caller speaks in Arabic. A translation reads: "We are now prepared to take the crescent to victory".</docText>
+    <Date>27 April, 2003</Date>
+    <Phone>703-659-2317</Phone>
+    <Phone>804-774-8920</Phone>
+    <Date>26 April, 2003</Date>
+    <Misc>Arabic</Misc>
+  </document>
+  <aliases>
+    <alias>
+      <alias_primary_id>
+        <Location>Georgia</Location>
+      </alias_primary_id>
+      <alias_other_id>
+        <Location>GA</Location>
+      </alias_other_id>
+    </alias>
+    <alias>
+      <alias_primary_id>
+        <Location>Los Angeles</Location>
+      </alias_primary_id>
+      <alias_other_id>
+        <Location>LA</Location>
+      </alias_other_id>
+    </alias>
+    <alias>
+      <alias_primary_id>
+        <Location>New Jersey</Location>
+      </alias_primary_id>
+      <alias_other_id>
+        <Location>NJ</Location>
+      </alias_other_id>
+    </alias>
+    <alias>
+      <alias_primary_id>
+        <Location>New York City</Location>
+      </alias_primary_id>
+      <alias_other_id>
+        <Location>NYC</Location>
+      </alias_other_id>
+    </alias>
+    <alias>
+      <alias_primary_id>
+        <Location>Richmond</Location>
+      </alias_primary_id>
+      <alias_other_id>
+        <Location>Richmond VA</Location>
+      </alias_other_id>
+    </alias>
+    <alias>
+      <alias_primary_id>
+        <Location>US</Location>
+      </alias_primary_id>
+      <alias_other_id>
+        <Location>USA</Location>
+      </alias_other_id>
+    </alias>
+    <alias>
+      <alias_primary_id>
+        <Location>Virginia</Location>
+      </alias_primary_id>
+      <alias_other_id>
+        <Location>VA</Location>
+      </alias_other_id>
+      <alias_other_id>
+        <Location>Va</Location>
+      </alias_other_id>
+      <alias_other_id>
+        <Location>VA.</Location>
+      </alias_other_id>
+    </alias>
+    <alias>
+      <alias_primary_id>
+        <Organization>British Special Branch</Organization>
+      </alias_primary_id>
+      <alias_other_id>
+        <Organization>BSB</Organization>
+      </alias_other_id>
+    </alias>
+    <alias>
+      <alias_primary_id>
+        <Organization>Bush Intercontinental Airport</Organization>
+      </alias_primary_id>
+      <alias_other_id>
+        <Organization>Bush Intercontinental</Organization>
+      </alias_other_id>
+    </alias>
+    <alias>
+      <alias_primary_id>
+        <Person>Faysal Goba</Person>
+      </alias_primary_id>
+      <alias_other_id>
+        <Person>Goba</Person>
+      </alias_other_id>
+    </alias>
+    <alias>
+      <alias_primary_id>
+        <Organization>New York Stock Exchange</Organization>
+      </alias_primary_id>
+      <alias_other_id>
+        <Organization>NYSE</Organization>
+      </alias_other_id>
+    </alias>
+    <alias>
+      <alias_primary_id>
+        <Organization>Apex Paper Products Company</Organization>
+      </alias_primary_id>
+      <alias_other_id>
+        <Organization>Apex</Organization>
+      </alias_other_id>
+    </alias>
+    <alias>
+      <alias_primary_id>
+        <Organization>Ryder Truck Rental</Organization>
+      </alias_primary_id>
+      <alias_other_id>
+        <Organization>Ryder</Organization>
+      </alias_other_id>
+    </alias>
+    <alias>
+      <alias_primary_id>
+        <Organization>Sprint</Organization>
+      </alias_primary_id>
+      <alias_other_id>
+        <Organization>Sprint PCS</Organization>
+      </alias_other_id>
+    </alias>
+    <alias>
+      <alias_primary_id>
+        <Person>Abdul Ramazi</Person>
+      </alias_primary_id>
+      <alias_other_id>
+        <Person>Ramazi</Person>
+      </alias_other_id>
+    </alias>
+    <alias>
+      <alias_primary_id>
+        <Location>Camp George West Military Reservation</Location>
+      </alias_primary_id>
+      <alias_other_id>
+        <Location>Camp George West</Location>
+      </alias_other_id>
+    </alias>
+    <alias>
+      <alias_primary_id>
+        <Person>Hans Pakes</Person>
+      </alias_primary_id>
+      <alias_other_id>
+        <Person>Pakes</Person>
+      </alias_other_id>
+    </alias>
+    <alias>
+      <alias_primary_id>
+        <Person>Abu al Masri</Person>
+      </alias_primary_id>
+      <alias_other_id>
+        <Person>al Hada</Person>
+      </alias_other_id>
+    </alias>
+    <alias>
+      <alias_primary_id>
+        <Person>Hani al Hallak</Person>
+      </alias_primary_id>
+      <alias_other_id>
+        <Person>al Hallak</Person>
+      </alias_other_id>
+    </alias>
+    <alias>
+      <alias_primary_id>
+        <Person>Karm Bensaid</Person>
+      </alias_primary_id>
+      <alias_other_id>
+        <Person>Bensaid</Person>
+      </alias_other_id>
+    </alias>
+    <alias>
+      <alias_primary_id>
+        <Person>Clark Adams</Person>
+      </alias_primary_id>
+      <alias_other_id>
+        <Person>Adams</Person>
+      </alias_other_id>
+    </alias>
+    <alias>
+      <alias_primary_id>
+        <Person>Muhammad Shamzi</Person>
+      </alias_primary_id>
+      <alias_other_id>
+        <Person>Shamzi</Person>
+      </alias_other_id>
+    </alias>
+    <alias>
+      <alias_primary_id>
+        <Person>Abdulla Ramzi</Person>
+      </alias_primary_id>
+      <alias_other_id>
+        <Person>Ramzi</Person>
+      </alias_other_id>
+    </alias>
+    <alias>
+      <alias_primary_id>
+        <Person>Wallace Wilson</Person>
+      </alias_primary_id>
+      <alias_other_id>
+        <Person>Wilson</Person>
+      </alias_other_id>
+    </alias>
+  </aliases>
+</documents>

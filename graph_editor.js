@@ -60,7 +60,8 @@ function mousedown() {
   }
 }
 
-d3.json("graph.json", function(error, json) {
+var jsonfile = "graph_small.json";
+d3.json(jsonfile, function(error, json) {
   if (error) throw error;
 
   d3_json = json;

@@ -109,6 +109,8 @@ function update() {
       .on("mouseover",handleMouseOver)
       .on("mouseout",handleMouseOut);
 
+  svg.selectAll("g.link").append("text");
+
 
   //update the nodes
   node = svg.selectAll(".node")
@@ -188,7 +190,20 @@ function node_click(d) {
 
 // action to take on mouse click of an edge
 function edge_click(d){
-  console.log(d);
+  var source = d.source.name;
+  var target = d.target.name;
+  var edge_decription = window.prompt("How is "+source+" related to "+target+" ?", "Edge Description Here...");
+  if (edge_decription != null){
+    d3.select(this.parentNode).select("text")
+      //.attr("dx", 12)
+      //.attr("dy", ".35em")
+      .attr("id",this.id)
+      .attr("x",(this.x1.baseVal.value+this.x2.baseVal.value)/2)
+      .attr("y",(this.y1.baseVal.value+this.y2.baseVal.value)/2)
+      .style("fill","black")
+      .style("font-size",35)
+      .text(edge_decription)
+  }
 }
 
 function handleMouseOver(d){
@@ -198,14 +213,14 @@ function handleMouseOver(d){
   d3.select(this.parentNode)
     .append("text")
     .attr("id",this.id)
-    .attr("x",(this.x1+this.x2)/2)
-    .attr("y",(this.y1+this.y2)/2)
+    .attr("class","tmp")
+    .attr("x",(this.x1.baseVal.value+this.x2.baseVal.value)/2)
+    .attr("y",(this.y1.baseVal.value+this.y2.baseVal.value)/2)
     .style("fill","black")
     .style("font-size",55)
     .text(function(){
       return this.id;
     });
-  console.log(this.parentNode);
 }
 
 function handleMouseOut(d){
@@ -213,5 +228,5 @@ function handleMouseOut(d){
     .style("stroke-width",parseInt(d.value))
     .style("stroke","none");
   d3.select(this.parentNode)
-    .select("text").remove();
+    .select("text.tmp").remove();
 }

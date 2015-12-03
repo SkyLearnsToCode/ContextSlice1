@@ -86,6 +86,7 @@ for name in root.iter('alias'):
 items = []
 nodes = []
 for doc in root.iter('document'):
+	docid = doc[0].text
 	for child in doc:
 		item = child.text
 		tag = child.tag
@@ -94,7 +95,7 @@ for doc in root.iter('document'):
 				#deal with duplication
 				item = filter(item, child.tag, aliases)
 			items.append(item)
-			node = {'name':item,'category':tag}
+			node = {'name':item,'category':tag,'docid':docid}
 			nodes.append(node)
 items.sort()
 

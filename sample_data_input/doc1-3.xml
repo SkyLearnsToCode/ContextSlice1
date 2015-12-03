@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <documents>
   <document>
-    <docID>fbi16</docID>
+    <docID>1</docID>
     <docDate></docDate>
     <docSource></docSource>
     <docText>Report Date 22 April, 2003. FBI: Hani al Hallak, of North Bergen NJ, has deposited checks in his bank account that were drawn on First Union Bank account number 1070173749003 in Springfield VA in the name Abdul Ramazi. The latest check is dated 16 April, 2003 and was in the amount of $8500.</docText>
@@ -18,7 +18,7 @@
     <Money>$8500</Money>
   </document>
   <document>
-    <docID>cia9</docID>
+    <docID>2</docID>
     <docDate></docDate>
     <docSource></docSource>
     <docText>Report date 25 April, 2003. CIA [From Dutch security]: Analysis of radioactive particles found in truck driven by Tawfiq al Adel and Saeed Khallad, and in the storage unit rented by Saleh al Ahdal and Riduan bin Attash, reveals them to be powdered cesium 137. One ounce of this substance could spread radioactive fallout over 60 city blocks.</docText>
@@ -32,7 +32,7 @@
     <Misc>cesium 137</Misc>
   </document>
   <document>
-    <docID>se5</docID>
+    <docID>3</docID>
     <docDate></docDate>
     <docSource></docSource>
     <docText>Report Date 27 April, 2003. Intercept of cell phone 804-774-8920. In a very brief call from this number to phone number 703-659-2317 on 26 April, 2003, the caller speaks in Arabic. A translation reads: "We are now prepared to take the crescent to victory".</docText>

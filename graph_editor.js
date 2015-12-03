@@ -24,8 +24,8 @@ var selected_node = null,
 //the d3 global force variable
 var force = d3.layout.force()
     .gravity(.05)
-    .distance(100)
-    .charge(-100)
+    .distance(200)
+    //.charge(-200)
     .size([width, height])
     .on("tick", tick);
 
@@ -38,9 +38,11 @@ var outer = d3.select("#graph-editor")
 
 var svg = outer
   .append("svg:g")
+    .attr("class","outer")
     .call(d3.behavior.zoom().on("zoom", rescale))
     .on("dblclick.zoom", null)
   .append("svg:g")
+    .attr("class","inner")
     .on("mousedown", mousedown)
 /*
 svg.append('svg:rect')
@@ -84,20 +86,38 @@ function update() {
   force
     .nodes(d3_json.nodes)
     .links(d3_json.links)
+    .charge(function(node){
+      return  parseInt(node.docid)*(-200);
+    })
     .start();
 
   //update the links
   link = svg.selectAll(".link")
       .data(d3_json.links)
-    .enter().append("line")
-      .attr("class", "link");
+    .enter().append("g")
+    .on("click", edge_click)
+      .attr("class", function(d){
+        return "link "+d.value;
+      })
+      .append("line")
+      .attr("id", function(d){
+        return d.source.name + " to " + d.target.name;
+      })
+      .style("stroke-width",function(d){
+        return parseInt(d.value);
+      })
+      .on("mouseover",handleMouseOver)
+      .on("mouseout",handleMouseOut);
+
 
   //update the nodes
   node = svg.selectAll(".node")
       .data(d3_json.nodes)
       .enter().append("g")
       .on("click", node_click)
-      .attr("class", "node")
+      .attr("class", function(d){
+        return "node "+d.docid;
+      })
       .call(force.drag);
 
     node.append("circle")
@@ -164,4 +184,30 @@ function node_click(d) {
   //     .attr("r", 16)
   //     .style("fill", "lightsteelblue");
   // update();
+}
+
+// action to take on mouse click of an edge
+function edge_click(d){
+  console.log(d);
+  link.style("stroke-length",parseInt(d.value)*4);
+}
+
+function handleMouseOver(d){
+  d3.select(this)
+    .style("stroke-width",4)
+    .style("fill",orange)
+    .append("text")
+    .attr("id",d.id)
+    .attr("x",d.x)
+    .attr("y",d.y)
+    .text(function(){
+      return d.id;
+    });
+  }
+
+function handleMouseOut(d){
+  d3.select(this)
+    .style("stroke-width",parseInt(d.value))
+    .style("fill","black")
+    .select("#"+d.id).remove();
 }

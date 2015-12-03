@@ -2,98 +2,122 @@
     "nodes": [
         {
             "category": "Person",
+            "docid": "1",
             "name": "Abdul Ramazi"
         },
         {
             "category": "Date",
+            "docid": "1",
             "name": "22 April, 2003"
         },
         {
             "category": "Location",
+            "docid": "1",
             "name": "New Jersey"
         },
         {
             "category": "Organization",
+            "docid": "1",
             "name": "FBI"
         },
         {
             "category": "Misc",
+            "docid": "1",
             "name": "1070173749003"
         },
         {
             "category": "Organization",
+            "docid": "1",
             "name": "First Union Bank"
         },
         {
             "category": "Location",
+            "docid": "1",
             "name": "North Bergen"
         },
         {
             "category": "Date",
+            "docid": "1",
             "name": "16 April, 2003"
         },
         {
             "category": "Location",
+            "docid": "1",
             "name": "Springfield VA"
         },
         {
             "category": "Person",
+            "docid": "1",
             "name": "Hani al Hallak"
         },
         {
             "category": "Money",
+            "docid": "1",
             "name": "$8500"
         },
         {
             "category": "Organization",
+            "docid": "2",
             "name": "CIA"
         },
         {
             "category": "Misc",
+            "docid": "2",
             "name": "Dutch"
         },
         {
             "category": "Person",
+            "docid": "2",
             "name": "Tawfiq al Adel"
         },
         {
             "category": "Person",
+            "docid": "2",
             "name": "Saeed Khallad"
         },
         {
             "category": "Date",
+            "docid": "2",
             "name": "25 April, 2003"
         },
         {
             "category": "Person",
+            "docid": "2",
             "name": "Riduan bin Attash"
         },
         {
             "category": "Person",
+            "docid": "2",
             "name": "Saleh al Ahdal"
         },
         {
             "category": "Misc",
+            "docid": "2",
             "name": "cesium 137"
         },
         {
             "category": "Date",
+            "docid": "3",
             "name": "27 April, 2003"
         },
         {
             "category": "Phone",
+            "docid": "3",
             "name": "703-659-2317"
         },
         {
             "category": "Phone",
+            "docid": "3",
             "name": "804-774-8920"
         },
         {
             "category": "Date",
+            "docid": "3",
             "name": "26 April, 2003"
         },
         {
             "category": "Misc",
+            "docid": "3",
             "name": "Arabic"
         }
     ],

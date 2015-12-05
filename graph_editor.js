@@ -54,7 +54,6 @@ svg.append('svg:rect')
 var link = svg.selectAll(".link"),
     node = svg.selectAll(".node");
 
-
 function mousedown() {
   if (!selected_node) {
     // allow panning if nothing is selected
@@ -196,7 +195,9 @@ function edge_click(d){
     var source = d.source.name;
     var target = d.target.name;
     var edge_decription = window.prompt("How is "+source+" related to "+target+" ?", "Edge Description Here...");
-    if (edge_decription != null){
+   
+   d3.select(graph).co
+     if (edge_decription != null){
       d3.select(this.parentNode).select("text")
         //.attr("dx", 12)
         //.attr("dy", ".35em")

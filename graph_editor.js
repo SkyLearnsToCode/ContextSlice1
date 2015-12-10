@@ -106,6 +106,7 @@ function update() {
       .style("stroke-width",function(d){
         return parseInt(d.value);
       })
+      //.style("stroke","white")
       .on("click", edge_click)
       .on("mouseover",handleMouseOver)
       .on("mouseout",handleMouseOut);
@@ -203,9 +204,13 @@ function edge_click(d){
         .attr("id",this.id)
         .attr("x",(this.x1.baseVal.value+this.x2.baseVal.value)/2)
         .attr("y",(this.y1.baseVal.value+this.y2.baseVal.value)/2)
+        .style("stroke-width",function(d){
+        return parseInt(d.value);
+        })
         .style("fill","black")
         .style("font-size",35)
-        .text(edge_decription)
+        .text(edge_decription);
+        d3.select(this).style("stroke","black");
     }
   }else{
     clicked = false;

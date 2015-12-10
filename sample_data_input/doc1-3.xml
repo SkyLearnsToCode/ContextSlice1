@@ -4,43 +4,50 @@
     <docID>1</docID>
     <docDate></docDate>
     <docSource></docSource>
-    <docText>Report Date 22 April, 2003. FBI: Hani al Hallak, of North Bergen NJ, has deposited checks in his bank account that were drawn on First Union Bank account number 1070173749003 in Springfield VA in the name Abdul Ramazi. The latest check is dated 16 April, 2003 and was in the amount of $8500.</docText>
-    <Person>Abdul Ramazi</Person>
-    <Date>22 April, 2003</Date>
-    <Location>New Jersey</Location>
-    <Organization>FBI</Organization>
-    <Misc>1070173749003</Misc>
-    <Organization>First Union Bank</Organization>
-    <Location>North Bergen</Location>
-    <Date>16 April, 2003</Date>
-    <Location>Springfield VA</Location>
-    <Person>Hani al Hallak</Person>
-    <Money>$8500</Money>
-  </document>
-  <document>
-    <docID>2</docID>
-    <docDate></docDate>
-    <docSource></docSource>
-    <docText>Report date 25 April, 2003. CIA [From Dutch security]: Analysis of radioactive particles found in truck driven by Tawfiq al Adel and Saeed Khallad, and in the storage unit rented by Saleh al Ahdal and Riduan bin Attash, reveals them to be powdered cesium 137. One ounce of this substance could spread radioactive fallout over 60 city blocks.</docText>
-    <Organization>CIA</Organization>
-    <Misc>Dutch</Misc>
-    <Person>Tawfiq al Adel</Person>
-    <Person>Saeed Khallad</Person>
-    <Date>25 April, 2003</Date>
-    <Person>Riduan bin Attash</Person>
-    <Person>Saleh al Ahdal</Person>
-    <Misc>cesium 137</Misc>
-  </document>
-  <document>
-    <docID>3</docID>
-    <docDate></docDate>
-    <docSource></docSource>
     <docText>Report Date 27 April, 2003. Intercept of cell phone 804-774-8920. In a very brief call from this number to phone number 703-659-2317 on 26 April, 2003, the caller speaks in Arabic. A translation reads: "We are now prepared to take the crescent to victory".</docText>
     <Date>27 April, 2003</Date>
     <Phone>703-659-2317</Phone>
     <Phone>804-774-8920</Phone>
     <Date>26 April, 2003</Date>
     <Misc>Arabic</Misc>
+  </document>
+  <document>
+    <docID>2</docID>
+    <docDate></docDate>
+    <docSource></docSource>
+    <docText>Report Date 24 April, 2003. Phone calls on 22 April, 2003 from 703-659-2317 to the following numbers: 804-759-6302; 804-774-8920; 718-352-8479; and 01 1207670734. The same brief voice message was given in Arabic in each call. A translation of this message reads: "I will be in my office on April 30 at 9:OOAM. Try to be on time".</docText>
+    <Phone>804-759-6302</Phone>
+    <Date>22 April, 2003</Date>
+    <Date>24 April, 2003</Date>
+    <Phone>703-659-2317</Phone>
+    <Phone>804-774-8920</Phone>
+    <Misc>Arabic</Misc>
+    <Phone>718-352-8479</Phone>
+    <Phone>01 1207670734</Phone>
+    <Date>April 30</Date>
+  </document>
+  <document>
+    <docID>3</docID>
+    <docDate></docDate>
+    <docSource></docSource>
+    <docText>Report Date 21 April, 2003: Frequent recent phone calls from 703-659-2317 to the following numbers: 804-759-6302 [Richmond, VA., listed in the name Clark Webster]; 804-774-8920 [Charlottesville, VA, listed in the name Mukhtar Galab]; 718-352-8479 [Queens, NYC, listed in the name Bagwant Dhaliwal. Two overseas calls were made to 01 1207670734 [Amsterdam, The Netherlands, listed in the name Hans Pakes].</docText>
+    <Person>Hans Pakes</Person>
+    <Location>The Netherlands</Location>
+    <Person>Bagwant Dhaliwal</Person>
+    <Phone>804-759-6302</Phone>
+    <Person>Clark Webster</Person>
+    <Location>Richmond</Location>
+    <Location>Virginia</Location>
+    <Location>Amsterdam</Location>
+    <Phone>703-659-2317</Phone>
+    <Location>Queens</Location>
+    <Location>New York City</Location>
+    <Person>Mukhtar Galab</Person>
+    <Location>Charlottesville</Location>
+    <Phone>804-774-8920</Phone>
+    <Phone>718-352-8479</Phone>
+    <Phone>01 1207670734</Phone>
+    <Date>21 April, 2003</Date>
   </document>
   <aliases>
     <alias>

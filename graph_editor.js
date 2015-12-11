@@ -351,6 +351,7 @@ function keydown() {
       else if (selected_link) {
         //TODO remove the text from the moused over link
         links.splice(links.indexOf(selected_link), 1);
+        d3.selectAll("text.tmp").remove();
       }
       selected_link = null;
       selected_node = null;

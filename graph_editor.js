@@ -14,7 +14,7 @@ var colorMap = {
 var width = 700,
     height = 700,
     //fill = d3.scale.category20(),
-    d3_json;
+    d3_data;
 
 // mouse event vars
 var selected_node = null,
@@ -45,47 +45,27 @@ var svg = outer
   .append("svg:g")
     .attr("class","inner")
     .on("mousedown", mousedown)
-/*
-svg.append('svg:rect')
-    .attr('width', width)
-    .attr('height', height)
-    .attr('fill', 'white');
-*/
+
+
 var link = svg.selectAll(".link"),
     node = svg.selectAll(".node");
 
-function mousedown() {
-  if (!selected_node) {
-    // allow panning if nothing is selected
-    svg.call(d3.behavior.zoom().on("zoom"), rescale);
-    return;
-  }
-}
+
 
 var jsonfile = "graph_small.json";
 d3.json(jsonfile, function(error, json) {
   if (error) throw error;
 
-  d3_json = json;
+  d3_data = json;
   update();
 });
 
-// rescale g
-function rescale() {
-  trans=d3.event.translate;
-  scale=d3.event.scale;
 
-  svg.attr("transform",
-      "translate(" + trans + ")"
-      + " scale(" + scale + ")");
-}
 
 function update() {
-
-  //restart the force layout by using the force object
   force
-    .nodes(d3_json.nodes)
-    .links(d3_json.links)
+    .nodes(d3_data.nodes)
+    .links(d3_data.links)
     .charge(function(node){
       return  parseInt(node.docid)*(-200);
     })
@@ -93,7 +73,7 @@ function update() {
 
   //update the links
   link = svg.selectAll(".link")
-      .data(d3_json.links)
+      .data(d3_data.links)
     .enter().append("g")
       .attr("class", function(d){
         return "link "+d.value;
@@ -114,7 +94,7 @@ function update() {
 
   //update the nodes
   node = svg.selectAll(".node")
-      .data(d3_json.nodes)
+      .data(d3_data.nodes)
       .enter().append("g")
       .on("click", node_click)
       .attr("class", function(d){
@@ -122,18 +102,11 @@ function update() {
       })
       .call(force.drag);
 
-    node.append("circle")
+
+  node.append("circle")
       .attr("r", 10)
       .attr("class", function(d) { return d.category; });
 
-  //add an image to the circle
-  // node.append("image")
-  //     .attr("xlink:href", "https://github.com/favicon.ico")
-  //     .attr("x", -8)
-  //     .attr("y", -8)
-  //     .attr("width", 16)
-  //     .attr("height", 16);
-  //add text label to the nodes
   node.append("text")
       .attr("dx", 12)
       .attr("dy", ".35em")
@@ -143,38 +116,53 @@ function update() {
     d3.event.preventDefault();
   }
 
-  node.classed("node_selected", function(d) {
-    return d === selected_node;
-  });
+  // node.classed("node_selected", function(d) {
+  //   return d === selected_node;
+  // });
 }
 
-function tick() {
-  link.attr("x1", function(d) { return d.source.x; })
-      .attr("y1", function(d) { return d.source.y; })
-      .attr("x2", function(d) { return d.target.x; })
-      .attr("y2", function(d) { return d.target.y; });
-
-  node.attr("transform", function(d) {
-    return "translate(" + d.x + "," + d.y + ")";
-  });
+function mousedown() {
+  if (selected_node) {
+    // allow panning if nothing is selected
+    svg.call(d3.behavior.zoom().on("zoom"), rescale);
+    return;
+  }
 }
+
+
+// rescale g
+function rescale() {
+  trans=d3.event.translate;
+  scale=d3.event.scale;
+
+  svg.attr("transform",
+      "translate(" + trans + ")"
+      + " scale(" + scale + ")");
+}
+
 
 
 // action to take on mouse click of a node
 function node_click(d) {
 
-  // console.log(d)
-
-  // d.classed("node_selected")
-  // console.log(d3.select(this))
-  // console.log(d3.select(this).node());
   console.log(d);
-  d3.select(this).classed("node_selected", selected_node === d);
-  if(selected_node == d){
+  console.log('in node click, selected node before is: '+selected_node);
+
+  if(!selected_node){
+    //selected_node is null
+    selected_node = d;
+  }else if(selected_node === d){
+    //selected_node was clicked and is the same as d
     selected_node = null;
   }else{
-    selected_node = d;
+    //a different node other than selected_node was clicked
+
+    //TODO make a link occur here
   }
+
+  console.log('in node click, selected node after is: '+selected_node);
+
+  //d3.select(this).classed("node_selected", selected_node === d);
 
   // d.transition()
   //   .duration(750)
@@ -188,6 +176,34 @@ function node_click(d) {
   // update();
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function tick() {
+  link.attr("x1", function(d) { return d.source.x; })
+      .attr("y1", function(d) { return d.source.y; })
+      .attr("x2", function(d) { return d.target.x; })
+      .attr("y2", function(d) { return d.target.y; });
+
+  node.attr("transform", function(d) {
+    return "translate(" + d.x + "," + d.y + ")";
+  });
+}
+
+
 // action to take on mouse click of an edge
 function edge_click(d){
   if (clicked == false){
@@ -195,7 +211,7 @@ function edge_click(d){
     var source = d.source.name;
     var target = d.target.name;
     var edge_decription = window.prompt("How is "+source+" related to "+target+" ?", "Edge Description Here...");
-   
+
    d3.select(graph).co
      if (edge_decription != null){
       d3.select(this.parentNode).select("text")

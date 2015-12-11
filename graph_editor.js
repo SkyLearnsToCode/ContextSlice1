@@ -59,12 +59,6 @@ var jsonfile = "graph_small.json";
 var nodes, links, node, link;
 
 
-
-
-
-
-
-
 // add keyboard callback
 d3.select(window)
     .on("keydown", keydown);
@@ -206,19 +200,18 @@ function redraw() {
 
 
 
-  node.enter().append("text")
+  var node_group = node.enter().append("g")
+      .attr("class", function(d){
+        return "node " + d.category + " "+d.docid;
+      });
+  node_group.append("text")
       .attr("dx", 12)
       .attr("dy", ".35em")
       .text(function(d) {
         return d.name;
       });
-
-  node.enter()
-      .append("circle")
+  node_group.append("circle")
       .attr("r", 5)
-      .attr("class", function(d){
-        return "node " + d.category + " "+d.docid;
-      })
       .on("mousedown",
         function(d) {
           // disable zoom

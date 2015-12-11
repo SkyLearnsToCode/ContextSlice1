@@ -53,6 +53,7 @@ var drag_line = vis.append("line")
     .attr("y2", 0);
 
 
+
 var force;
 var d3_data;
 var jsonfile = "graph_small.json";
@@ -92,8 +93,10 @@ function mouseup() {
     drag_line
       .attr("class", "drag_line_hidden")
 
+    /*
     if (!mouseup_node) {
-      // add node
+      // instead of adding node, drag current node
+      
       var point = d3.mouse(this),
         node = {x: point[0], y: point[1]},
         n = nodes.push(node);
@@ -104,7 +107,9 @@ function mouseup() {
 
       // add link to mousedown node
       links.push({source: mousedown_node, target: node});
-    }
+      
+      }
+    */
 
     redraw();
   }
@@ -119,12 +124,13 @@ function resetMouseVars() {
 }
 
 function tick() {
+  node.attr("transform", function(d) {
+    return "translate(" + d.x + "," + d.y + ")"; });
+
   link.attr("x1", function(d) { return d.source.x; })
       .attr("y1", function(d) { return d.source.y; })
       .attr("x2", function(d) { return d.target.x; })
       .attr("y2", function(d) { return d.target.y; });
-
-  node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
 }
 
 // rescale g
@@ -165,21 +171,26 @@ d3.json(jsonfile, function(json) {
 
 // redraw force layout
 function redraw() {
-
-  force.start();
-
   nodes = force.nodes();
+  node = node.data(nodes);
+  
   links = force.links();
-
   link = link.data(links);
 
-  link.enter().insert("line", ".node")
-      .attr("id", function(d){
-        return d.source.name + " to " + d.target.name;
-      })
+  force
+    .charge(-100)
+    .linkDistance(120)
+    .start();
+
+  link.enter().append("line")
       .attr("class", function(d){
         return "link "+d.value;
       })
+      .attr("id", function(d){
+        return d.source.name + " to " + d.target.name;
+      })
+      .style("stroke-width",1)
+      .style("stroke","light grey")
       .on("click", edge_click)
       .on("mouseover",handleMouseOver)
       .on("mouseout",handleMouseOut)
@@ -198,14 +209,11 @@ function redraw() {
   link
     .classed("link_selected", function(d) { return d === selected_link; });
 
-  node = node.data(nodes);
-
-
-
   var node_group = node.enter().append("g")
       .attr("class", function(d){
         return "node " + d.category + " "+d.docid;
       });
+
   node_group.append("text")
       .attr("dx", 12)
       .attr("dy", ".35em")
@@ -218,7 +226,6 @@ function redraw() {
         function(d) {
           // disable zoom
           vis.call(d3.behavior.zoom().on("zoom"), null);
-
           mousedown_node = d;
           if (mousedown_node == selected_node) selected_node = null;
           else selected_node = mousedown_node;
@@ -232,7 +239,7 @@ function redraw() {
               .attr("x2", mousedown_node.x)
               .attr("y2", mousedown_node.y);
 
-          redraw();
+          //redraw();
         })
       .on("mousedrag",
         function(d) {
@@ -254,7 +261,9 @@ function redraw() {
 
             // enable zoom
             vis.call(d3.behavior.zoom().on("zoom"), rescale);
-            redraw();
+            //redraw();
+          }else{
+            //drag node
           }
         })
     .transition()
@@ -281,9 +290,7 @@ function redraw() {
 
 // action to take on mouse click of an edge
 function edge_click(d){
-  if (clicked == false){
-    clicked = true;
-    var source = d.source.name;
+  var source = d.source.name;
     var target = d.target.name;
     var edge_decription = window.prompt("How is "+source+" related to "+target+" ?", "Edge Description Here...");
 
@@ -298,11 +305,6 @@ function edge_click(d){
         .style("font-size",35)
         .text(edge_decription)
     }
-  }else{
-    clicked = false;
-    d3.select(this.parentNode)
-      .selectAll("text").remove();
-  }
 }
 
 
@@ -325,8 +327,14 @@ function handleMouseOver(d){
 
 function handleMouseOut(d){
   d3.select(this)
-    .style("stroke-width",parseInt(d.value))
-    .style("stroke","grey");
+    .style("stroke-width",function(d){
+      if (!d) {
+        return 1;
+      }else{
+        parseInt(d.value);
+      }
+    })
+    .style("stroke","#ccc");
   d3.select(this.parentNode)
     .select("text.tmp").remove();
 }
@@ -351,7 +359,6 @@ function keydown() {
         spliceLinksForNode(selected_node);
       }
       else if (selected_link) {
-        //TODO remove the text from the moused over link
         links.splice(links.indexOf(selected_link), 1);
         d3.selectAll("text.tmp").remove();
       }

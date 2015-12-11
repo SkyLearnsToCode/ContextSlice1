@@ -43,13 +43,16 @@ vis.append('svg:rect')
     .attr('width', width)
     .attr('height', height)
     .attr('fill', 'white');
+
+
 var force;
 var d3_data;
 var jsonfile = "graph_small.json";
 var nodes, links, node, link;
 d3.json(jsonfile, function( json) {
-  console.log(json);
+
   d3_data = json;
+
   force = d3.layout.force()
       .size([width, height])
       .nodes(d3_data.nodes) // initialize with a single node
@@ -58,24 +61,13 @@ d3.json(jsonfile, function( json) {
       .charge(-200)
       .on("tick", tick);
 
-
   nodes = force.nodes();
-      links = force.links();
-      node = vis.selectAll(".node");
-      link = vis.selectAll(".link");
+  links = force.links();
+  node = vis.selectAll(".node");
+  link = vis.selectAll(".link");
+
   redraw();
 });
-
-
-// init force layout
-console.log('hooooooo'+d3_data);
-// var force = d3.layout.force()
-//     .size([width, height])
-//     .nodes(d3_data.nodes) // initialize with a single node
-//     .links(d3_data.links)
-//     .linkDistance(50)
-//     .charge(-200)
-//     .on("tick", tick);
 
 
 // line displayed when dragging new nodes
@@ -178,18 +170,24 @@ function redraw() {
   link = link.data(links);
 
   link.enter().insert("line", ".node")
-      .attr("class", "link")
+      .attr("id", function(d){
+        return d.source.name + " to " + d.target.name;
+      })
+      .attr("class", function(d){
+        return "link "+d.value;
+      })
       .on("click", edge_click)
       .on("mouseover",handleMouseOver)
       .on("mouseout",handleMouseOut)
-      .on("mousedown",
-        function(d) {
+      .on("mousedown", function(d) {
           mousedown_link = d;
           if (mousedown_link == selected_link) selected_link = null;
           else selected_link = mousedown_link;
           selected_node = null;
           redraw();
-        })
+        });
+
+
 
   link.exit().remove();
 
@@ -201,6 +199,9 @@ function redraw() {
   node.enter().insert("circle")
       .attr("class", "node")
       .attr("r", 5)
+      .attr("class", function(d){
+        return "node "+d.docid;
+      })
       .on("mousedown",
         function(d) {
           // disable zoom
@@ -252,6 +253,11 @@ function redraw() {
   node.exit().transition()
       .attr("r", 0)
     .remove();
+
+  node.append("text")
+      .attr("dx", 12)
+      .attr("dy", ".35em")
+      .text(function(d) { return d.name });
 
   node
     .classed("node_selected", function(d) { return d === selected_node; });

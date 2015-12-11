@@ -143,11 +143,13 @@ d3.json(jsonfile, function(json) {
   d3_data = json;
 
   force = d3.layout.force()
+    .gravity(.05)
+    .distance(100)
       .size([width, height])
       .nodes(d3_data.nodes) // initialize with a single node
       .links(d3_data.links)
       .charge(function(node){
-        return  parseInt(node.docid)*(-200);
+        return  parseInt(node.docid)*(-100);
       })
       .on("tick", tick);
 

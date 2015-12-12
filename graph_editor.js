@@ -44,33 +44,6 @@ vis.append('svg:rect')
     .attr('height', height)
     .attr('fill', 'white');
 
-
-var force;
-var d3_data;
-var jsonfile = "graph_small.json";
-var nodes, links, node, link;
-d3.json(jsonfile, function( json) {
-
-  d3_data = json;
-
-  force = d3.layout.force()
-      .size([width, height])
-      .nodes(d3_data.nodes) // initialize with a single node
-      .links(d3_data.links)
-      .charge(function(node){
-        return  parseInt(node.docid)*(-200);
-      })
-      .on("tick", tick);
-  node = vis.selectAll(".node");
-  link = vis.selectAll(".link");
-  nodes = force.nodes();
-  links = force.links();
-
-
-  redraw();
-});
-
-
 // line displayed when dragging new nodes
 var drag_line = vis.append("line")
     .attr("class", "drag_line")
@@ -79,14 +52,23 @@ var drag_line = vis.append("line")
     .attr("x2", 0)
     .attr("y2", 0);
 
-// get layout properties
+
+var force;
+var d3_data;
+var jsonfile = "graph_small.json";
+var nodes, links, node, link;
+
+
+
+
+
+
 
 
 // add keyboard callback
 d3.select(window)
     .on("keydown", keydown);
 
-//redraw();
 
 // focus on svg
 // vis.node().focus();
@@ -108,7 +90,6 @@ function mousemove() {
       .attr("y1", mousedown_node.y)
       .attr("x2", d3.svg.mouse(this)[0])
       .attr("y2", d3.svg.mouse(this)[1]);
-
 }
 
 function mouseup() {
@@ -149,8 +130,7 @@ function tick() {
       .attr("x2", function(d) { return d.target.x; })
       .attr("y2", function(d) { return d.target.y; });
 
-  node.attr("cx", function(d) { return d.x; })
-      .attr("cy", function(d) { return d.y; });
+  node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
 }
 
 // rescale g
@@ -164,11 +144,36 @@ function rescale() {
 }
 
 
+d3.json(jsonfile, function(json) {
+
+  d3_data = json;
+
+  force = d3.layout.force()
+      .size([width, height])
+      .nodes(d3_data.nodes) // initialize with a single node
+      .links(d3_data.links)
+      .charge(function(node){
+        return  parseInt(node.docid)*(-200);
+      })
+      .on("tick", tick);
+
+  node = vis.selectAll(".node");
+  link = vis.selectAll(".link");
+  nodes = force.nodes();
+  links = force.links();
+
+
+  redraw();
+});
+
 
 // redraw force layout
 function redraw() {
 
   force.start();
+
+  nodes = force.nodes();
+  links = force.links();
 
   link = link.data(links);
 
@@ -199,10 +204,20 @@ function redraw() {
 
   node = node.data(nodes);
 
-  node.enter().insert("circle")
+
+
+  node.enter().append("text")
+      .attr("dx", 12)
+      .attr("dy", ".35em")
+      .text(function(d) {
+        return d.name;
+      });
+
+  node.enter()
+      .append("circle")
       .attr("r", 5)
       .attr("class", function(d){
-        return "node "+d.docid;
+        return "node " + d.category + " "+d.docid;
       })
       .on("mousedown",
         function(d) {
@@ -252,16 +267,6 @@ function redraw() {
       .ease("elastic")
       .attr("r", 6.5);
 
-
-
-  node.append("text")
-      .attr("dx", 12)
-      .attr("dy", ".35em")
-      .text(function(d) {
-        console.log(d);
-        return d.name;
-      });
-
   node
     .classed("node_selected", function(d) { return d === selected_node; });
 
@@ -273,9 +278,6 @@ function redraw() {
     // prevent browser's default behavior
     d3.event.preventDefault();
   }
-
-
-
 }
 
 
@@ -354,6 +356,7 @@ function keydown() {
         spliceLinksForNode(selected_node);
       }
       else if (selected_link) {
+        //TODO remove the text from the moused over link
         links.splice(links.indexOf(selected_link), 1);
       }
       selected_link = null;

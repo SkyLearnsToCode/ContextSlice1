@@ -325,8 +325,8 @@ function handleMouseOver(d){
 
 function handleMouseOut(d){
   d3.select(this)
-    .style("stroke-width",parseInt(d.value))
-    .style("stroke","none");
+    .style("stroke-width",.5)
+    .style("stroke","grey");
   d3.select(this.parentNode)
     .select("text.tmp").remove();
 }

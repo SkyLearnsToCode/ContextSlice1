@@ -21,7 +21,7 @@ var selected_node = null,
     mousedown_link = null,
     mousedown_node = null,
     mouseup_node = null,
-    clicked = false;
+    clicked_flag = false;
 
 // init svg
 var outer = d3.select("#graph-editor")
@@ -165,8 +165,7 @@ d3.json(jsonfile, function(json) {
 
 // redraw force layout
 function redraw() {
-
-  force.start();
+  force.charge(100).start();
 
   nodes = force.nodes();
   links = force.links();
@@ -281,8 +280,8 @@ function redraw() {
 
 // action to take on mouse click of an edge
 function edge_click(d){
-  if (clicked == false){
-    clicked = true;
+  if (clicked_flag == false){
+    clicked_flag = true;
     var source = d.source.name;
     var target = d.target.name;
     var edge_decription = window.prompt("How is "+source+" related to "+target+" ?", "Edge Description Here...");
@@ -299,7 +298,7 @@ function edge_click(d){
         .text(edge_decription)
     }
   }else{
-    clicked = false;
+    clicked_flag = false;
     d3.select(this.parentNode)
       .selectAll("text").remove();
   }

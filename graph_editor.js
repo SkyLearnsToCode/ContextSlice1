@@ -165,7 +165,7 @@ d3.json(jsonfile, function(json) {
 
 // redraw force layout
 function redraw() {
-  force.charge(100).start();
+  force.charge(-100).start();
 
   nodes = force.nodes();
   links = force.links();

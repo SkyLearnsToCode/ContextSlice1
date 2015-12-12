@@ -57,14 +57,15 @@ d3.json(jsonfile, function( json) {
       .size([width, height])
       .nodes(d3_data.nodes) // initialize with a single node
       .links(d3_data.links)
-      .linkDistance(50)
-      .charge(-200)
+      .charge(function(node){
+        return  parseInt(node.docid)*(-200);
+      })
       .on("tick", tick);
-
-  nodes = force.nodes();
-  links = force.links();
   node = vis.selectAll(".node");
   link = vis.selectAll(".link");
+  nodes = force.nodes();
+  links = force.links();
+
 
   redraw();
 });
@@ -167,6 +168,8 @@ function rescale() {
 // redraw force layout
 function redraw() {
 
+  force.start();
+
   link = link.data(links);
 
   link.enter().insert("line", ".node")
@@ -197,7 +200,6 @@ function redraw() {
   node = node.data(nodes);
 
   node.enter().insert("circle")
-      .attr("class", "node")
       .attr("r", 5)
       .attr("class", function(d){
         return "node "+d.docid;
@@ -250,26 +252,29 @@ function redraw() {
       .ease("elastic")
       .attr("r", 6.5);
 
-  node.exit().transition()
-      .attr("r", 0)
-    .remove();
+
 
   node.append("text")
       .attr("dx", 12)
       .attr("dy", ".35em")
-      .text(function(d) { return d.name });
+      .text(function(d) {
+        console.log(d);
+        return d.name;
+      });
 
   node
     .classed("node_selected", function(d) { return d === selected_node; });
 
-
+  node.exit().transition()
+      .attr("r", 0)
+    .remove();
 
   if (d3.event) {
     // prevent browser's default behavior
     d3.event.preventDefault();
   }
 
-  force.start();
+
 
 }
 
@@ -315,7 +320,7 @@ function handleMouseOver(d){
     .attr("x",(this.x1.baseVal.value+this.x2.baseVal.value)/2)
     .attr("y",(this.y1.baseVal.value+this.y2.baseVal.value)/2)
     .style("fill","black")
-    .style("font-size",55)
+    .style("font-size",12)
     .text(function(){
       return this.id;
     });

@@ -24,7 +24,7 @@ $(document).ready(function(){
         }
     });
 
-   $("#ok").click(function(){
+   $("button.btn-default").click(function(){
     $("#edit-panel.collapse").collapse('hide');
     $("button.edit").html("Expand").css("visibility", "visible");
    })

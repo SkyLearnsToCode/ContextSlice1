@@ -1,3 +1,4 @@
+$(document).ready(function(){
 var colorMap = {
   person : "#FFFF00",
   location : "#B8860B",
@@ -21,7 +22,8 @@ var selected_node = null,
     mousedown_link = null,
     mousedown_node = null,
     mouseup_node = null,
-    clicked_flag = false;
+    clicked_flag = false,
+    clicked_node = 1;
 
 // init svg
 var outer = d3.select("#graph-editor")
@@ -35,9 +37,9 @@ var vis = outer
     .call(d3.behavior.zoom().on("zoom", rescale))
     .on("dblclick.zoom", null)
   .append('svg:g')
-    .on("mousemove", mousemove)
-    .on("mousedown", mousedown)
-    .on("mouseup", mouseup);
+    // .on("mousemove", mousemove);
+    .on("mousedown", mousedown);
+    // .on("mouseup", mouseup);
 
 vis.append('svg:rect')
     .attr('width', width)
@@ -68,55 +70,56 @@ d3.select(window)
 // vis.node().focus();
 
 function mousedown() {
-  if (!mousedown_node && !mousedown_link) {
+  if (!mousedown_node && !mousedown_link && !clicked_node) { //TODO MAKE SURE YOU HAVE CLICKED_NODE SOMEWHERE TODO
+    console.log('derp ' + clicked_node);
     // allow panning if nothing is selected
     vis.call(d3.behavior.zoom().on("zoom"), rescale);
     return;
   }
 }
 
-function mousemove() {
-  if (!mousedown_node) return;
-
-  // update drag line
-  drag_line
-      .attr("x1", mousedown_node.x)
-      .attr("y1", mousedown_node.y)
-      .attr("x2", d3.svg.mouse(this)[0])
-      .attr("y2", d3.svg.mouse(this)[1]);
-}
-
-function mouseup() {
-  if (mousedown_node) {
-    // hide drag line
-    drag_line
-      .attr("class", "drag_line_hidden")
-
-    if (!mouseup_node) {
-      // add node
-      var point = d3.mouse(this),
-        node = {x: point[0], y: point[1]},
-        n = nodes.push(node);
-
-      // select new node
-      selected_node = node;
-      selected_link = null;
-
-      // add link to mousedown node
-      links.push({source: mousedown_node, target: node});
-    }
-
-    redraw();
-  }
-  // clear mouse event vars
-  resetMouseVars();
-}
-
-function resetMouseVars() {
-  mousedown_node = null;
-  mouseup_node = null;
-  mousedown_link = null;
-}
+// function mousemove() {
+//   if (!mousedown_node) return;
+//
+//   // update drag line
+//   drag_line
+//       .attr("x1", mousedown_node.x)
+//       .attr("y1", mousedown_node.y)
+//       .attr("x2", d3.svg.mouse(this)[0])
+//       .attr("y2", d3.svg.mouse(this)[1]);
+// }
+//
+// function mouseup() {
+//   if (mousedown_node) {
+//     // hide drag line
+//     drag_line
+//       .attr("class", "drag_line_hidden")
+//
+//     if (!mouseup_node) {
+//       // add node
+//       var point = d3.mouse(this),
+//         node = {x: point[0], y: point[1]},
+//         n = nodes.push(node);
+//
+//       // select new node
+//       selected_node = node;
+//       selected_link = null;
+//
+//       // add link to mousedown node
+//       links.push({source: mousedown_node, target: node});
+//     }
+//
+//     redraw();
+//   }
+//   // clear mouse event vars
+//   resetMouseVars();
+// }
+//
+// function resetMouseVars() {
+//   mousedown_node = null;
+//   mouseup_node = null;
+//   mousedown_link = null;
+// }
 
 function tick() {
   link.attr("x1", function(d) { return d.source.x; })
@@ -361,3 +364,4 @@ function keydown() {
     }
   }
 }
+});

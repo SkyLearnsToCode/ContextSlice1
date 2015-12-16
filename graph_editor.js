@@ -203,7 +203,6 @@ $(document).ready(function(){
     links = force.links();
 
 
-
     link = link.data(links);
 
     link.enter().insert("line", ".node")
@@ -265,11 +264,12 @@ $(document).ready(function(){
             }else if (selected_node != null) {
               //mousedown_node is a different node than selected one connect them
 
-              var link = {source: selected_node, target: mousedown_node};
+              var newlink = {source: selected_node, target: mousedown_node};
 
-              if(contains_link(links, link) == -1){
-                links.push(link); //TODO ensure that links does not contain link yet
+              if(contains_link(links, newlink) == -1){
+                links.push(newlink); //TODO ensure that links does not contain link yet
               }
+
               resetMouseVars();
               selected_node = null;
             }else{
@@ -340,14 +340,16 @@ $(document).ready(function(){
   */
   function contains_link(linksArr, this_link)
   {
+    var contains = -1;
     linksArr.forEach(function(that_link) {
-      if(this_link.source.name === that_link.source.name
-        && this_link.target.name === that_link.target.name)
+      if((this_link.source.name == that_link.source.name
+              && this_link.target.name == that_link.target.name) || (this_link.source.name == that_link.target.name
+        && this_link.target.name == that_link.source.name))
       {
-        return 1;
+        contains = 1;
       }
     })
-    return -1;
+    return contains;
   }
 
   function node1form_change(){

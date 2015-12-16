@@ -231,11 +231,11 @@ function redraw() {
 
             var link = {source: selected_node, target: mousedown_node};
 
-
-            if(links.indexOf(link) == -1){
+            if(contains_link(links, link) == -1){
               links.push(link); //TODO ensure that links does not contain link yet
             }
             console.log(links);
+            console.log(link);
             resetMouseVars();
             selected_node = null;
           }else{ //selected_node is null, set the current selection to mousedown_node
@@ -295,7 +295,20 @@ function redraw() {
   }
 }
 
-
+/*
+* returns 1 if linksArr contains this_link, otherwise, returns -1
+*/
+function contains_link(linksArr, this_link)
+{
+  linksArr.forEach(function(that_link) {
+    if(this_link.source.name === that_link.source.name
+      && this_link.target.name === that_link.target.name)
+    {
+      return 1;
+    }
+  })
+  return -1;
+}
 
 
 

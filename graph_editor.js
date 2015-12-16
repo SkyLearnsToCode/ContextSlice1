@@ -10,7 +10,7 @@ var colorMap = {
   other : "#f2a6df"
 }
 
-
+var margin = {top: -5, right: -5, bottom: -5, left: -5};
 var width = 700,
     height = 700,
     fill = d3.scale.category20();
@@ -23,39 +23,83 @@ var selected_node = null,
     mouseup_node = null,
     clicked_flag = false;
 
+var zoom = d3.behavior.zoom()
+    .scaleExtent([1, 10])
+    .on("zoom", zoomed);
+
+var drag = d3.behavior.drag()
+    .origin(function(d) { return d; })
+    .on("dragstart", dragstarted)
+    .on("drag", dragged)
+    .on("dragend", dragended);
+
 // init svg
 var svg = d3.select("#graph-editor")
   .append("svg")
     .attr("width", width)
     .attr("height", height)
-
   .append('g')
+    .attr("transform", "translate(" + margin.left + "," + margin.right + ")")
+    .call(zoom);
     // .attr("pointer-events", "all");
 
+// var rect = svg.append("rect")
+//     .attr("width", width)
+//     .attr("height", height)
+//     .style("fill", "none")
+//     .style("pointer-events", "all");
 
-var min_zoom = 0.1;
-var max_zoom = 7;
-svg.call (d3.behavior.zoom()
-    .translate ([0, 0])
-    .scale (1.0)
-    .scaleExtent([min_zoom, max_zoom])
-    .on("zoom", rescale)
-);
+// var container = svg.append("g");
 
-// rescale g
-function rescale() {
-  trans=d3.event.translate;
-  scale=d3.event.scale;
+// var min_zoom = 0.1;
+// var max_zoom = 7;
+// svg.call (d3.behavior.zoom()
+//     .translate ([0, 0])
+//     .scale (1.0)
+//     .scaleExtent([min_zoom, max_zoom])
+//     .on("zoom", rescale)
+// );
 
-  vis.attr("transform",
-      "translate(" + trans + ")"
-      + " scale(" + scale + ")");
+
+var vis = svg.append('g');
+
+
+
+function zoomed() {
+  vis.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+}
+
+function dragstarted(d) {
+  d3.event.sourceEvent.stopPropagation();
+  d3.select(this).classed("dragging", true);
+}
+
+function dragged(d) {
+  d3.select(this).attr("cx", d.x = d3.event.x).attr("cy", d.y = d3.event.y);
+}
+
+function dragended(d) {
+  d3.select(this).classed("dragging", false);
 }
 
 
-var zoom = d3.behavior.zoom().scaleExtent([min_zoom,max_zoom])
+
+// // rescale g
+// function rescale() {
+//   trans=d3.event.translate;
+//   scale=d3.event.scale;
+//
+//   vis.attr("transform",
+//       "translate(" + trans + ")"
+//       + " scale(" + scale + ")");
+// }
+
+
+
+
+
 // outer.call(zoom);
-var vis = svg.append('g');
+
 // var child = vis.append('g');
 // child.call(zoom);
 // vis.call(zoom);
@@ -174,7 +218,7 @@ d3.json(jsonfile, function(json) {
       // })
       .on("tick", tick);
 
-  node = vis.selectAll(".node");
+  node = vis.append("g").selectAll(".node");
   link = vis.selectAll(".link");
   nodes = force.nodes();
   links = force.links();
@@ -234,6 +278,8 @@ function redraw() {
       });
   node_group.append("circle")
       .attr("r", 5)
+      .attr("cx", function(d) { return d.x; })
+      .attr("cy", function(d) { return d.y; })
       // .on("mousedown",
       //   function(d) {
       //     // vis.call(d3.behavior.zoom().on("zoom"), null);
@@ -242,7 +288,7 @@ function redraw() {
       //   function(d) {
       //     // vis.call(d3.behavior.zoom().on("zoom"), rescale);
       //   })
-      .call(force.drag)
+      .call(drag)
 
       // .on("mousedown",
       //   function(d) {

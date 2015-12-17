@@ -159,9 +159,11 @@ $(document).ready(function(){
     d3_data.contents.forEach(function(curdoc){
       doc_counter ++;
       var doc_contents = curdoc.doctext;
+      var doc_header = curdoc.docheader;
       d3_data.nodes.forEach(function(curnode){
         var entity_name = curnode.name;
         var entity_tag = "<em class=\"highlight "+curnode.category+"\">"+entity_name+"</em>";
+        doc_header = doc_header.replace(entity_name,entity_tag);
         doc_contents = doc_contents.replace(entity_name,entity_tag);
       })
       var outerdiv = d3.select("#doc-contents");
@@ -169,11 +171,11 @@ $(document).ready(function(){
           .attr("class","panel panel-heading doc-header")
           .html("Doc"+doc_counter);
       var innerdiv = outerdiv.append("div")
-          .attr("id",curdoc.docid)
+          .attr("id","Doc"+doc_counter)
           .attr("class","collapse in");
       innerdiv.append("h5")
             .attr("class","panel panel-footer")
-            .html(curdoc.docheader);
+            .html(doc_header);
       innerdiv.append("p")
           .attr("class","panel panel-body")
           .html(doc_contents);
@@ -185,6 +187,21 @@ $(document).ready(function(){
         sels[i].addEventListener('click', bind_node1_select, false);
     }
 
+    d3.selectAll(".doc-header")
+      .on("click",function(){
+        var id = $(this).html();
+          $("#"+id+".collapse").collapse('toggle');
+      });
+
+    d3.selectAll(".doc-collapse")
+      .on("click",function () {
+        if ($(this).html() == "Display All"){
+          $(this).html("Collapse All");
+        }else{
+          $(this).html("Display All");
+        }
+        $(".collapse").collapse('toggle');
+      });
 
     //Initialize the node dropdown forms with the incoming graph and their event handlers
     selectNode1Form = d3.select("#node1")
@@ -494,7 +511,7 @@ $(document).ready(function(){
 */
     var n1n2 = "Please select Node1";
     var s1n2 = "Node1 selected, please select Node2, or click again to deselect Node1";
-    var s1s2 = "Ready to create or edit an edge, or click another node to update Node2";
+    var s1s2 = "Ready to create or edit an edge, click again to deselect nodes or click a third node to update Node2";
     var n1s2 = "Node2 selected, please select Node1, or click again to deselect Node2";
 
     if (selected_node_1 == null && selected_node_2 == null){

@@ -17,6 +17,9 @@
 	<body>
 		<div class="col-lg-4 panel-group" id="doc-panel">
 			<div id = "doc-contents" class="panel panel-default">
+				<div class="alert alert-info">
+				  	<p>Select Node1 from documents</p>
+				</div>
 				<!--
 				<h3 class="panel panel-heading doc-header">Doc1</h3>
 				<div id = "Doc1" class="collapse in">
@@ -55,15 +58,15 @@
 		</div>
 		<div class="col-lg-8 panel-group" id="edit-panel">
 			<div class="panel panel-default">
+				<div class="alert alert-info">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				  	<p id="instructions"></p>
+				</div>
 				<h3 class="panel panel-heading">Connect Name Entities</h3>
 				<div id = "edit-panel" class = "collapse">
 				<div class="panel panel-body" id="combo-box">
 					<form class="form-inline" role="form" >
 						<div class="form-group">
-							<div class="alert alert-info">
-								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-							  	<p id="instructions"></p>
-							</div>
 							<div class="col-sm-6">
 								<label class="control-label" for="node1">*Node1: </label>
 								<select class="form-control nodelist" id="node1">
@@ -75,7 +78,7 @@
 								</select>
 							</div>
 							<div class="col-sm-12">
-								<label class="control-label" for="edgeNote">*Relationship: </label>
+								<label class="control-label" for="edgeNote">Relationship: </label>
 								<input type="text" class="form-control" id="newNote" placeholder="Edit this field"/>
 								<button type="button" class="btn btn-default" id="editRelationship">Edit Relationship<br></button>
 							</div>

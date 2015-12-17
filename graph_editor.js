@@ -58,7 +58,7 @@ $(document).ready(function(){
       .attr("y2", 0);
 
 
-  var force;
+  var force, drag;
   var d3_data;
   var jsonfile = "graph_small.json";
   var nodes, links, node, link;
@@ -129,6 +129,9 @@ $(document).ready(function(){
         .attr("y1", function(d) { return d.source.y; })
         .attr("x2", function(d) { return d.target.x; })
         .attr("y2", function(d) { return d.target.y; });
+    link.select("text")
+        .attr("x", function(d) { return (d.source.x+d.target.x)/2; })
+        .attr("y", function(d) { return (d.source.y+d.target.y)/2; });
 
     node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
   }
@@ -170,7 +173,6 @@ $(document).ready(function(){
       innerdiv.append("p")
           .attr("class","panel panel-body")
           .html(doc_contents);
-      console.log(doc_contents);
     })
     
     //Initialize the node dropdown forms with the incoming graph and their event handlers
@@ -201,13 +203,35 @@ $(document).ready(function(){
 
 
 
-    force = d3.layout.force()
-      //.gravity(.05)
-      .linkDistance(200)
+    force = self.force = d3.layout.force()
+        .gravity(.05)
+        .distance(100)
         .size([width, height])
         .nodes(d3_data.nodes) // initialize with a single node
         .links(d3_data.links)
         .on("tick", tick);
+    
+    drag = d3.behavior.drag()
+        .on("dragstart", dragstart)
+        .on("drag", dragmove)
+        .on("dragend", dragend);
+
+    function dragstart(d, i) {
+      force.stop() // stops the force auto positioning before you start dragging
+    }
+    function dragmove(d, i) {
+      d.px += d3.event.dx;
+      d.py += d3.event.dy;
+      d.x += d3.event.dx;
+      d.y += d3.event.dy; 
+      tick(); // this is the key to make it work together with updating both px,py,x,y on d !
+    }
+
+    function dragend(d, i) {
+      d.fixed = true; // of course set the node to fixed so the force doesn't include the node in its auto positioning stuff
+      tick();
+      force.resume();
+    }
 
     node = vis.selectAll(".node");
     link = vis.selectAll(".link");
@@ -238,7 +262,6 @@ $(document).ready(function(){
   // redraw force layout
   function redraw() {
     force.charge(function(node){
-        console.log(node);
           return  parseInt(node.docid)*(-0.5);
         }).start();
 
@@ -281,7 +304,8 @@ $(document).ready(function(){
     var node_group = node.enter().append("g")
         .attr("class", function(d){
           return "node " + d.category + " "+d.docid;
-        });
+        })
+        .call(drag);
     node_group.append("text")
         .attr("dx", 12)
         .attr("dy", ".35em")
@@ -394,10 +418,10 @@ $(document).ready(function(){
               redraw();
             }
           })
-      .transition()
-        .duration(750)
-        .ease("elastic")
-        .attr("r", 10);
+        .transition()
+          .duration(750)
+          .ease("elastic")
+          .attr("r", 10);
 
     node
       .classed("node_selected", function(d) { 
@@ -498,9 +522,11 @@ $(document).ready(function(){
       clicked_flag = true;
       var source = d.source.name;
       var target = d.target.name;
-      var edge_decription = window.prompt("How is "+source+" related to "+target+" ?", "Edge Description Here...");
+      //var edge_decription = window.prompt("How is "+source+" related to "+target+" ?", "Edge Description Here...");
+      $("button.edit").html("Expand").css("visibility", "hidden");
+      $("#edit-panel.collapse").collapse('show');
 
-       if (edge_decription != null){
+      if (edge_decription != null){
         d3.select(this)
           .append("text")
           .attr('class','edgelabel')

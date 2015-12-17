@@ -252,7 +252,9 @@ $(document).ready(function(){
         .attr("class", function(d){
           return "link "+d.value;
         })
-        .on("click", edge_click)
+        .on("mousedown", function(d){
+          alert("what the buck");
+        })
         .on("mouseover",handleMouseOver)
         .on("mouseout",handleMouseOut)
         .on("mousedown", function(d) {
@@ -490,28 +492,29 @@ $(document).ready(function(){
 
   // action to take on mouse click of an edge
   function edge_click(d){
-    if (clicked_flag == false){
-      clicked_flag = true;
-      var source = d.source.name;
-      var target = d.target.name;
-      var edge_decription = window.prompt("How is "+source+" related to "+target+" ?", "Edge Description Here...");
-
-       if (edge_decription != null){
-        d3.select(this.parentNode).select("text")
-          //.attr("dx", 12)
-          //.attr("dy", ".35em")
-          .attr("id",this.id)
-          .attr("x",(this.x1.baseVal.value+this.x2.baseVal.value)/2)
-          .attr("y",(this.y1.baseVal.value+this.y2.baseVal.value)/2)
-          .style("fill","black")
-          .style("font-size",35)
-          .text(edge_decription)
-      }
-    }else{
-      clicked_flag = false;
-      d3.select(this.parentNode)
-        .selectAll("text").remove();
-    }
+    alert("what the buck");
+    // if (clicked_flag == false){
+    //   clicked_flag = true;
+    //   var source = d.source.name;
+    //   var target = d.target.name;
+    //   var edge_decription = window.prompt("How is "+source+" related to "+target+" ?", "Edge Description Here...");
+    //
+    //    if (edge_decription != null){
+    //     d3.select(this.parentNode).select("text")
+    //       //.attr("dx", 12)
+    //       //.attr("dy", ".35em")
+    //       .attr("id",this.id)
+    //       .attr("x",(this.x1.baseVal.value+this.x2.baseVal.value)/2)
+    //       .attr("y",(this.y1.baseVal.value+this.y2.baseVal.value)/2)
+    //       .style("fill","black")
+    //       .style("font-size",35)
+    //       .text(edge_decription)
+    //   }
+    // }else{
+    //   clicked_flag = false;
+    //   d3.select(this.parentNode)
+    //     .selectAll("text").remove();
+    // }
   }
 
 

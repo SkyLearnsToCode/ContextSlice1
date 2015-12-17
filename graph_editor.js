@@ -268,15 +268,15 @@ $(document).ready(function(){
       selected_node_2 = null;
       $("#node1").val("");
       $("#node2").val("");
-      //selected_link = null;
       redraw();
     })
 
     $("#deleteEdge").on("click", function(){
-      var newlink = {source: selected_node_1, target: selected_node_2};
-      links.splice(links.indexOf(newlink), 1);
+      links.splice(links.indexOf(selected_link), 1);
       selected_node_1 = null;
       selected_node_2 = null;
+      $("#node1").val("");
+      $("#node2").val("");
       redraw();
     })
   });

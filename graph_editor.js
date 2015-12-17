@@ -352,6 +352,7 @@ $(document).ready(function(){
 
   function node1form_change(){
     var selectedValue = d3.event.target.value;
+    //TODO highlight 
   }
 
   function node2form_change(){

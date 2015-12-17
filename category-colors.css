@@ -1,36 +1,36 @@
-.highlight.person{
+.highlight.Person{
 	background-color: #FFFF00;
 }
 
-.highlight.location{
+.highlight.Location{
 	background-color: #B8860B;
 }
 
-.highlight.organization{
+.highlight.Organization{
 	background-color: #FF00FF;
 }
 
-.highlight.money{
+.highlight.Money{
 	background-color: #32CD32;
 }
 
-.highlight.miscellanea{
+.highlight.Misc{
 	background-color: #FFBF00;
 }
 
-.highlight.phone{
+.highlight.Phone{
 	background-color: #A9A9F5;
 }
 
-.highlight.interesting{
+.highlight.Interesting{
 	background-color: #FF6347;
 }
 
-.highlight.date{
+.highlight.Date{
 	background-color: #00CED1;
 }
 
-.other{
+.Other{
 	background-color: #f2a6df;
 }
 

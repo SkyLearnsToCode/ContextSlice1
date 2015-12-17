@@ -85,8 +85,11 @@ for name in root.iter('alias'):
 #find items
 items = []
 nodes = []
+contents = []
 for doc in root.iter('document'):
 	docid = doc[0].text
+	index = doc[3].text.index(":")
+	contents.append({"docid": docid, "docheader": doc[3].text[:index], "doctext": doc[3].text[index+1:]});
 	for child in doc:
 		item = child.text
 		tag = child.tag
@@ -98,14 +101,13 @@ for doc in root.iter('document'):
 			node = {'name':item,'category':tag,'docid':docid}
 			nodes.append(node)
 items.sort()
-
 item_item = []
 
-graph = {"nodes":[],"links":[]}
+graph = {"nodes":[],"links":[],"contents":[]}
 #for idx, node_name in enumerate(items):
 #    graph["nodes"].append({"group":idx,"name":node_name})
 graph["nodes"] = nodes;
-
+graph["contents"] = contents;
 link_count = 0
 
 for idx1, item1 in enumerate(items):
@@ -113,7 +115,7 @@ for idx1, item1 in enumerate(items):
     row = []
     for idx2, item2 in enumerate(items):
         cooccurence = cooccur(item1, item2)
-        if cooccurence is not 0 and link_count < 10:
+        if cooccurence is not 0:
             graph["links"].append({"source":idx1,"target":idx2,"value":cooccurence})
             link_count+=1
 

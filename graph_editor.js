@@ -147,7 +147,32 @@ $(document).ready(function(){
   d3.json(jsonfile, function(json) {
 
     d3_data = json;
-
+    // update document contents
+    var doc_counter = 0;
+    d3_data.contents.forEach(function(curdoc){
+      doc_counter ++;
+      var doc_contents = curdoc.doctext;
+      d3_data.nodes.forEach(function(curnode){
+        var entity_name = curnode.name;
+        var entity_tag = "<em class=\"highlight "+curnode.category+"\">"+entity_name+"</em>";
+        doc_contents = doc_contents.replace(entity_name,entity_tag);
+      })
+      var outerdiv = d3.select("#doc-contents");
+      outerdiv.append("h3")
+          .attr("class","panel panel-heading doc-header")
+          .html("Doc"+doc_counter);
+      var innerdiv = outerdiv.append("div")
+          .attr("id",curdoc.docid)
+          .attr("class","collapse in");
+      innerdiv.append("h5")
+            .attr("class","panel panel-footer")
+            .html(curdoc.docheader);
+      innerdiv.append("p")
+          .attr("class","panel panel-body")
+          .html(doc_contents);
+      console.log(doc_contents);
+    })
+    
     //Initialize the node dropdown forms with the incoming graph and their event handlers
     selectNode1Form = d3.select("#node1")
       .on("change", node1form_change);
@@ -182,9 +207,6 @@ $(document).ready(function(){
         .size([width, height])
         .nodes(d3_data.nodes) // initialize with a single node
         .links(d3_data.links)
-        .charge(function(node){
-          return  parseInt(node.docid)*(-0.5);
-        })
         .on("tick", tick);
 
     node = vis.selectAll(".node");
@@ -215,7 +237,10 @@ $(document).ready(function(){
 
   // redraw force layout
   function redraw() {
-    force.charge(-100).start();
+    force.charge(function(node){
+        console.log(node);
+          return  parseInt(node.docid)*(-0.5);
+        }).start();
 
     nodes = force.nodes();
     links = force.links()

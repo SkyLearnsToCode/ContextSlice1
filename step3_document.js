@@ -17,7 +17,6 @@ $(document).ready(function(){
    $("button.edit").click(function(){
     if ($(this).html() == "Expand"){
             $(this).css("visibility", "hidden");
-
             $("#edit-panel.collapse").collapse('show');
         }else{
             $(this).html("Expand");

@@ -248,6 +248,8 @@ $(document).ready(function(){
       console.log("hello");
       var text;
       edge_decription = $("#newNote").val();
+      console.log("hello");
+      console.log(current_link);
       current_link
         .attr("id",edge_decription);
       if (current_link.select("text").empty()){
@@ -562,7 +564,9 @@ $(document).ready(function(){
     selected_node_1 = d.source;
     selected_node_2 = d.target;
     selected_link = d;
+
     current_link = d3.select(this);
+    console.log(current_link);
     //var edge_decription = window.prompt("How is "+source+" related to "+target+" ?", "Edge Description Here...");
     $("#node1").val(selected_node_1.name);
     $("#node2").val(selected_node_2.name);

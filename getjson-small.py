@@ -117,7 +117,7 @@ for idx1, item1 in enumerate(items):
         cooccurence = cooccur(item1, item2)
         
         if cooccurence is not 0:
-            graph["links"].append({"source":idx1,"target":idx2,"value":cooccurence})
+            graph["links"].append({"source":idx1,"target":idx2,"value":cooccurence, "description":" "})
             link_count+=1
             
 

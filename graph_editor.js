@@ -182,8 +182,11 @@ $(document).ready(function(){
     //Initialize the node dropdown forms with the incoming graph and their event handlers
     selectNode1Form = d3.select("#node1")
       .on("change", node1form_change);
+
+    var option_item = [{category: "", name:""}].concat(d3_data.nodes);
+    console.log(option_item);
     selectNode1Form.selectAll("option")
-      .data(d3_data.nodes)
+      .data(option_item)
       .enter()
       .append("option")
       .text(function(d){
@@ -195,7 +198,7 @@ $(document).ready(function(){
     selectNode2Form = d3.select("#node2")
       .on("change", node2form_change);
     selectNode2Form.selectAll("option")
-      .data(d3_data.nodes)
+      .data(option_item)
       .enter()
       .append("option")
       .text(function(d){
@@ -253,7 +256,6 @@ $(document).ready(function(){
       links.splice(tmpindex,1,selected_link);
       selected_node_1 = null;
       selected_node_2 = null;
-      selected_link = null;
       redraw();
     });
 
@@ -264,7 +266,9 @@ $(document).ready(function(){
       }
       selected_node_1 = null;
       selected_node_2 = null;
-      selected_link = null;
+      $("#node1").val("");
+      $("#node2").val("");
+      //selected_link = null;
       redraw();
     })
 
@@ -304,9 +308,6 @@ $(document).ready(function(){
 
     link.exit().remove();
 
-    link
-      .classed("link_selected", function(d) { return d == selected_link; });
-
     node = node.data(nodes);
 
 
@@ -342,13 +343,13 @@ $(document).ready(function(){
               $("#node1").val(selected_node_1.name);
 
               selected_node_2 = null;
-              $("#node2").val(selected_node_2.name);
+              $("#node2").val("");
             }else if (mousedown_node == selected_node_2){
               //deselect the current selection : selected_node_2
               //$("#edit-panel.collapse").collapse('hide');
               //$("button.edit").html("Expand").css("visibility", "visible");
               selected_node_2 = null;
-              $("#node2").val(selected_node_2.name);
+              $("#node2").val("");
             }
             /*else if (selected_node_1 != null) {
               //mousedown_node is a different node than selected one connect them
@@ -436,23 +437,6 @@ $(document).ready(function(){
           .ease("elastic")
           .attr("r", 10);
 
-    node
-      .classed("node_selected", function(d) {
-        if (d === selected_node_1 || d === selected_node_2){
-          return true;
-        }else{
-          return false;
-        }
-      });
-
-    link.classed("link_selected", function(d) {
-      if (d === selected_link){
-        return true;
-      }else{
-        return false;
-      }
-    });
-
     node.exit().transition()
         .attr("r", 0)
       .remove();
@@ -480,7 +464,23 @@ $(document).ready(function(){
         $("#editRelationship").prop('disabled',false);
       }
     }
-
+    node
+      .classed("node_selected", function(d) {
+        if (d === selected_node_1 || d === selected_node_2){
+          return true;
+        }else{
+          return false;
+        }
+      });
+/*
+    link.classed("link_selected", function(d) {
+      if (d === selected_link){
+        return true;
+      }else{
+        return false;
+      }
+    });
+*/
   }
 
   /*
@@ -503,6 +503,11 @@ $(document).ready(function(){
   function node1form_change(){
     var selectedValue = d3.event.target.value;
     //TODO highlight
+    if (selectedValue == ""){
+      selected_node_1 = null;
+      redraw();
+      return;
+    }
     var node_from_list = get_node_from_string(selectedValue);
     if (node_from_list!=null){
       selected_node_1 = node_from_list;
@@ -512,6 +517,11 @@ $(document).ready(function(){
 
   function node2form_change(){
     var selectedValue = d3.event.target.value;
+    if (selectedValue == ""){
+      selected_node_2 = null;
+      redraw();
+      return;
+    }
     var node_from_list = get_node_from_string(selectedValue);
     if (node_from_list!=null){
       selected_node_2 = node_from_list;
@@ -543,6 +553,7 @@ $(document).ready(function(){
 
   // action to take on mouse click of an edge
   function edge_click(d){
+    console.log(d);
     $("#deleteEdge").prop('disabled',false);
     $("#editRelationship").prop('disabled',false);
     selected_node_1 = d.source;

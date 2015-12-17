@@ -492,7 +492,20 @@ $(document).ready(function(){
       }
     });
 */
+    var n1n2 = "Please select Node1";
+    var s1n2 = "Node1 selected, please select Node2, or click again to deselect Node1";
+    var s1s2 = "Ready to create or edit an edge, or click another node to update Node2";
+    var n1s2 = "Node2 selected, please select Node1, or click again to deselect Node2";
 
+    if (selected_node_1 == null && selected_node_2 == null){
+      $("p#instructions").html(n1n2);
+    }else if (selected_node_1 != null && selected_node_2 == null){
+      $("p#instructions").html(s1n2);
+    }else if (selected_node_1 != null && selected_node_2 != null){
+      $("p#instructions").html(s1s2);
+    }else{
+      $("p#instructions").html(n1s2);
+    }
   }
 
   /*

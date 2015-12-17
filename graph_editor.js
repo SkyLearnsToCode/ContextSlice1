@@ -143,6 +143,30 @@ $(document).ready(function(){
   }
 
 
+  function bind_node1_select() {
+    //'this' represents the 'em' tag clicked
+    selected_node_1 = get_node_from_string(this.innerHTML);
+
+    //if a node matched the name within the 'em' tag then do the following:
+      //expand the dropdown graph editor
+      //set the node1 dropdown to be the option of selected_node_1.
+      //redraw the graph
+    if(selected_node_1 != null){
+     $("button.edit").html("Expand").css("visibility", "hidden");
+     $("#edit-panel.collapse").collapse('show');
+     $("#node1").val(selected_node_1.name);
+     redraw();
+    }
+  }
+
+  //get all elements with 'em' tag
+  var sels = document.getElementsByTagName('em');
+  for (i = 0; i < sels.length; i++) {
+      //add click listener function 'bind_node1_select' to all 'em' tags
+      sels[i].addEventListener('click', bind_node1_select, false);
+  }
+
+
   d3.json(jsonfile, function(json) {
 
     d3_data = json;
@@ -218,7 +242,7 @@ $(document).ready(function(){
 
     nodes = force.nodes();
     links = force.links()
-   
+
     link = link.data(links);
 
     link.enter().insert("line", ".node")
@@ -372,7 +396,7 @@ $(document).ready(function(){
         .attr("r", 6.5);
 
     node
-      .classed("node_selected", function(d) { 
+      .classed("node_selected", function(d) {
         if (d === selected_node_1 || d === selected_node_2){
           return true;
         }else{
@@ -405,7 +429,7 @@ $(document).ready(function(){
       }
     }
   }
-  
+
   /*
   * returns 1 if linksArr contains this_link, otherwise, returns -1
   */
@@ -426,7 +450,7 @@ $(document).ready(function(){
   function node1form_change(){
     var selectedValue = d3.event.target.value;
     //TODO highlight
-    var node_from_list = get_node_from_string(selectedValue); 
+    var node_from_list = get_node_from_string(selectedValue);
     if (node_from_list!=null){
       selected_node_1 = node_from_list;
       redraw();
@@ -435,7 +459,7 @@ $(document).ready(function(){
 
   function node2form_change(){
     var selectedValue = d3.event.target.value;
-    var node_from_list = get_node_from_string(selectedValue); 
+    var node_from_list = get_node_from_string(selectedValue);
     if (node_from_list!=null){
       selected_node_2 = node_from_list;
       redraw();

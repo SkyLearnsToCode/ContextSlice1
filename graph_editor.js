@@ -525,6 +525,8 @@ $(document).ready(function(){
       var source = d.source.name;
       var target = d.target.name;
       //var edge_decription = window.prompt("How is "+source+" related to "+target+" ?", "Edge Description Here...");
+      $("#node1").val(source);
+      $("#node2").val(target);
       $("button.edit").html("Expand").css("visibility", "hidden");
       $("#edit-panel.collapse").collapse('show');
 

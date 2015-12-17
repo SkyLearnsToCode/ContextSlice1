@@ -345,11 +345,16 @@ $(document).ready(function(){
               //deselect the current selection : selected_node_1
               //$("#edit-panel.collapse").collapse('hide');
               //$("button.edit").html("Expand").css("visibility", "visible");
-              selected_node_1 = selected_node_2;
-              $("#node1").val(selected_node_1.name);
+              if (selected_node_2 == null){
+                selected_node_1 = null;
+                $("#node1").val("");
+              }else{
+                selected_node_1 = selected_node_2;
+                $("#node1").val(selected_node_1.name);
 
-              selected_node_2 = null;
-              $("#node2").val("");
+                selected_node_2 = null;
+                $("#node2").val("");
+              }
             }else if (mousedown_node == selected_node_2){
               //deselect the current selection : selected_node_2
               //$("#edit-panel.collapse").collapse('hide');
@@ -487,6 +492,7 @@ $(document).ready(function(){
       }
     });
 */
+
   }
 
   /*

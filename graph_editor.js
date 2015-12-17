@@ -124,7 +124,8 @@ $(document).ready(function(){
   }
 
   function tick() {
-    link.attr("x1", function(d) { return d.source.x; })
+    link.select("line")
+        .attr("x1", function(d) { return d.source.x; })
         .attr("y1", function(d) { return d.source.y; })
         .attr("x2", function(d) { return d.target.x; })
         .attr("y2", function(d) { return d.target.y; });
@@ -176,13 +177,13 @@ $(document).ready(function(){
 
 
     force = d3.layout.force()
-      .gravity(.05)
-      .distance(100)
+      //.gravity(.05)
+      .linkDistance(200)
         .size([width, height])
         .nodes(d3_data.nodes) // initialize with a single node
         .links(d3_data.links)
         .charge(function(node){
-          return  parseInt(node.docid)*(-100);
+          return  parseInt(node.docid)*(-0.5);
         })
         .on("tick", tick);
 
@@ -194,7 +195,7 @@ $(document).ready(function(){
     redraw();
 
     $("#createEdge").on("click", function(){
-      var newlink = {source: selected_node_1, target: selected_node_2};
+      var newlink = {source: selected_node_1, target: selected_node_2, value: 1};
       if(contains_link(links, newlink) == -1){
         links.push(newlink); //TODO ensure that links does not contain link yet
       }
@@ -221,14 +222,10 @@ $(document).ready(function(){
    
     link = link.data(links);
 
-    link.enter().insert("line", ".node")
-        .attr("id", function(d){
-          return d.source.name + " to " + d.target.name;
-        })
+    link.enter().insert("g", ".node")
         .attr("class", function(d){
           return "link "+d.value;
         })
-        .on("click", edge_click)
         .on("mouseover",handleMouseOver)
         .on("mouseout",handleMouseOut)
         .on("mousedown", function(d) {
@@ -237,7 +234,13 @@ $(document).ready(function(){
             else selected_link = mousedown_link;
             selected_node_1 = null;
             redraw();
-          });
+          })
+        .on("click", edge_click)
+        .append("line")
+        .attr("id", function(d){
+          return d.source.name + " to " + d.target.name;
+        })
+        .style("stroke-width",2);
 
 
 
@@ -261,7 +264,7 @@ $(document).ready(function(){
           return d.name;
         });
     node_group.append("circle")
-        .attr("r", 5)
+        .attr("r", 6)
         .on("mousedown",
           function(d) {
             // disable zoom
@@ -317,7 +320,7 @@ $(document).ready(function(){
             }else{
               selected_node_2 = mousedown_node;
               $("#node2").val(selected_node_2.name);
-              var tmplink = {source: selected_node_1, target: selected_node_2};
+              var tmplink = {source: selected_node_1, target: selected_node_2, value: 1};
               if (contains_link(links, tmplink) == -1){
                 $("#createEdge").prop('disabled',false);
                 $("#deleteEdge").prop('disabled',true);
@@ -369,7 +372,7 @@ $(document).ready(function(){
       .transition()
         .duration(750)
         .ease("elastic")
-        .attr("r", 6.5);
+        .attr("r", 10);
 
     node
       .classed("node_selected", function(d) { 
@@ -395,7 +398,7 @@ $(document).ready(function(){
     }
 
     if (selected_node_1 != null && selected_node_2 != null){
-      var tmplink = {source: selected_node_1, target: selected_node_2};
+      var tmplink = {source: selected_node_1, target: selected_node_2, value: 1};
       if (contains_link(links, tmplink) == -1){
         $("#createEdge").prop('disabled',false);
         $("#deleteEdge").prop('disabled',true);
@@ -473,46 +476,44 @@ $(document).ready(function(){
       var edge_decription = window.prompt("How is "+source+" related to "+target+" ?", "Edge Description Here...");
 
        if (edge_decription != null){
-        d3.select(this.parentNode).select("text")
-          //.attr("dx", 12)
-          //.attr("dy", ".35em")
-          .attr("id",this.id)
-          .attr("x",(this.x1.baseVal.value+this.x2.baseVal.value)/2)
-          .attr("y",(this.y1.baseVal.value+this.y2.baseVal.value)/2)
-          .style("fill","black")
+        d3.select(this)
+          .append("text")
+          .attr('class','edgelabel')
+          .attr("x",(this.children[0].x1.baseVal.value+this.children[0].x2.baseVal.value)/2)
+          .attr("y",(this.children[0].y1.baseVal.value+this.children[0].y2.baseVal.value)/2)
+          .style("stroke","black")
           .style("font-size",35)
           .text(edge_decription)
       }
     }else{
       clicked_flag = false;
-      d3.select(this.parentNode)
+      d3.select(this)
         .selectAll("text").remove();
     }
+    redraw();
   }
 
 
   function handleMouseOver(d){
-    d3.select(this)
-      .style("stroke-width",4)
+    var lineid = this.children[0].id;
+    d3.select(this).selectAll("line")
+      .style("stroke-width",8)
       .style("stroke","red");
-    d3.select(this.parentNode)
+    d3.select(this)
       .append("text")
-      .attr("id",this.id)
       .attr("class","tmp")
-      .attr("x",(this.x1.baseVal.value+this.x2.baseVal.value)/2)
-      .attr("y",(this.y1.baseVal.value+this.y2.baseVal.value)/2)
-      .style("fill","black")
+      .attr("x",(this.children[0].x1.baseVal.value+this.children[0].x2.baseVal.value)/2)
+      .attr("y",(this.children[0].y1.baseVal.value+this.children[0].y2.baseVal.value)/2)
+      .style("stroke","black")
       .style("font-size",12)
-      .text(function(){
-        return this.id;
-      });
+      .text(lineid);
   }
 
   function handleMouseOut(d){
-    d3.select(this)
-      .style("stroke-width",.5)
+    d3.select(this).selectAll("line")
+      .style("stroke-width",2)
       .style("stroke","#ccc");
-    d3.select(this.parentNode)
+    d3.select(this)
       .select("text.tmp").remove();
   }
 

@@ -2,122 +2,142 @@
     "nodes": [
         {
             "category": "Person",
-            "docid": "1",
+            "docid": "fbi16",
             "name": "Abdul Ramazi"
         },
         {
             "category": "Date",
-            "docid": "1",
+            "docid": "fbi16",
             "name": "22 April, 2003"
         },
         {
             "category": "Location",
-            "docid": "1",
+            "docid": "fbi16",
             "name": "New Jersey"
         },
         {
             "category": "Organization",
-            "docid": "1",
+            "docid": "fbi16",
             "name": "FBI"
         },
         {
             "category": "Misc",
-            "docid": "1",
+            "docid": "fbi16",
             "name": "1070173749003"
         },
         {
             "category": "Organization",
-            "docid": "1",
+            "docid": "fbi16",
             "name": "First Union Bank"
         },
         {
             "category": "Location",
-            "docid": "1",
+            "docid": "fbi16",
             "name": "North Bergen"
         },
         {
             "category": "Date",
-            "docid": "1",
+            "docid": "fbi16",
             "name": "16 April, 2003"
         },
         {
             "category": "Location",
-            "docid": "1",
+            "docid": "fbi16",
             "name": "Springfield VA"
         },
         {
             "category": "Person",
-            "docid": "1",
+            "docid": "fbi16",
             "name": "Hani al Hallak"
         },
         {
             "category": "Money",
-            "docid": "1",
+            "docid": "fbi16",
             "name": "$8500"
         },
         {
             "category": "Organization",
-            "docid": "2",
+            "docid": "cia7",
             "name": "CIA"
         },
         {
+            "category": "Location",
+            "docid": "cia7",
+            "name": "The Netherlands"
+        },
+        {
+            "category": "Organization",
+            "docid": "cia7",
+            "name": "Al Qaeda"
+        },
+        {
+            "category": "Location",
+            "docid": "cia7",
+            "name": "Germany"
+        },
+        {
+            "category": "Location",
+            "docid": "cia7",
+            "name": "Hamburg"
+        },
+        {
             "category": "Misc",
-            "docid": "2",
+            "docid": "cia7",
             "name": "Dutch"
         },
         {
             "category": "Person",
-            "docid": "2",
+            "docid": "cia7",
             "name": "Tawfiq al Adel"
         },
         {
+            "category": "Location",
+            "docid": "cia7",
+            "name": "Haarlem"
+        },
+        {
             "category": "Person",
-            "docid": "2",
-            "name": "Saeed Khallad"
+            "docid": "cia7",
+            "name": "Saeed Khaliad"
+        },
+        {
+            "category": "Location",
+            "docid": "cia7",
+            "name": "Europe"
         },
         {
             "category": "Date",
-            "docid": "2",
-            "name": "25 April, 2003"
-        },
-        {
-            "category": "Person",
-            "docid": "2",
-            "name": "Riduan bin Attash"
-        },
-        {
-            "category": "Person",
-            "docid": "2",
-            "name": "Saleh al Ahdal"
-        },
-        {
-            "category": "Misc",
-            "docid": "2",
-            "name": "cesium 137"
+            "docid": "cia7",
+            "name": "April 20, 2003"
         },
         {
             "category": "Date",
-            "docid": "3",
+            "docid": "cia7",
+            "name": "April 21, 2003"
+        },
+        {
+            "category": "Date",
+            "docid": "se5",
             "name": "27 April, 2003"
         },
         {
             "category": "Phone",
-            "docid": "3",
+            "docid": "se5",
             "name": "703-659-2317"
         },
         {
             "category": "Phone",
-            "docid": "3",
+            "docid": "se5",
             "name": "804-774-8920"
         },
         {
             "category": "Date",
-            "docid": "3",
+            "docid": "se5",
             "name": "26 April, 2003"
         },
         {
             "category": "Misc",
-            "docid": "3",
+            "docid": "se5",
             "name": "Arabic"
         }
     ],
@@ -144,22 +164,7 @@
         },
         {
             "source": 0,
-            "target": 9,
-            "value": 1
-        },
-        {
-            "source": 0,
-            "target": 13,
-            "value": 1
-        },
-        {
-            "source": 0,
-            "target": 14,
-            "value": 1
-        },
-        {
-            "source": 0,
-            "target": 15,
+            "target": 8,
             "value": 1
         },
         {
@@ -178,267 +183,12 @@
             "value": 1
         },
         {
-            "source": 1,
-            "target": 0,
-            "value": 1
-        },
-        {
-            "source": 1,
-            "target": 1,
-            "value": 1
-        },
-        {
-            "source": 1,
-            "target": 2,
-            "value": 1
-        },
-        {
-            "source": 1,
-            "target": 3,
-            "value": 1
-        },
-        {
-            "source": 18,
-            "target": 12,
-            "value": 1
-        },
-        {
-            "source": 18,
-            "target": 18,
-            "value": 1
-        },
-        {
-            "source": 18,
-            "target": 19,
-            "value": 1
-        },
-        {
-            "source": 18,
-            "target": 20,
-            "value": 1
-        },
-        {
-            "source": 18,
+            "source": 0,
             "target": 22,
             "value": 1
         },
         {
-            "source": 18,
-            "target": 23,
-            "value": 1
-        },
-        {
-            "source": 19,
-            "target": 4,
-            "value": 1
-        },
-        {
-            "source": 19,
-            "target": 11,
-            "value": 1
-        },
-        {
-            "source": 19,
-            "target": 12,
-            "value": 1
-        },
-        {
-            "source": 19,
-            "target": 18,
-            "value": 1
-        },
-        {
-            "source": 19,
-            "target": 19,
-            "value": 1
-        },
-        {
-            "source": 19,
-            "target": 20,
-            "value": 1
-        },
-        {
-            "source": 19,
-            "target": 22,
-            "value": 1
-        },
-        {
-            "source": 19,
-            "target": 23,
-            "value": 1
-        },
-        {
-            "source": 20,
-            "target": 4,
-            "value": 1
-        },
-        {
-            "source": 20,
-            "target": 11,
-            "value": 1
-        },
-        {
-            "source": 20,
-            "target": 12,
-            "value": 1
-        },
-        {
-            "source": 20,
-            "target": 18,
-            "value": 1
-        },
-        {
-            "source": 20,
-            "target": 19,
-            "value": 1
-        },
-        {
-            "source": 20,
-            "target": 20,
-            "value": 1
-        },
-        {
-            "source": 20,
-            "target": 22,
-            "value": 1
-        },
-        {
-            "source": 20,
-            "target": 23,
-            "value": 1
-        },
-        {
-            "source": 21,
-            "target": 0,
-            "value": 1
-        },
-        {
-            "source": 21,
-            "target": 1,
-            "value": 1
-        },
-        {
-            "source": 21,
-            "target": 2,
-            "value": 1
-        },
-        {
-            "source": 21,
-            "target": 3,
-            "value": 1
-        },
-        {
-            "source": 21,
-            "target": 9,
-            "value": 1
-        },
-        {
-            "source": 21,
-            "target": 13,
-            "value": 1
-        },
-        {
-            "source": 21,
-            "target": 14,
-            "value": 1
-        },
-        {
-            "source": 21,
-            "target": 15,
-            "value": 1
-        },
-        {
-            "source": 21,
-            "target": 16,
-            "value": 1
-        },
-        {
-            "source": 21,
-            "target": 17,
-            "value": 1
-        },
-        {
-            "source": 21,
-            "target": 21,
-            "value": 1
-        },
-        {
-            "source": 22,
-            "target": 4,
-            "value": 1
-        },
-        {
-            "source": 22,
-            "target": 11,
-            "value": 1
-        },
-        {
-            "source": 22,
-            "target": 12,
-            "value": 1
-        },
-        {
-            "source": 22,
-            "target": 18,
-            "value": 1
-        },
-        {
-            "source": 22,
-            "target": 19,
-            "value": 1
-        },
-        {
-            "source": 22,
-            "target": 20,
-            "value": 1
-        },
-        {
-            "source": 22,
-            "target": 22,
-            "value": 1
-        },
-        {
-            "source": 22,
-            "target": 23,
-            "value": 1
-        },
-        {
-            "source": 23,
-            "target": 4,
-            "value": 1
-        },
-        {
-            "source": 23,
-            "target": 11,
-            "value": 1
-        },
-        {
-            "source": 23,
-            "target": 12,
-            "value": 1
-        },
-        {
-            "source": 23,
-            "target": 18,
-            "value": 1
-        },
-        {
-            "source": 23,
-            "target": 19,
-            "value": 1
-        },
-        {
-            "source": 23,
-            "target": 20,
-            "value": 1
-        },
-        {
-            "source": 23,
-            "target": 22,
-            "value": 1
-        },
-        {
-            "source": 23,
+            "source": 0,
             "target": 23,
             "value": 1
         }

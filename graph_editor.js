@@ -20,6 +20,7 @@ $(document).ready(function(){
   var selected_node_1 = null,
       selected_node_2 = null,
       selected_link = null,
+      current_link = null,
       mousedown_link = null,
       mousedown_node = null,
       mouseup_node = null, //maybe not
@@ -62,6 +63,7 @@ $(document).ready(function(){
   var d3_data;
   var jsonfile = "graph_small.json";
   var nodes, links, node, link;
+  var edge_decription;
 
 
   // add keyboard callback
@@ -207,7 +209,7 @@ $(document).ready(function(){
 
     force = self.force = d3.layout.force()
         .gravity(.05)
-        .distance(100)
+        .distance(200)
         .size([width, height])
         .nodes(d3_data.nodes) // initialize with a single node
         .links(d3_data.links)
@@ -242,6 +244,26 @@ $(document).ready(function(){
 
     redraw();
 
+    $("#editRelationship").on("click", function(){
+      console.log("hello");
+      var text;
+      edge_decription = $("#newNote").val();
+      current_link
+        .attr("id",edge_decription);
+      if (current_link.select("text").empty()){
+        text = current_link.append("text");
+      }else{
+        text = current_link.select("text");
+      }
+      text.attr('class','edgelabel')
+        .style("stroke","black")
+        .style("font-size",35)
+        .text(edge_decription);
+      selected_node_1 = null;
+      selected_node_2 = null;
+      redraw();
+    });
+
     $("#createEdge").on("click", function(){
       var newlink = {source: selected_node_1, target: selected_node_2, value: 1};
       if(contains_link(links, newlink) == -1){
@@ -249,6 +271,17 @@ $(document).ready(function(){
       }
       selected_node_1 = null;
       selected_node_2 = null;
+
+      if (edge_decription != null){
+        current_link
+            .attr("id",edge_decription);
+        current_link
+          .append("text")
+          .attr('class','edgelabel')
+          .style("stroke","black")
+          .style("font-size",35)
+          .text(edge_decription);
+      }
       redraw();
     })
 
@@ -263,10 +296,7 @@ $(document).ready(function(){
 
   // redraw force layout
   function redraw() {
-    force.charge(function(node){
-          return  parseInt(node.docid)*(-0.5);
-        }).start();
-
+    force.charge(-300).start();
     nodes = force.nodes();
     links = force.links()
 
@@ -276,28 +306,27 @@ $(document).ready(function(){
         .attr("class", function(d){
           return "link "+d.value;
         })
+        .attr("id", function(d){
+          return d.source.name + " to " + d.target.name;
+        })
         .on("mouseover",handleMouseOver)
         .on("mouseout",handleMouseOut)
         .on("mousedown", function(d) {
             mousedown_link = d;
-            if (mousedown_link == selected_link) selected_link = null;
-            else selected_link = mousedown_link;
+            //if (mousedown_link == selected_link) selected_link = null;
+            //else 
+            selected_link = mousedown_link;
             selected_node_1 = null;
             redraw();
           })
         .on("click", edge_click)
         .append("line")
-        .attr("id", function(d){
-          return d.source.name + " to " + d.target.name;
-        })
         .style("stroke-width",2);
-
-
 
     link.exit().remove();
 
     link
-      .classed("link_selected", function(d) { return d === selected_link; });
+      .classed("link_selected", function(d) { return d == selected_link; });
 
     node = node.data(nodes);
 
@@ -320,6 +349,7 @@ $(document).ready(function(){
           function(d) {
             // disable zoom
             vis.call(d3.behavior.zoom().on("zoom"), null);
+            $("#newNote").val("");
 
             mousedown_node = d;
             // if (mousedown_node == selected_node_1) selected_node_1 = null;
@@ -375,9 +405,11 @@ $(document).ready(function(){
               if (contains_link(links, tmplink) == -1){
                 $("#createEdge").prop('disabled',false);
                 $("#deleteEdge").prop('disabled',true);
+                $("#editRelationship").prop('disabled',true);
               }else{
                 $("#createEdge").prop('disabled',true);
                 $("#deleteEdge").prop('disabled',false);
+                $("#editRelationship").prop('disabled',false);
               }
             }
 
@@ -442,20 +474,25 @@ $(document).ready(function(){
       // prevent browser's default behavior
       d3.event.preventDefault();
     }
-
     if (selected_node_1 == null || selected_node_2 == null){
       $("#createEdge").prop('disabled',true);
       $("#deleteEdge").prop('disabled',true);
+      $("#editRelationship").prop('disabled',true);
     }
 
     if (selected_node_1 != null && selected_node_2 != null){
       var tmplink = {source: selected_node_1, target: selected_node_2, value: 1};
+      selected_link = tmplink;
+      var tmpid = selected_node_1.name+" to "+selected_node_2.name;
+      current_link = link.select("#"+tmpid);
       if (contains_link(links, tmplink) == -1){
         $("#createEdge").prop('disabled',false);
         $("#deleteEdge").prop('disabled',true);
+        $("#editRelationship").prop('disabled',true);
       }else{
         $("#createEdge").prop('disabled',true);
         $("#deleteEdge").prop('disabled',false);
+        $("#editRelationship").prop('disabled',false);
       }
     }
   }
@@ -520,37 +557,59 @@ $(document).ready(function(){
 
   // action to take on mouse click of an edge
   function edge_click(d){
+    $("#deleteEdge").prop('disabled',false);
+    $("#editRelationship").prop('disabled',false);
+    selected_node_1 = d.source;
+    selected_node_2 = d.target;
+    selected_link = d;
+    current_link = d3.select(this);
+    //var edge_decription = window.prompt("How is "+source+" related to "+target+" ?", "Edge Description Here...");
+    $("#node1").val(selected_node_1.name);
+    $("#node2").val(selected_node_2.name);
+    $("#newNote").val(this.id);
+    node.classed("node_selected", function(d) {
+      if (d === selected_node_1 || d === selected_node_2){
+        return true;
+      }else{
+        return false;
+      }
+    });
+    link.classed("link_selected", function(d) {
+      if (d === selected_link){
+        return true;
+      }else{
+        return false;
+      }
+    });
+
+    $("button.edit").html("Expand").css("visibility", "hidden");
+    $("#edit-panel.collapse").collapse('show');
+/*
+    if (edge_decription != null){
+      d3.select(this)
+        .append("text")
+        .attr('class','edgelabel')
+        .attr("x",(this.children[0].x1.baseVal.value+this.children[0].x2.baseVal.value)/2)
+        .attr("y",(this.children[0].y1.baseVal.value+this.children[0].y2.baseVal.value)/2)
+        .style("stroke","black")
+        .style("font-size",35)
+        .text(edge_decription);
+    }
+    */
+
+    /*
     if (clicked_flag == false){
       clicked_flag = true;
-      var source = d.source.name;
-      var target = d.target.name;
-      //var edge_decription = window.prompt("How is "+source+" related to "+target+" ?", "Edge Description Here...");
-      $("#node1").val(source);
-      $("#node2").val(target);
-      $("button.edit").html("Expand").css("visibility", "hidden");
-      $("#edit-panel.collapse").collapse('show');
-
-      if (edge_decription != null){
-        d3.select(this)
-          .append("text")
-          .attr('class','edgelabel')
-          .attr("x",(this.children[0].x1.baseVal.value+this.children[0].x2.baseVal.value)/2)
-          .attr("y",(this.children[0].y1.baseVal.value+this.children[0].y2.baseVal.value)/2)
-          .style("stroke","black")
-          .style("font-size",35)
-          .text(edge_decription)
-      }
     }else{
       clicked_flag = false;
       d3.select(this)
         .selectAll("text").remove();
-    }
+    }*/
     redraw();
   }
 
 
   function handleMouseOver(d){
-    var lineid = this.children[0].id;
     d3.select(this).selectAll("line")
       .style("stroke-width",8)
       .style("stroke","red");
@@ -561,7 +620,9 @@ $(document).ready(function(){
       .attr("y",(this.children[0].y1.baseVal.value+this.children[0].y2.baseVal.value)/2)
       .style("stroke","black")
       .style("font-size",12)
-      .text(lineid);
+      .text(function(d){
+          return d.source.name + " to " + d.target.name;
+        });
   }
 
   function handleMouseOut(d){
@@ -583,6 +644,7 @@ $(document).ready(function(){
   }
 
   function keydown() {
+/*
     if (!selected_node_1 && !selected_link) return;
     switch (d3.event.keyCode) {
       case 8: // backspace
@@ -602,5 +664,6 @@ $(document).ready(function(){
         break;
       }
     }
+    */
   }
 });

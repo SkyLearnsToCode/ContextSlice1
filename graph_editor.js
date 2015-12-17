@@ -179,6 +179,13 @@ $(document).ready(function(){
           .html(doc_contents);
     })
 
+    var sels = document.getElementsByTagName('em');
+    for (i = 0; i < sels.length; i++) {
+        //add click listener function 'bind_node1_select' to all 'em' tags
+        sels[i].addEventListener('click', bind_node1_select, false);
+    }
+
+
     //Initialize the node dropdown forms with the incoming graph and their event handlers
     selectNode1Form = d3.select("#node1")
       .on("change", node1form_change);
@@ -280,7 +287,6 @@ $(document).ready(function(){
       redraw();
     })
   });
-
   // redraw force layout
   function redraw() {
     
@@ -659,5 +665,21 @@ $(document).ready(function(){
       }
     });
     return resultLink;
+  }
+
+  function bind_node1_select() {
+    //'this' represents the 'em' tag clicked
+    selected_node_1 = get_node_from_string(this.innerHTML);
+
+    //if a node matched the name within the 'em' tag then do the following:
+      //expand the dropdown graph editor
+      //set the node1 dropdown to be the option of selected_node_1.
+      //redraw the graph
+    if(selected_node_1 != null){
+     $("button.edit").html("Expand").css("visibility", "hidden");
+     $("#edit-panel.collapse").collapse('show');
+     $("#node1").val(selected_node_1.name);
+     redraw();
+    }
   }
 });

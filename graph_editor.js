@@ -73,7 +73,6 @@ $(document).ready(function(){
 
   function mousedown() {
     if (!mousedown_node && !mousedown_link) { //TODO MAKE SURE YOU HAVE CLICKED_NODE SOMEWHERE TODO
-      console.log('derp ' + clicked_node);
       // allow panning if nothing is selected
       vis.call(d3.behavior.zoom().on("zoom"), rescale);
       return;
@@ -147,15 +146,33 @@ $(document).ready(function(){
 
     d3_data = json;
 
-    //Initialize the node dropdown forms with the incoming graph
+    //Initialize the node dropdown forms with the incoming graph and their event handlers
     selectNode1Form = d3.select("#node1")
-    selectNode1Form.selectAll("option").data(d3_data.nodes).enter().append("option").text(function(d){
-      return d.name;
-    });
+      .on("change", node1form_change);
+    selectNode1Form.selectAll("option")
+      .data(d3_data.nodes)
+      .enter()
+      .append("option")
+      .text(function(d){
+        return d.name;
+      })
+      .attr("value", function(d){
+        return d.name;
+      });
     selectNode2Form = d3.select("#node2")
-    selectNode2Form.selectAll("option").data(d3_data.nodes).enter().append("option").text(function(d){
-      return d.name;
-    });
+      .on("change", node2form_change);
+    selectNode2Form.selectAll("option")
+      .data(d3_data.nodes)
+      .enter()
+      .append("option")
+      .text(function(d){
+        return d.name;
+      })
+      .attr("value", function(d){
+        return d.name;
+      });
+
+
 
     force = d3.layout.force()
       .gravity(.05)
@@ -239,11 +256,14 @@ $(document).ready(function(){
             // if (mousedown_node == selected_node) selected_node = null;
             // else selected_node = mousedown_node;
 
-            if (mousedown_node == selected_node){ //deselect the current selection
+            if (mousedown_node == selected_node){
+              //deselect the current selection
+
               $("#edit-panel.collapse").collapse('hide');
               $("button.edit").html("Expand").css("visibility", "visible");
               selected_node = null;
-            }else if (selected_node != null) { //mousedown_node is a different node than selected one connect them
+            }else if (selected_node != null) {
+              //mousedown_node is a different node than selected one connect them
 
               var link = {source: selected_node, target: mousedown_node};
 
@@ -254,11 +274,12 @@ $(document).ready(function(){
               selected_node = null;
             }else{
               //selected_node is null, set the current selection to mousedown_node
+              selected_node = mousedown_node;
               //open the editor panel
-              //TODO set node 1 of the editor panel to be the name of the selected node
               $("button.edit").html("Expand").css("visibility", "hidden");
               $("#edit-panel.collapse").collapse('show');
-              selected_node = mousedown_node;
+              //set node 1 of the editor panel to be the name of the selected node
+              $("#node1").val(selected_node.name);
             }
 
             selected_link = null;
@@ -328,6 +349,24 @@ $(document).ready(function(){
     })
     return -1;
   }
+
+  function node1form_change(){
+    var selectedValue = d3.event.target.value;
+  }
+
+  function node2form_change(){
+    var selectedValue = d3.event.target.value;
+  }
+
+
+
+
+
+
+
+
+
+
 
 
 

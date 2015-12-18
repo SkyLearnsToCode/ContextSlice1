@@ -20,6 +20,7 @@ $(document).ready(function(){
   var selected_node_1 = null,
       selected_node_2 = null,
       selected_link = null,
+      current_link = null,
       mousedown_link = null,
       mousedown_node = null,
       mouseup_node = null, //maybe not
@@ -58,10 +59,11 @@ $(document).ready(function(){
       .attr("y2", 0);
 
 
-  var force;
+  var force, drag;
   var d3_data;
   var jsonfile = "graph_small.json";
   var nodes, links, node, link;
+  var edge_decription;
 
 
   // add keyboard callback
@@ -73,7 +75,7 @@ $(document).ready(function(){
   // vis.node().focus();
 
   function mousedown() {
-    if (!mousedown_node && !mousedown_link) { //TODO MAKE SURE YOU HAVE CLICKED_NODE SOMEWHERE TODO
+    if (!mousedown_node) { //TODO MAKE SURE YOU HAVE CLICKED_NODE SOMEWHERE TODO
       // allow panning if nothing is selected
       vis.call(d3.behavior.zoom().on("zoom"), rescale);
       return;
@@ -124,10 +126,14 @@ $(document).ready(function(){
   }
 
   function tick() {
-    link.attr("x1", function(d) { return d.source.x; })
+    link.select("line")
+        .attr("x1", function(d) { return d.source.x; })
         .attr("y1", function(d) { return d.source.y; })
         .attr("x2", function(d) { return d.target.x; })
         .attr("y2", function(d) { return d.target.y; });
+    link.select("text")
+        .attr("x", function(d) { return (d.source.x+d.target.x)/2; })
+        .attr("y", function(d) { return (d.source.y+d.target.y)/2; });
 
     node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
   }
@@ -143,39 +149,51 @@ $(document).ready(function(){
   }
 
 
-  function bind_node1_select() {
-    //'this' represents the 'em' tag clicked
-    selected_node_1 = get_node_from_string(this.innerHTML);
-
-    //if a node matched the name within the 'em' tag then do the following:
-      //expand the dropdown graph editor
-      //set the node1 dropdown to be the option of selected_node_1.
-      //redraw the graph
-    if(selected_node_1 != null){
-     $("button.edit").html("Expand").css("visibility", "hidden");
-     $("#edit-panel.collapse").collapse('show');
-     $("#node1").val(selected_node_1.name);
-     redraw();
-    }
-  }
-
-  //get all elements with 'em' tag
-  var sels = document.getElementsByTagName('em');
-  for (i = 0; i < sels.length; i++) {
-      //add click listener function 'bind_node1_select' to all 'em' tags
-      sels[i].addEventListener('click', bind_node1_select, false);
-  }
 
 
   d3.json(jsonfile, function(json) {
 
     d3_data = json;
+    // update document contents
+    var doc_counter = 0;
+    d3_data.contents.forEach(function(curdoc){
+      doc_counter ++;
+      var doc_contents = curdoc.doctext;
+      d3_data.nodes.forEach(function(curnode){
+        var entity_name = curnode.name;
+        var entity_tag = "<em class=\"highlight "+curnode.category+"\">"+entity_name+"</em>";
+        doc_contents = doc_contents.replace(entity_name,entity_tag);
+      })
+      var outerdiv = d3.select("#doc-contents");
+      outerdiv.append("h3")
+          .attr("class","panel panel-heading doc-header")
+          .html("Doc"+doc_counter);
+      var innerdiv = outerdiv.append("div")
+          .attr("id",curdoc.docid)
+          .attr("class","collapse in");
+      innerdiv.append("h5")
+            .attr("class","panel panel-footer")
+            .html(curdoc.docheader);
+      innerdiv.append("p")
+          .attr("class","panel panel-body")
+          .html(doc_contents);
+    })
+
+    var sels = document.getElementsByTagName('em');
+    for (i = 0; i < sels.length; i++) {
+        //add click listener function 'bind_node1_select' to all 'em' tags
+        sels[i].addEventListener('click', bind_node1_select, false);
+    }
+
 
     //Initialize the node dropdown forms with the incoming graph and their event handlers
     selectNode1Form = d3.select("#node1")
       .on("change", node1form_change);
+
+    var option_item = [{category: "", name:""}].concat(d3_data.nodes);
+    console.log(option_item);
     selectNode1Form.selectAll("option")
-      .data(d3_data.nodes)
+      .data(option_item)
       .enter()
       .append("option")
       .text(function(d){
@@ -187,7 +205,7 @@ $(document).ready(function(){
     selectNode2Form = d3.select("#node2")
       .on("change", node2form_change);
     selectNode2Form.selectAll("option")
-      .data(d3_data.nodes)
+      .data(option_item)
       .enter()
       .append("option")
       .text(function(d){
@@ -199,16 +217,35 @@ $(document).ready(function(){
 
 
 
-    force = d3.layout.force()
-      .gravity(.05)
-      .distance(100)
+    force = self.force = d3.layout.force()
+        .gravity(.05)
+        .distance(200)
         .size([width, height])
         .nodes(d3_data.nodes) // initialize with a single node
         .links(d3_data.links)
-        .charge(function(node){
-          return  parseInt(node.docid)*(-100);
-        })
         .on("tick", tick);
+
+    drag = d3.behavior.drag()
+        .on("dragstart", dragstart)
+        .on("drag", dragmove)
+        .on("dragend", dragend);
+
+    function dragstart(d, i) {
+      force.stop() // stops the force auto positioning before you start dragging
+    }
+    function dragmove(d, i) {
+      d.px += d3.event.dx;
+      d.py += d3.event.dy;
+      d.x += d3.event.dx;
+      d.y += d3.event.dy;
+      tick(); // this is the key to make it work together with updating both px,py,x,y on d !
+    }
+
+    function dragend(d, i) {
+      d.fixed = true; // of course set the node to fixed so the force doesn't include the node in its auto positioning stuff
+      tick();
+      force.resume();
+    }
 
     node = vis.selectAll(".node");
     link = vis.selectAll(".link");
@@ -217,58 +254,65 @@ $(document).ready(function(){
 
     redraw();
 
+    $("#editRelationship").on("click", function(){
+
+      //not finished
+      var tmplink = getLinkFromNodes(selected_node_1,selected_node_2)
+      var tmpindex = links.indexOf(tmplink);
+      selected_link.description = $("#newNote").val();
+      links.splice(tmpindex,1,selected_link);
+      selected_node_1 = null;
+      selected_node_2 = null;
+      redraw();
+    });
+
     $("#createEdge").on("click", function(){
-      var newlink = {source: selected_node_1, target: selected_node_2};
+      var newlink = {source: selected_node_1, target: selected_node_2, value: 1, description: $("#newNote").val()};
       if(contains_link(links, newlink) == -1){
         links.push(newlink); //TODO ensure that links does not contain link yet
       }
       selected_node_1 = null;
       selected_node_2 = null;
+      $("#node1").val("");
+      $("#node2").val("");
       redraw();
     })
 
     $("#deleteEdge").on("click", function(){
-      var newlink = {source: selected_node_1, target: selected_node_2};
-      links.splice(links.indexOf(newlink), 1);
+      links.splice(links.indexOf(selected_link), 1);
       selected_node_1 = null;
       selected_node_2 = null;
+      $("#node1").val("");
+      $("#node2").val("");
       redraw();
     })
   });
-
   // redraw force layout
   function redraw() {
-    force.charge(-100).start();
-
+    
+    force.charge(-300).start();
     nodes = force.nodes();
-    links = force.links()
-
+    //links = force.links()
+    force.links(links);
     link = link.data(links);
-
-    link.enter().insert("line", ".node")
-        .attr("id", function(d){
-          return d.source.name + " to " + d.target.name;
-        })
+    var link_group = link.enter().insert("g", ".node")
         .attr("class", function(d){
           return "link "+d.value;
-        })
-        .on("click", edge_click)
+        })/*
+        .attr("id", function(d){
+          return d.source.name + " to " + d.target.name;
+        })*/
         .on("mouseover",handleMouseOver)
         .on("mouseout",handleMouseOut)
-        .on("mousedown", function(d) {
-            mousedown_link = d;
-            if (mousedown_link == selected_link) selected_link = null;
-            else selected_link = mousedown_link;
-            selected_node_1 = null;
-            redraw();
-          });
-
-
+        .on("mousedown", edge_click);
+      link_group
+        .append("line")
+        .style("stroke-width",2);
+      link_group
+        .append("text")
+        .text(" ");
 
     link.exit().remove();
-
-    link
-      .classed("link_selected", function(d) { return d === selected_link; });
 
     node = node.data(nodes);
 
@@ -277,7 +321,8 @@ $(document).ready(function(){
     var node_group = node.enter().append("g")
         .attr("class", function(d){
           return "node " + d.category + " "+d.docid;
-        });
+        })
+        .call(drag);
     node_group.append("text")
         .attr("dx", 12)
         .attr("dy", ".35em")
@@ -285,11 +330,12 @@ $(document).ready(function(){
           return d.name;
         });
     node_group.append("circle")
-        .attr("r", 5)
+        .attr("r", 6)
         .on("mousedown",
           function(d) {
             // disable zoom
             vis.call(d3.behavior.zoom().on("zoom"), null);
+            $("#newNote").val("");
 
             mousedown_node = d;
             // if (mousedown_node == selected_node_1) selected_node_1 = null;
@@ -299,17 +345,22 @@ $(document).ready(function(){
               //deselect the current selection : selected_node_1
               //$("#edit-panel.collapse").collapse('hide');
               //$("button.edit").html("Expand").css("visibility", "visible");
-              selected_node_1 = selected_node_2;
-              $("#node1").val(selected_node_1.name);
+              if (selected_node_2 == null){
+                selected_node_1 = null;
+                $("#node1").val("");
+              }else{
+                selected_node_1 = selected_node_2;
+                $("#node1").val(selected_node_1.name);
 
-              selected_node_2 = null;
-              $("#node2").val(selected_node_2.name);
+                selected_node_2 = null;
+                $("#node2").val("");
+              }
             }else if (mousedown_node == selected_node_2){
               //deselect the current selection : selected_node_2
               //$("#edit-panel.collapse").collapse('hide');
               //$("button.edit").html("Expand").css("visibility", "visible");
               selected_node_2 = null;
-              $("#node2").val(selected_node_2.name);
+              $("#node2").val("");
             }
             /*else if (selected_node_1 != null) {
               //mousedown_node is a different node than selected one connect them
@@ -341,17 +392,19 @@ $(document).ready(function(){
             }else{
               selected_node_2 = mousedown_node;
               $("#node2").val(selected_node_2.name);
-              var tmplink = {source: selected_node_1, target: selected_node_2};
+              var tmplink = {source: selected_node_1, target: selected_node_2, value: 1, description: " "};
               if (contains_link(links, tmplink) == -1){
                 $("#createEdge").prop('disabled',false);
                 $("#deleteEdge").prop('disabled',true);
+                $("#editRelationship").prop('disabled',true);
               }else{
                 $("#createEdge").prop('disabled',true);
                 $("#deleteEdge").prop('disabled',false);
+                $("#editRelationship").prop('disabled',false);
               }
             }
 
-            selected_link = null;
+            //selected_link = null;
 
             // reposition drag line
             // drag_line
@@ -390,19 +443,10 @@ $(document).ready(function(){
               redraw();
             }
           })
-      .transition()
-        .duration(750)
-        .ease("elastic")
-        .attr("r", 6.5);
-
-    node
-      .classed("node_selected", function(d) {
-        if (d === selected_node_1 || d === selected_node_2){
-          return true;
-        }else{
-          return false;
-        }
-      });
+        .transition()
+          .duration(750)
+          .ease("elastic")
+          .attr("r", 10);
 
     node.exit().transition()
         .attr("r", 0)
@@ -412,21 +456,55 @@ $(document).ready(function(){
       // prevent browser's default behavior
       d3.event.preventDefault();
     }
-
     if (selected_node_1 == null || selected_node_2 == null){
       $("#createEdge").prop('disabled',true);
       $("#deleteEdge").prop('disabled',true);
+      $("#editRelationship").prop('disabled',true);
     }
 
     if (selected_node_1 != null && selected_node_2 != null){
-      var tmplink = {source: selected_node_1, target: selected_node_2};
-      if (contains_link(links, tmplink) == -1){
+      //var tmplink = {source: selected_node_1, target: selected_node_2, value: 1, description:""};
+      selected_link = getLinkFromNodes(selected_node_1,selected_node_2);
+      if (selected_link==null){
         $("#createEdge").prop('disabled',false);
         $("#deleteEdge").prop('disabled',true);
+        $("#editRelationship").prop('disabled',true);
       }else{
         $("#createEdge").prop('disabled',true);
         $("#deleteEdge").prop('disabled',false);
+        $("#editRelationship").prop('disabled',false);
       }
+    }
+    node
+      .classed("node_selected", function(d) {
+        if (d === selected_node_1 || d === selected_node_2){
+          return true;
+        }else{
+          return false;
+        }
+      });
+/*
+    link.classed("link_selected", function(d) {
+      if (d === selected_link){
+        return true;
+      }else{
+        return false;
+      }
+    });
+*/
+    var n1n2 = "Please select Node1";
+    var s1n2 = "Node1 selected, please select Node2, or click again to deselect Node1";
+    var s1s2 = "Ready to create or edit an edge, or click another node to update Node2";
+    var n1s2 = "Node2 selected, please select Node1, or click again to deselect Node2";
+
+    if (selected_node_1 == null && selected_node_2 == null){
+      $("p#instructions").html(n1n2);
+    }else if (selected_node_1 != null && selected_node_2 == null){
+      $("p#instructions").html(s1n2);
+    }else if (selected_node_1 != null && selected_node_2 != null){
+      $("p#instructions").html(s1s2);
+    }else{
+      $("p#instructions").html(n1s2);
     }
   }
 
@@ -450,6 +528,11 @@ $(document).ready(function(){
   function node1form_change(){
     var selectedValue = d3.event.target.value;
     //TODO highlight
+    if (selectedValue == ""){
+      selected_node_1 = null;
+      redraw();
+      return;
+    }
     var node_from_list = get_node_from_string(selectedValue);
     if (node_from_list!=null){
       selected_node_1 = node_from_list;
@@ -459,6 +542,11 @@ $(document).ready(function(){
 
   function node2form_change(){
     var selectedValue = d3.event.target.value;
+    if (selectedValue == ""){
+      selected_node_2 = null;
+      redraw();
+      return;
+    }
     var node_from_list = get_node_from_string(selectedValue);
     if (node_from_list!=null){
       selected_node_2 = node_from_list;
@@ -490,54 +578,67 @@ $(document).ready(function(){
 
   // action to take on mouse click of an edge
   function edge_click(d){
+    console.log(d);
+    $("#deleteEdge").prop('disabled',false);
+    $("#editRelationship").prop('disabled',false);
+    selected_node_1 = d.source;
+    selected_node_2 = d.target;
+    selected_link = d;
+    //var edge_decription = window.prompt("How is "+source+" related to "+target+" ?", "Edge Description Here...");
+    $("#node1").val(selected_node_1.name);
+    $("#node2").val(selected_node_2.name);
+    $("#newNote").val(d.description);
+
+    $("button.edit").html("Expand").css("visibility", "hidden");
+    $("#edit-panel.collapse").collapse('show');
+/*
+    if (edge_decription != null){
+      d3.select(this)
+        .append("text")
+        .attr('class','edgelabel')
+        .attr("x",(this.children[0].x1.baseVal.value+this.children[0].x2.baseVal.value)/2)
+        .attr("y",(this.children[0].y1.baseVal.value+this.children[0].y2.baseVal.value)/2)
+        .style("stroke","black")
+        .style("font-size",35)
+        .text(edge_decription);
+    }
+    */
+
+    /*
     if (clicked_flag == false){
       clicked_flag = true;
-      var source = d.source.name;
-      var target = d.target.name;
-      var edge_decription = window.prompt("How is "+source+" related to "+target+" ?", "Edge Description Here...");
-
-       if (edge_decription != null){
-        d3.select(this.parentNode).select("text")
-          //.attr("dx", 12)
-          //.attr("dy", ".35em")
-          .attr("id",this.id)
-          .attr("x",(this.x1.baseVal.value+this.x2.baseVal.value)/2)
-          .attr("y",(this.y1.baseVal.value+this.y2.baseVal.value)/2)
-          .style("fill","black")
-          .style("font-size",35)
-          .text(edge_decription)
-      }
     }else{
       clicked_flag = false;
-      d3.select(this.parentNode)
+      d3.select(this)
         .selectAll("text").remove();
-    }
+    }*/
+    resetMouseVars();
+    redraw();
   }
 
 
   function handleMouseOver(d){
-    d3.select(this)
-      .style("stroke-width",4)
+    d3.select(this).selectAll("line")
+      .style("stroke-width",8)
       .style("stroke","red");
-    d3.select(this.parentNode)
-      .append("text")
-      .attr("id",this.id)
+    d3.select(this)
+      .selectAll("text")
       .attr("class","tmp")
-      .attr("x",(this.x1.baseVal.value+this.x2.baseVal.value)/2)
-      .attr("y",(this.y1.baseVal.value+this.y2.baseVal.value)/2)
-      .style("fill","black")
+      .attr("x",(this.children[0].x1.baseVal.value+this.children[0].x2.baseVal.value)/2)
+      .attr("y",(this.children[0].y1.baseVal.value+this.children[0].y2.baseVal.value)/2)
+      .style("stroke","black")
       .style("font-size",12)
-      .text(function(){
-        return this.id;
-      });
+      .text(function(d){
+          return d.description;
+        });
   }
 
   function handleMouseOut(d){
-    d3.select(this)
-      .style("stroke-width",.5)
+    d3.select(this).selectAll("line")
+      .style("stroke-width",2)
       .style("stroke","#ccc");
-    d3.select(this.parentNode)
-      .select("text.tmp").remove();
+    d3.select(this)
+      .select("text.tmp").html(" ");
   }
 
 
@@ -551,6 +652,7 @@ $(document).ready(function(){
   }
 
   function keydown() {
+/*
     if (!selected_node_1 && !selected_link) return;
     switch (d3.event.keyCode) {
       case 8: // backspace
@@ -569,6 +671,34 @@ $(document).ready(function(){
         redraw();
         break;
       }
+    }
+    */
+  }
+
+  function getLinkFromNodes(srcNode, tgtNode){
+    var resultLink = null;
+    links.forEach(function(l){
+      if ((l.source.name == srcNode.name && l.target.name == tgtNode.name) || (l.source.name == tgtNode.name && l.target.name == srcNode.name)){
+        resultLink = l;
+        return;
+      }
+    });
+    return resultLink;
+  }
+
+  function bind_node1_select() {
+    //'this' represents the 'em' tag clicked
+    selected_node_1 = get_node_from_string(this.innerHTML);
+
+    //if a node matched the name within the 'em' tag then do the following:
+      //expand the dropdown graph editor
+      //set the node1 dropdown to be the option of selected_node_1.
+      //redraw the graph
+    if(selected_node_1 != null){
+     $("button.edit").html("Expand").css("visibility", "hidden");
+     $("#edit-panel.collapse").collapse('show');
+     $("#node1").val(selected_node_1.name);
+     redraw();
     }
   }
 });

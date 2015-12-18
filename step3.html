@@ -17,6 +17,7 @@
 	<body>
 		<div class="col-lg-4 panel-group" id="doc-panel">
 			<div id = "doc-contents" class="panel panel-default">
+				<!--
 				<h3 class="panel panel-heading doc-header">Doc1</h3>
 				<div id = "Doc1" class="collapse in">
 					<h5 class="panel panel-footer">Report Date:22 April, 2003</h5>
@@ -32,6 +33,7 @@
 					<h5 class="panel panel-footer">Report Date 27 April, 2003.</h5>
 					<p class="panel panel-body">Intercept of cell phone <em class="highlight phone">804-774-8920</em>. In a very brief call from this number to phone number <em class="highlight phone">703-659-2317</em> on <em class="highlight date">26 April, 2003</em>, the caller speaks in Arabic. A translation reads: "We are now prepared to <em class="highlight interesting">take the crescent to victory</em>".</p>
 				</div>
+			-->
 			</div>
 				<div id = "legend" class="panel panel-default">
 				<ul class="list-inline" style="border-style: none">
@@ -39,14 +41,14 @@
 						<button class="btn toggleAllHighlight">Hide All Category Highlight</button>
 					</li>
 					<li>
-						<button class="btn-sm category highlight person">person</button>
-						<button class="btn-sm category highlight location">location</button>
-						<button class="btn-sm category highlight organization">organization</button>
-						<button class="btn-sm category highlight money">money</button>
-						<button class="btn-sm category highlight miscellanea">miscellanea</button>
-						<button class="btn-sm category highlight phone">phone</button>
-						<button class="btn-sm category highlight interesting">interesting</button>
-						<button class="btn-sm category highlight date">date</button>
+						<button class="btn-sm category highlight Person">person</button>
+						<button class="btn-sm category highlight Location">location</button>
+						<button class="btn-sm category highlight Organization">organization</button>
+						<button class="btn-sm category highlight Money">money</button>
+						<button class="btn-sm category highlight Misc">miscellanea</button>
+						<button class="btn-sm category highlight Phone">phone</button>
+						<button class="btn-sm category highlight Interesting">interesting</button>
+						<button class="btn-sm category highlight Date">date</button>
 					 </li>
 				</ul> <!--when you click on an edge, editor pops up, click on OK collapses (including GraphEditor heading-->
 			</div>
@@ -58,27 +60,32 @@
 				<div class="panel panel-body" id="combo-box">
 					<form class="form-inline" role="form" >
 						<div class="form-group">
-							<div class="col-sm-13">
-							<label class="control-label" for="node1">*Node1: </label>
-							<select class="form-control nodelist" id="node1">
-							</select>
+							<div class="alert alert-info">
+								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+							  	<p id="instructions"></p>
+							</div>
+							<div class="col-sm-6">
+								<label class="control-label" for="node1">*Node1: </label>
+								<select class="form-control nodelist" id="node1">
+								</select>
+							</div>
+							<div class="col-sm-6">
+								<label class="control-label" for="node2">*Node2: </label>
+								<select class="form-control nodelist" id="node2">
+								</select>
+							</div>
+							<div class="col-sm-12">
+								<label class="control-label" for="edgeNote">*Relationship: </label>
+								<input type="text" class="form-control" id="newNote" placeholder="Edit this field"/>
+								<button type="button" class="btn btn-default" id="editRelationship">Edit Relationship<br></button>
+							</div>
+							<div class="col-sm-12">
+								<button type="button" class="btn btn-default" id="createEdge">Create Edge<br></button>
+								<button type="button" class="btn btn-default" id="deleteEdge">Delete Edge<br></button>
+								<button type="button" class="btn btn-default" id="cancel">Cancel<br></button>
+							</div>	
 						</div>
-					</div>
 
-						<div class="form-group">
-							<label class="control-label" for="node2">*Node2: </label>
-							<select class="form-control nodelist" id="node2">
-							</select>
-					</div>
-						<div class="form-group">
-							<label class="control-label" for="edgeNote">*Relationship: </label>
-							<input type="text" class="form-control" id="newNote" placeholder="Edit this field"/>
-						</div>
-						<div class="form-group">
-							<button type="button" class="btn btn-default" id="createEdge">Create Edge<br></button>
-							<button type="button" class="btn btn-default" id="deleteEdge">Delete Edge<br></button>
-							<button type="button" class="btn btn-default" id="cancel">Cancel<br></button>
-						</div>
 					</form>
 				</div>
 			</div> <!-- added -->

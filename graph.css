@@ -9,9 +9,14 @@
 }
 
 
-.node_selected {
+.node_selected{
   fill: #ff7f0e;
   stroke: #ff7f0e;
+}
+
+.link_selected line{
+	stroke: #ff7f0e;
+	stroke-width: 6;
 }
 
 .Person{
@@ -30,7 +35,7 @@
 	fill: #32CD32;
 }
 
-.Miscellanea{
+.Misc{
 	fill: #FFBF00;
 }
 

@@ -1,8 +1,11 @@
 {
-  "name": "Your App Name",
-  "version": "0.0.0",
+  "name": "crowdgraph",
+  "version": "1.0.0",
   "description": "",
   "repository": "",
+  "engines": {
+	"node": "4.1.1"
+  },
   "dependencies": {
     "statik": "~1.2.5"
   }

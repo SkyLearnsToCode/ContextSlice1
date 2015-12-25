@@ -71,54 +71,14 @@ $(document).ready(function(){
       .on("keydown", keydown);
 
 
-  // focus on svg
-  // vis.node().focus();
-
   function mousedown() {
-    if (!mousedown_node) { //TODO MAKE SURE YOU HAVE CLICKED_NODE SOMEWHERE TODO
+    if (!mousedown_node) {
       // allow panning if nothing is selected
       vis.call(d3.behavior.zoom().on("zoom"), rescale);
       return;
     }
   }
 
-  // function mousemove() {
-  //   if (!mousedown_node) return;
-  //
-  //   // update drag line
-  //   drag_line
-  //       .attr("x1", mousedown_node.x)
-  //       .attr("y1", mousedown_node.y)
-  //       .attr("x2", d3.svg.mouse(this)[0])
-  //       .attr("y2", d3.svg.mouse(this)[1]);
-  // }
-  //
-  // function mouseup() {
-  //   if (mousedown_node) {
-  //     // hide drag line
-  //     drag_line
-  //       .attr("class", "drag_line_hidden")
-  //
-  //     if (!mouseup_node) {
-  //       // add node
-  //       var point = d3.mouse(this),
-  //         node = {x: point[0], y: point[1]},
-  //         n = nodes.push(node);
-  //
-  //       // select new node
-  //       selected_node_1 = node;
-  //       selected_link = null;
-  //
-  //       // add link to mousedown node
-  //       links.push({source: mousedown_node, target: node});
-  //     }
-  //
-  //     redraw();
-  //   }
-  //   // clear mouse event vars
-  //   resetMouseVars();
-  // }
-  //
   function resetMouseVars() {
     mousedown_node = null;
     mouseup_node = null;
@@ -149,12 +109,10 @@ $(document).ready(function(){
   }
 
 
-
-
   d3.json(jsonfile, function(json) {
 
     d3_data = json;
-    // update document contents
+    // update sidebar document paragraph contents
     var doc_counter = 0;
     d3_data.contents.forEach(function(curdoc){
       doc_counter ++;
@@ -181,6 +139,7 @@ $(document).ready(function(){
           .html(doc_contents);
     })
 
+    //add click listeners for the em tagged paragraph elements
     var sels = document.getElementsByTagName('em');
     for (i = 0; i < sels.length; i++) {
         //add click listener function 'bind_node1_select' to all 'em' tags
@@ -271,9 +230,8 @@ $(document).ready(function(){
 
     redraw();
 
+    //add button click listeners for the dropdown editor buttons
     $("#editRelationship").on("click", function(){
-
-      //not finished
       var tmplink = getLinkFromNodes(selected_node_1,selected_node_2)
       var tmpindex = links.indexOf(tmplink);
       selected_link.description = $("#newNote").val();
@@ -282,7 +240,6 @@ $(document).ready(function(){
       selected_node_2 = null;
       redraw();
     });
-
     $("#createEdge").on("click", function(){
       var newlink = {source: selected_node_1, target: selected_node_2, value: 1, description: $("#newNote").val()};
       if(contains_link(links, newlink) == -1){
@@ -294,7 +251,6 @@ $(document).ready(function(){
       $("#node2").val("");
       redraw();
     })
-
     $("#deleteEdge").on("click", function(){
       links.splice(links.indexOf(selected_link), 1);
       selected_node_1 = null;
@@ -306,7 +262,7 @@ $(document).ready(function(){
   });
   // redraw force layout
   function redraw() {
-    
+
     force.charge(-300).start();
     nodes = force.nodes();
     //links = force.links()
@@ -355,13 +311,9 @@ $(document).ready(function(){
             $("#newNote").val("");
 
             mousedown_node = d;
-            // if (mousedown_node == selected_node_1) selected_node_1 = null;
-            // else selected_node_1 = mousedown_node;
 
             if (mousedown_node == selected_node_1){
               //deselect the current selection : selected_node_1
-              //$("#edit-panel.collapse").collapse('hide');
-              //$("button.edit").html("Expand").css("visibility", "visible");
               if (selected_node_2 == null){
                 selected_node_1 = null;
                 $("#node1").val("");
@@ -374,38 +326,14 @@ $(document).ready(function(){
               }
             }else if (mousedown_node == selected_node_2){
               //deselect the current selection : selected_node_2
-              //$("#edit-panel.collapse").collapse('hide');
-              //$("button.edit").html("Expand").css("visibility", "visible");
               selected_node_2 = null;
               $("#node2").val("");
-            }
-            /*else if (selected_node_1 != null) {
-              //mousedown_node is a different node than selected one connect them
-              var newlink = {source: selected_node_1, target: mousedown_node};
-
-              if(contains_link(links, newlink) == -1){
-                links.push(newlink); //TODO ensure that links does not contain link yet
-              }
-
-              resetMouseVars();
-              selected_node_1 = null;
-            }
-            */
-            else if(selected_node_1 == null){
+            }else if(selected_node_1 == null){
               //open the editor panel
               $("button.edit").html("Expand").css("visibility", "hidden");
               $("#edit-panel.collapse").collapse('show');
               selected_node_1 = mousedown_node;
               $("#node1").val(selected_node_1.name);
-              /*
-              //selected_node_1 is null, set the current selection to mousedown_node
-              selected_node_1 = mousedown_node;
-              //open the editor panel
-              $("button.edit").html("Expand").css("visibility", "hidden");
-              $("#edit-panel.collapse").collapse('show');
-              //set node 1 of the editor panel to be the name of the selected node
-              $("#node1").val(selected_node_1.name);
-              */
             }else{
               selected_node_2 = mousedown_node;
               $("#node2").val(selected_node_2.name);
@@ -421,15 +349,6 @@ $(document).ready(function(){
               }
             }
 
-            //selected_link = null;
-
-            // reposition drag line
-            // drag_line
-            //     .attr("class", "link")
-            //     .attr("x1", mousedown_node.x)
-            //     .attr("y1", mousedown_node.y)
-            //     .attr("x2", mousedown_node.x)
-            //     .attr("y2", mousedown_node.y);
             if (selected_node_1 == null && selected_node_2 == null){
               $("#edit-panel.collapse").collapse('hide');
               $("button.edit").html("Expand").css("visibility", "visible");
@@ -444,17 +363,6 @@ $(document).ready(function(){
         .on("mouseup",
           function(d) {
             if (mousedown_node) {
-              // mouseup_node = d;
-              // if (mouseup_node == mousedown_node) { resetMouseVars(); return; }
-              //
-              // // add link
-              // var link = {source: mousedown_node, target: mouseup_node};
-              // links.push(link);
-              //
-              // // select new link
-              // selected_link = link;
-              // selected_node_1 = null;
-
               // enable zoom
               vis.call(d3.behavior.zoom().on("zoom"), rescale);
               redraw();
@@ -500,15 +408,7 @@ $(document).ready(function(){
           return false;
         }
       });
-/*
-    link.classed("link_selected", function(d) {
-      if (d === selected_link){
-        return true;
-      }else{
-        return false;
-      }
-    });
-*/
+
     var n1n2 = "Please select Node1";
     var s1n2 = "Node1 selected, please select Node2, or click again to deselect Node1";
     var s1s2 = "Ready to create or edit an edge, click again to deselect nodes or click a third node to update Node2";
@@ -582,17 +482,6 @@ $(document).ready(function(){
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
   // action to take on mouse click of an edge
   function edge_click(d){
     console.log(d);
@@ -608,27 +497,7 @@ $(document).ready(function(){
 
     $("button.edit").html("Expand").css("visibility", "hidden");
     $("#edit-panel.collapse").collapse('show');
-/*
-    if (edge_decription != null){
-      d3.select(this)
-        .append("text")
-        .attr('class','edgelabel')
-        .attr("x",(this.children[0].x1.baseVal.value+this.children[0].x2.baseVal.value)/2)
-        .attr("y",(this.children[0].y1.baseVal.value+this.children[0].y2.baseVal.value)/2)
-        .style("stroke","black")
-        .style("font-size",35)
-        .text(edge_decription);
-    }
-    */
 
-    /*
-    if (clicked_flag == false){
-      clicked_flag = true;
-    }else{
-      clicked_flag = false;
-      d3.select(this)
-        .selectAll("text").remove();
-    }*/
     resetMouseVars();
     redraw();
   }
@@ -669,6 +538,7 @@ $(document).ready(function(){
   }
 
   function keydown() {
+    //TODO readd functionality for delete button?
 /*
     if (!selected_node_1 && !selected_link) return;
     switch (d3.event.keyCode) {

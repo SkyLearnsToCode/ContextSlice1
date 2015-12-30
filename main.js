@@ -150,10 +150,10 @@ $("div").delegate(".legend","click", addNewEntity);
 //$("#addCate").on("click",addCategory);
 
 //attaches toggleCategory handler to any 'li' AND 'category' element for onclick event
-$("li").delegate(".category","click",toggleCategoryHighlight);
+$("div").delegate("button.category","click",toggleCategoryHighlight);
 
 //attach toggleAllHighlight handler our '.toggleAllHighlight' button in 'li' element for onclick event
-$("li").delegate("button.toggleAllHighlight","click",toggleAllHighlight);
+$("li").delegate("button.toggle-highlight","click",toggleAllHighlight);
 
 //redirects for the worker
 $("#finish").on("click",goBack);

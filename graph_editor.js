@@ -32,13 +32,16 @@ $(document).ready(function(){
   // init svg
   var outer = d3.select("#graph-editor")
     .append("svg:svg")
-      .attr("width", width)
-      .attr("height", height)
+      .attr("width","100%")
+      .attr("height",height)
       .attr("pointer-events", "all");
+
+  var zoom = d3.behavior.zoom().scaleExtent([0.2, 8]).on("zoom", rescale);
 
   var vis = outer
     .append('svg:g')
-      .call(d3.behavior.zoom().on("zoom", rescale))
+      //.call(d3.behavior.zoom().on("zoom", rescale))
+      .call(zoom)
       .on("dblclick.zoom", null)
     .append('svg:g')
       // .on("mousemove", mousemove);
@@ -46,8 +49,8 @@ $(document).ready(function(){
       // .on("mouseup", mouseup);
 
   vis.append('svg:rect')
-      .attr('width', width)
-      .attr('height', height)
+      .attr('width', "100%")
+      .attr('height', "100%")
       .attr('fill', 'white');
 
   // line displayed when dragging new nodes
@@ -140,9 +143,10 @@ $(document).ready(function(){
 
   // rescale g
   function rescale() {
-    trans=d3.event.translate;
-    scale=d3.event.scale;
-
+    //trans=d3.event.translate;
+    //scale=d3.event.scale;
+    trans=zoom.translate();
+    scale=zoom.scale();
     vis.attr("transform",
         "translate(" + trans + ")"
         + " scale(" + scale + ")");
@@ -208,7 +212,7 @@ $(document).ready(function(){
       .on("change", node1form_change);
 
     var option_item = [{category: "", name:""}].concat(d3_data.nodes);
-    console.log(option_item);
+    //console.log(option_item);
     selectNode1Form.selectAll("option")
       .data(option_item)
       .enter()
@@ -393,7 +397,7 @@ $(document).ready(function(){
             */
             else if(selected_node_1 == null){
               //open the editor panel
-              $("button.edit").html("Expand").css("visibility", "hidden");
+              $("button.edit").html("Create New Links").css("visibility", "hidden");
               $("#edit-panel.collapse").collapse('show');
               selected_node_1 = mousedown_node;
               $("#node1").val(selected_node_1.name);
@@ -432,7 +436,7 @@ $(document).ready(function(){
             //     .attr("y2", mousedown_node.y);
             if (selected_node_1 == null && selected_node_2 == null){
               $("#edit-panel.collapse").collapse('hide');
-              $("button.edit").html("Expand").css("visibility", "visible");
+              $("button.edit").html("Create New Links").css("visibility", "visible");
             }
             resetMouseVars();
             redraw();
@@ -509,7 +513,7 @@ $(document).ready(function(){
       }
     });
 */
-    var n1n2 = "Please select Node1";
+    var n1n2 = "Please click on name entities to select Node1";
     var s1n2 = "Node1 selected, please select Node2, or click again to deselect Node1";
     var s1s2 = "Ready to create or edit an edge, click again to deselect nodes or click a third node to update Node2";
     var n1s2 = "Node2 selected, please select Node1, or click again to deselect Node2";
@@ -595,7 +599,7 @@ $(document).ready(function(){
 
   // action to take on mouse click of an edge
   function edge_click(d){
-    console.log(d);
+    //console.log(d);
     $("#deleteEdge").prop('disabled',false);
     $("#editRelationship").prop('disabled',false);
     selected_node_1 = d.source;
@@ -606,7 +610,7 @@ $(document).ready(function(){
     $("#node2").val(selected_node_2.name);
     $("#newNote").val(d.description);
 
-    $("button.edit").html("Expand").css("visibility", "hidden");
+    $("button.edit").html("Create New Links").css("visibility", "hidden");
     $("#edit-panel.collapse").collapse('show');
 /*
     if (edge_decription != null){
@@ -712,10 +716,52 @@ $(document).ready(function(){
       //set the node1 dropdown to be the option of selected_node_1.
       //redraw the graph
     if(selected_node_1 != null){
-     $("button.edit").html("Expand").css("visibility", "hidden");
+     $("button.edit").html("Create New Links").css("visibility", "hidden");
      $("#edit-panel.collapse").collapse('show');
      $("#node1").val(selected_node_1.name);
      redraw();
     }
   }
+  function interpolateZoom (translate, scale) {
+    var self = this;
+    return d3.transition().duration(350).tween("zoom", function () {
+        var iTranslate = d3.interpolate(zoom.translate(), translate),
+            iScale = d3.interpolate(zoom.scale(), scale);
+        return function (t) {
+            zoom
+                .scale(iScale(t))
+                .translate(iTranslate(t));
+            rescale();
+        };
+    });
+  }
+
+  function zoomClick() {
+    var clicked = d3.event.target,
+        direction = 1,
+        factor = 0.2,
+        target_zoom = 1,
+        center = [width / 2, height / 2],
+        extent = zoom.scaleExtent(),
+        translate = zoom.translate(),
+        translate0 = [],
+        l = [],
+        view = {x: translate[0], y: translate[1], k: zoom.scale()};
+
+    d3.event.preventDefault();
+    direction = (this.id === 'zoom_in') ? 1 : -1;
+    target_zoom = zoom.scale() * (1 + factor * direction);
+
+    if (target_zoom < extent[0] || target_zoom > extent[1]) { return false; }
+
+    translate0 = [(center[0] - view.x) / view.k, (center[1] - view.y) / view.k];
+    view.k = target_zoom;
+    l = [translate0[0] * view.k + view.x, translate0[1] * view.k + view.y];
+
+    view.x += center[0] - l[0];
+    view.y += center[1] - l[1];
+    interpolateZoom([view.x, view.y], view.k);
+}
+
+    d3.selectAll('.zoom').on('click', zoomClick);
 });

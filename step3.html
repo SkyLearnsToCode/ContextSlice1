@@ -17,8 +17,18 @@
 	<body>
 		<div class="col-lg-4 panel-group" id="doc-panel">
 			<div id = "doc-contents" class="panel panel-default">
-				<div class="alert alert-info">
-				  	<p>Select Node1 from documents</p>
+				<p class="alert alert-info">Select Node1 from documents</p>
+				<button class="btn toggle-legend">Show Legend</button>
+				<div id = "legend" class="panel panel-default collapse">
+					<div><button class="btn toggle-highlight">Hide All Category Highlight</button></div>
+					<label class="legend-label"><div class="category highlight Person"></div>Person</label>
+					<label class="legend-label"><div class="category highlight Location"></div>Location</label>
+					<label class="legend-label"><div class="category highlight Organization"></div>Organization</label>
+					<label class="legend-label"><div class="category highlight Money"></div>Money</label>
+					<label class="legend-label"><div class="category highlight Misc"></div>Miscellaneous</label>
+					<label class="legend-label"><div class="category highlight Phone"></div>Phone</label>
+					<label class="legend-label"><div class="category highlight Interesting"></div>Interesting</label>
+					<label class="legend-label"><div class="category highlight Date"></div>Date</label>
 				</div>
 				<!--
 				<h3 class="panel panel-heading doc-header">Doc1</h3>
@@ -38,65 +48,48 @@
 				</div>
 			-->
 			</div>
-				<div id = "legend" class="panel panel-default">
-				<ul class="list-inline" style="border-style: none">
-					<li>
-						<button class="btn toggleAllHighlight">Hide All Category Highlight</button>
-					</li>
-					<li>
-						<button class="btn-sm category highlight Person">person</button>
-						<button class="btn-sm category highlight Location">location</button>
-						<button class="btn-sm category highlight Organization">organization</button>
-						<button class="btn-sm category highlight Money">money</button>
-						<button class="btn-sm category highlight Misc">miscellanea</button>
-						<button class="btn-sm category highlight Phone">phone</button>
-						<button class="btn-sm category highlight Interesting">interesting</button>
-						<button class="btn-sm category highlight Date">date</button>
-					 </li>
-				</ul> <!--when you click on an edge, editor pops up, click on OK collapses (including GraphEditor heading-->
-			</div>
 		</div>
 		<div class="col-lg-8 panel-group" id="edit-panel">
 			<div class="panel panel-default">
-				<div class="alert alert-info">
-					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-				  	<p id="instructions"></p>
-				</div>
+				<p class="alert alert-info" id="instructions"></p>
 				<h3 class="panel panel-heading">Connect Name Entities</h3>
 				<div id = "edit-panel" class = "collapse">
-				<div class="panel panel-body" id="combo-box">
-					<form class="form-inline" role="form" >
-						<div class="form-group">
-							<div class="col-sm-6">
-								<label class="control-label" for="node1">*Node1: </label>
-								<select class="form-control nodelist" id="node1">
-								</select>
+					<div class="panel panel-body" id="combo-box">
+						<form class="form-inline" role="form" >
+							<div class="form-group">
+								<div class="col-sm-6">
+									<label class="control-label" for="node1">*Node1: </label>
+									<select class="form-control nodelist" id="node1">
+									</select>
+								</div>
+								<div class="col-sm-6">
+									<label class="control-label" for="node2">*Node2: </label>
+									<select class="form-control nodelist" id="node2">
+									</select>
+								</div>
+								<div class="col-sm-12">
+									<label class="control-label" for="edgeNote">Relationship: </label>
+									<input type="text" class="form-control" id="newNote" placeholder="Edit this field"/>
+									<button type="button" class="btn btn-default" id="editRelationship">Edit Relationship<br></button>
+								</div>
+								<div class="col-sm-12">
+									<button type="button" class="btn btn-default" id="createEdge">Create Edge<br></button>
+									<button type="button" class="btn btn-default" id="deleteEdge">Delete Edge<br></button>
+									<button type="button" class="btn btn-default" id="cancel">Cancel<br></button>
+								</div>
 							</div>
-							<div class="col-sm-6">
-								<label class="control-label" for="node2">*Node2: </label>
-								<select class="form-control nodelist" id="node2">
-								</select>
-							</div>
-							<div class="col-sm-12">
-								<label class="control-label" for="edgeNote">Relationship: </label>
-								<input type="text" class="form-control" id="newNote" placeholder="Edit this field"/>
-								<button type="button" class="btn btn-default" id="editRelationship">Edit Relationship<br></button>
-							</div>
-							<div class="col-sm-12">
-								<button type="button" class="btn btn-default" id="createEdge">Create Edge<br></button>
-								<button type="button" class="btn btn-default" id="deleteEdge">Delete Edge<br></button>
-								<button type="button" class="btn btn-default" id="cancel">Cancel<br></button>
-							</div>
-						</div>
 
-					</form>
+						</form>
+					</div>
+				</div> <!-- added -->
+				<button class="btn edit" id="new-link-btn">Create New Links</button>
+				<div class="zoom-btn">
+					<div><button id="zoom_in" class="btn-default zoom">+</button></div>
+					<div><button id="zoom_out" class="btn-default zoom">-</button></div>
 				</div>
-			</div> <!-- added -->
-			<button class="btn btn edit">Expand</button>
 				<div class="panel panel-body" id="graph-editor"></div>
 			</div>
 		</div>
-	<script type="text/javascript" src="main.js"></script>
 	<script type="text/javascript" src="step3_document.js"></script>
 	<script type="text/javascript" src="graph_editor.js"></script>
 	<!--<script type="text/javascript" src="graph_update.js"></script>

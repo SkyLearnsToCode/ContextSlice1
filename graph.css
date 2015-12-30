@@ -50,3 +50,51 @@
 .Date{
 	fill: #00CED1;
 }
+
+.zoom{
+	position: relative;
+}
+
+#new-link-btn{
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+.zoom-btn{
+	margin-top: 10px;
+}
+
+.zoom{
+	margin-top: 5px;
+	margin-left: 10px;
+	width: 30px;
+	background-color: #f2f2f2;
+}
+
+#graph-editor{
+	min-height:700px;
+	overflow: auto;
+}
+
+#legend{
+	margin-bottom: 20px;
+}
+
+.toggle-legend{
+	margin-bottom: 20px;
+}
+
+.toggle-highlight{
+	margin-bottom:5px;
+}
+
+div.category{
+    width: 15px;
+    height: 15px;
+    margin-left: 15px;
+    margin-right: 5px;
+    display: inline-block;
+    position: relative;
+    border: 2px solid black;
+    vertical-align: text-bottom;
+}

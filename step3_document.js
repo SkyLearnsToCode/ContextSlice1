@@ -45,9 +45,11 @@ function toggleAllHighlight(event){
     if ($(this).html() == "Hide All Category Highlight"){
         $("em").removeClass("highlight");
         $(this).html("Show All Category Highlight");
+        $("button.category").addClass("unchecked");
     }else{
         $("em").addClass("highlight");
         $(this).html("Hide All Category Highlight");
+        $("button.category").removeClass("unchecked");
     }
 }
 

@@ -294,8 +294,8 @@ $(document).ready(function(){
       }
       selected_node_1 = null;
       selected_node_2 = null;
-      $("#node1").val("");
-      $("#node2").val("");
+      //$("#node1").val("");
+      //$("#node2").val("");
       redraw();
     })
 
@@ -303,8 +303,8 @@ $(document).ready(function(){
       links.splice(links.indexOf(selected_link), 1);
       selected_node_1 = null;
       selected_node_2 = null;
-      $("#node1").val("");
-      $("#node2").val("");
+      //$("#node1").val("");
+      //$("#node2").val("");
       redraw();
     })
 

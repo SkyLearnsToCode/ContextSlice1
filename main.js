@@ -46,7 +46,9 @@ function cancelCurrent(event){
 //gets the user's highlighted words, adds them
 //QUESTION what is the else part doing here?
 function addNewEntity(event){
-	var class_name = $(this).html();
+	console.log(event);
+	var class_name = $(this).attr("class");
+	console.log(class_name);
 	var entitySelect = document.getSelection();
 	var entityStr = entitySelect.toString();
 	if(entitySelect.rangeCount && entityStr!=""){
@@ -62,7 +64,7 @@ function addNewEntity(event){
 		entityRange.deleteContents();
 		entityRange.insertNode(entityNode);
 	}
-	displayCategoryEntityListInSummary(class_name);
+	//displayCategoryEntityListInSummary(class_name);
 }
 
 
@@ -144,7 +146,7 @@ function goBack(event){
 $("p").delegate(".entity","dblclick", cancelCurrent);
 
 //switches the entity list to show entities of that category
-$("div").delegate(".legend","click", addNewEntity);
+$("fieldset").delegate(".legend-label","click", addNewEntity);
 
 //appends the a new button category to #catGroup div based on addCate button
 //$("#addCate").on("click",addCategory);

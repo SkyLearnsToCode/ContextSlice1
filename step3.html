@@ -11,7 +11,7 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 		<!-- D3.js -->
 		<script src="https://d3js.org/d3.v2.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="category-colors.css">
+		<link rel="stylesheet" type="text/css" href="main.css">
 		<link rel="stylesheet" type="text/css" href="graph.css">
 	</head>
 	<body>
@@ -21,14 +21,14 @@
 				<button type="button" class="btn btn-secondary toggle-legend">Show Legend</button>
 				<div id = "legend" class="panel panel-default collapse">
 					<div><button class="btn toggle-highlight">Hide All Category Highlight</button></div>
-					<label class="legend-label"><div class="category highlight Person"></div>Person</label>
-					<label class="legend-label"><div class="category highlight Location"></div>Location</label>
-					<label class="legend-label"><div class="category highlight Organization"></div>Organization</label>
-					<label class="legend-label"><div class="category highlight Money"></div>Money</label>
-					<label class="legend-label"><div class="category highlight Misc"></div>Miscellaneous</label>
-					<label class="legend-label"><div class="category highlight Phone"></div>Phone</label>
-					<label class="legend-label"><div class="category highlight Interesting"></div>Interesting</label>
-					<label class="legend-label"><div class="category highlight Date"></div>Date</label>
+					<label class="legend-label"><button class="category highlight Person"></button>Person</label>
+					<label class="legend-label"><button class="category highlight Location"></button>Location</label>
+					<label class="legend-label"><button class="category highlight Organization"></button>Organization</label>
+					<label class="legend-label"><button class="category highlight Money"></button>Money</label>
+					<label class="legend-label"><button class="category highlight Misc"></button>Miscellaneous</label>
+					<label class="legend-label"><button class="category highlight Phone"></button>Phone</label>
+					<label class="legend-label"><button class="category highlight Interesting"></button>Interesting</label>
+					<label class="legend-label"><button class="category highlight Date"></button>Date</label>
 				</div>
 				<!--
 				<h3 class="panel panel-heading doc-header">Doc1</h3>
@@ -72,7 +72,7 @@
 									<input type="text" class="form-control" id="newNote" placeholder="Edit this field"/>
 									<button type="button" class="btn btn-default" id="editRelationship">Edit Relationship<br></button>
 								</div>
-								<div class="col-sm-12">
+								<div class="col-sm-12 collapse-btn">
 									<button type="button" class="btn btn-default" id="createEdge">Create Edge<br></button>
 									<button type="button" class="btn btn-default" id="deleteEdge">Delete Edge<br></button>
 									<button type="button" class="btn btn-default" id="cancel">Cancel<br></button>

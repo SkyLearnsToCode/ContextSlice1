@@ -1,41 +1,9 @@
-.highlight.Person{
-	background-color: #FFFF00;
+form#legend{
+	text-align: center;
 }
 
-.highlight.Location{
-	background-color: #B8860B;
-}
-
-.highlight.Organization{
-	background-color: #FF00FF;
-}
-
-.highlight.Money{
-	background-color: #32CD32;
-}
-
-.highlight.Misc{
-	background-color: #FFBF00;
-}
-
-.highlight.Phone{
-	background-color: #A9A9F5;
-}
-
-.highlight.Interesting{
-	background-color: #FF6347;
-}
-
-.highlight.Date{
-	background-color: #00CED1;
-}
-
-.Other{
-	background-color: #f2a6df;
-}
-
-.unused{
-	background-color: #4B0082;
+button span{
+	width: 20px;
 }
 
 .btn-sm{
@@ -75,6 +43,26 @@
 	margin-left: 5px;
 	margin-right: 15px;
 	margin-bottom: 10px;
+}
+
+#legend{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.toggle-highlight{
+	margin-bottom:5px;
+}
+
+button.category{
+    width: 15px;
+    height: 15px;
+    margin-left: 15px;
+    margin-right: 5px;
+    display: inline-block;
+    position: relative;
+    border: 2px solid black;
+    vertical-align: text-bottom;
 }
 /***
 

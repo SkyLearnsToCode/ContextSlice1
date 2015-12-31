@@ -75,23 +75,3 @@
 	min-height:700px;
 	overflow: auto;
 }
-
-#legend{
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
-
-.toggle-highlight{
-	margin-bottom:5px;
-}
-
-div.category{
-    width: 15px;
-    height: 15px;
-    margin-left: 15px;
-    margin-right: 5px;
-    display: inline-block;
-    position: relative;
-    border: 2px solid black;
-    vertical-align: text-bottom;
-}

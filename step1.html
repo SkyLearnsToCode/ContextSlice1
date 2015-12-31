@@ -10,69 +10,42 @@
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 		<!-- The color sheet and the color map for step 1 -->
 		<link rel="stylesheet" type="text/css" href="category-colors.css">
+		<link rel="stylesheet" type="text/css" href="main.css">
 	</head>
 	<body>
-		<div id="documentContents" class="container">
-			<div class="row">
-				<div class="col-lg-7 panel-group">
-					<h1 class="jumbotron">Document Contents</h1>
-						<div class="panel-group">
-							<div id = "legend" class="panel panel-default">
-							<h3 class="panel panel-heading">Categories</h3>
-							<div class="panel panel-default">
-								<p id="errorAlert"></p>
-								<!--
-								<input type="text" class="form-control" id="newCat"><button type="button" class="btn btn-info" id="addCate">Add New Category</button>
-								-->
-								<div class="panel-body btn-group" id="catGroup">
-								  	<button type="button" class="btn btn-sm highlight legend person">person</button>
-									<button type="button" class="btn btn-sm highlight legend location">location</button>
-									<button type="button" class="btn btn-sm highlight legend organization">organization</button>
-									<button type="button" class="btn btn-sm highlight legend money">money</button>
-									<button type="button" class="btn btn-sm highlight legend miscellanea">miscellanea</button>
-									<button type="button" class="btn btn-sm highlight legend phone">phone</button>
-									<button type="button" class="btn btn-sm highlight legend interesting">interesting</button>
-									<button type="button" class="btn btn-sm highlight legend date">date</button>
-								</div>
-								<div class="panel-body form-group" id="other">
-									<label for="other-description">Something new: </label>
-									<input type="text" class="form-contorl" id="other-description">
-									<button type="button" class="btn btn-sm highlight legend other">other</button>
-								</div>
-							</div>
-						</div>
-						<div class="panel panel-default">
-							<h3 class="panel panel-heading">Doc1</h3>
-							<p class="panel panel-body" id="document-paragraph"></p>
-						</div>
-					</div>
+		<div class="container">
+			<form id ="legend" class="panel panel-default">
+				<p id="errorAlert"></p>
+				<fieldset class="panel-body">
+					<legend><h3 class="panel-heading">Categories</h3></legend>
+					<button class="category highlight Person"></button>Person
+					<button class="category highlight Location"></button>Location
+					<button class="category highlight Organization"></button>Organization
+					<button class="category highlight Money"></button>Money
+					<button class="category highlight Misc"></button>Miscellaneous
+					<button class="category highlight Phone"></button>Phone
+					<button class="category highlight Interesting"></button>Interesting
+					<button class="category highlight Date"></button>Date
+					<div><label>Recognize a new category? Please specify here: </label><input id="new-category" type="text" value=""><button class="category highlight Other"></button></div>
+				</fieldset>
+			</form>
+			<div class="panel panel-default">
+				<div id="contents" class="panel-default col-sm-7">
+					<h3 class="panel-heading">Document</h3>
+					<p id="document-paragraph" class="panel-body"></p>
 				</div>
-				<div class="col-lg-5 panel panel-default">
-					<h1 class="jumbotron">Name Entities</h1>
-					<div class="panel panel-default">
-						<div class="panel panel-body">
-							<form class="form-horizontal" role="form">
-								<div class="form-group">
-									<!--
-									<label class="control-label" for="nameEntity">Edit by:</label>
-										<input class="panel-body work-mode" type="radio" name="editType" value="seq" checked> sequence
-										<input class="panel-body work-mode" type="radio" name="editType" value="cat"> category<br>
-									-->
-									<label class="control-label" for="nameEntity" id="summary-cat">Category: </label>
-									<div class="panel panel-body" id="t">
-										<ul class="list-group" id="category-display">
-										</ul>
-									</div> 
-									 <!-- <input type="text" class="form-control" id="nameEntity"> -->
-								</div>
-								<!---->
-								<button type="button" class="btn btn-success submit" id="finish">Finish and Go Back To Mechanical Turk</button>
-							</form>
-						</div>
-					</div>
+				<div id="summary" class="panel-default col-sm-5">
+					<h3 class="panel-heading">Recognized Name Entities</h3>
+					<form id="recognized" class="panel-body">
+						<fieldset>
+							<legend id="category-placeholder"></legend>
+						</fieldset>
+						<ul id="entity-list">
+						</ul>
+					</form>
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript" src="main.js"></script>
+		<script type="text/javascript" src="step1.js"></script>
 	</body>
 </html>

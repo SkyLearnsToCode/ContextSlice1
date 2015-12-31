@@ -23,7 +23,7 @@ $(document).ready(function(){
         }
     });
 
-   $("button.btn-default").click(function(){
+   $("div.collapse-btn button.btn-default").click(function(){
     $("#edit-panel.collapse").collapse('hide');
     $("button.edit").html("Create New Links").css("visibility", "visible");
    })
@@ -31,7 +31,8 @@ $(document).ready(function(){
 
 //Alternative to toggleCat(event)
 function toggleCategoryHighlight(event){
-    var category = $(this).parent().text().toString();
+    var category = $(this).attr("class").split(" ")[2];
+    console.log(category);
     if (category == "Miscellaneous"){
         category = "Misc";
     }
@@ -39,15 +40,16 @@ function toggleCategoryHighlight(event){
 }
 
 function toggleAllHighlight(event){
-    $("em").toggleClass("highlight");
-    if($("em").is(".highlight")){
-        $(this).html("Hide All Category Highlight");
-    }else{
+    if ($(this).html() == "Hide All Category Highlight"){
+        $("em").removeClass("highlight");
         $(this).html("Show All Category Highlight");
+    }else{
+        $("em").addClass("highlight");
+        $(this).html("Hide All Category Highlight");
     }
 }
 
-$("label.legend-label").delegate("div.category","click",toggleCategoryHighlight);
+$("div#legend").delegate("button.category","click",toggleCategoryHighlight);
 
 //attach toggleAllHighlight handler our '.toggleAllHighlight' button in 'li' element for onclick event
 $("div#doc-contents").delegate("button.toggle-highlight","click",toggleAllHighlight);

@@ -307,6 +307,14 @@ $(document).ready(function(){
       $("#node2").val("");
       redraw();
     })
+
+    $("#cancel").on("click", function(){
+      selected_node_1 = null;
+      selected_node_2 = null;
+      $("#node1").val("");
+      $("#node2").val("");
+      redraw();
+    })
   });
   // redraw force layout
   function redraw() {

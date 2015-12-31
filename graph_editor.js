@@ -405,7 +405,7 @@ $(document).ready(function(){
             */
             else if(selected_node_1 == null){
               //open the editor panel
-              $("button.edit").html("Create New Links").css("visibility", "hidden");
+              $("button.edit").html("Hide Edit Panel");
               $("#edit-panel.collapse").collapse('show');
               selected_node_1 = mousedown_node;
               $("#node1").val(selected_node_1.name);
@@ -443,8 +443,8 @@ $(document).ready(function(){
             //     .attr("x2", mousedown_node.x)
             //     .attr("y2", mousedown_node.y);
             if (selected_node_1 == null && selected_node_2 == null){
-              $("#edit-panel.collapse").collapse('hide');
-              $("button.edit").html("Create New Links").css("visibility", "visible");
+              //$("#edit-panel.collapse").collapse('hide');
+              $("button.edit").html("Create New Links");
             }
             resetMouseVars();
             redraw();
@@ -618,7 +618,7 @@ $(document).ready(function(){
     $("#node2").val(selected_node_2.name);
     $("#newNote").val(d.description);
 
-    $("button.edit").html("Create New Links").css("visibility", "hidden");
+    $("button.edit").html("Hide Edit Panel");
     $("#edit-panel.collapse").collapse('show');
 /*
     if (edge_decription != null){
@@ -724,7 +724,7 @@ $(document).ready(function(){
       //set the node1 dropdown to be the option of selected_node_1.
       //redraw the graph
     if(selected_node_1 != null){
-     $("button.edit").html("Create New Links").css("visibility", "hidden");
+     $("button.edit").html("Hide Edit Panel");
      $("#edit-panel.collapse").collapse('show');
      $("#node1").val(selected_node_1.name);
      redraw();

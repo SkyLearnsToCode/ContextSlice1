@@ -54,6 +54,9 @@
 .zoom{
 	position: relative;
 }
+*{
+	font-size: 15px;
+}
 
 #new-link-btn{
 	margin-top: 10px;

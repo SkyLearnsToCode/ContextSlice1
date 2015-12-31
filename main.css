@@ -38,6 +38,10 @@
 	background-color: #4B0082;
 }
 
+button.unchecked{
+	opacity: 0.3;
+}
+
 form#legend{
 	text-align: center;
 }
@@ -102,6 +106,27 @@ button.category{
     position: relative;
     border: 2px solid black;
     vertical-align: text-bottom;
+}
+
+#container {
+	height: 100%; 
+	width:100%;
+	font-size: 0px;
+}
+
+#zoom-btn,#graph-editor{
+	display: inline-block; 
+	*display: inline; 
+	zoom: 1; 
+	vertical-align: top;
+	font-size:20px;
+}
+#zoom-btn{
+	width: 10%;
+}
+
+#graph-editor{
+	width: 90%;
 }
 /***
 

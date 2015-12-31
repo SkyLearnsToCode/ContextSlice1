@@ -16,14 +16,15 @@ $(document).ready(function(){
  // makes a temporary button for what would be the node
    $("button.edit").click(function(){
     if ($(this).html() == "Create New Links"){
-            $(this).css("visibility", "hidden");
+            $(this).html("Hide Edit Panel");
             $("#edit-panel.collapse").collapse('show');
         }else{
             $(this).html("Create New Links");
+            $("#edit-panel.collapse").collapse('hide');
         }
     });
 
-   $("div.collapse-btn button.btn-default").click(function(){
+   $("#cancel").click(function(){
     $("#edit-panel.collapse").collapse('hide');
     $("button.edit").html("Create New Links").css("visibility", "visible");
    })
@@ -37,6 +38,7 @@ function toggleCategoryHighlight(event){
         category = "Misc";
     }
     $("em."+category).toggleClass("highlight");
+    $("button."+category).toggleClass("unchecked");
 }
 
 function toggleAllHighlight(event){

@@ -1,4 +1,7 @@
+//A D3 based graph editor based on D3 v2
+
 $(document).ready(function(){
+  //object to represent node colors
   var colorMap = {
     person : "#FFFF00",
     location : "#B8860B",
@@ -11,7 +14,7 @@ $(document).ready(function(){
     other : "#f2a6df"
   }
 
-
+  //height and width of D3 canvas attached to DOM element
   var width = 700,
       height = 700,
       fill = d3.scale.category20();
@@ -23,41 +26,32 @@ $(document).ready(function(){
       current_link = null,
       mousedown_link = null,
       mousedown_node = null,
-      mouseup_node = null, //maybe not
+      mouseup_node = null, 
       clicked_flag = false,
       clicked_node = 1;
 
   var selectNode1Form, selectNode2Form;
 
-  // init svg
+  // initialize svg
   var outer = d3.select("#graph-editor")
     .append("svg:svg")
       .attr("width", width)
       .attr("height", height)
       .attr("pointer-events", "all");
 
+  //vis object holds three elements, one for zooming, one for panning and then one for showing nodes
   var vis = outer
     .append('svg:g')
       .call(d3.behavior.zoom().on("zoom", rescale))
       .on("dblclick.zoom", null)
     .append('svg:g')
-      // .on("mousemove", mousemove);
       .on("mousedown", mousedown);
-      // .on("mouseup", mouseup);
 
+  //inner canvas appended to vis object is where nodes appear 
   vis.append('svg:rect')
       .attr('width', width)
       .attr('height', height)
       .attr('fill', 'white');
-
-  // line displayed when dragging new nodes
-  var drag_line = vis.append("line")
-      .attr("class", "drag_line")
-      .attr("x1", 0)
-      .attr("y1", 0)
-      .attr("x2", 0)
-      .attr("y2", 0);
-
 
   var force, drag;
   var d3_data;
@@ -66,25 +60,27 @@ $(document).ready(function(){
   var edge_decription;
 
 
-  // add keyboard callback
-  d3.select(window)
-      .on("keydown", keydown);
+  // add keyboard callback (for deletion via delete key)
+  //this interaction has been deprecated for now. See function 'keydown' for implementation details
+  //d3.select(window)
+  //    .on("keydown", keydown);
 
-
+  //mousedown used for dragging capabilities iff no node is selected
   function mousedown() {
     if (!mousedown_node) {
-      // allow panning if nothing is selected
       vis.call(d3.behavior.zoom().on("zoom"), rescale);
       return;
     }
   }
 
+  //utility function to deselect all nodes and links
   function resetMouseVars() {
     mousedown_node = null;
     mouseup_node = null;
     mousedown_link = null;
   }
 
+  //The tick function gets called every tick and tells D3 to translate data on the canvas
   function tick() {
     link.select("line")
         .attr("x1", function(d) { return d.source.x; })
@@ -108,9 +104,8 @@ $(document).ready(function(){
         + " scale(" + scale + ")");
   }
 
-
+  //d3.json loads a json file **asynchronously**. The callback function has a parameter representing the loaded data
   d3.json(jsonfile, function(json) {
-
     d3_data = json;
     // update sidebar document paragraph contents
     var doc_counter = 0;
@@ -166,8 +161,8 @@ $(document).ready(function(){
     selectNode1Form = d3.select("#node1")
       .on("change", node1form_change);
 
+    //populate the node dropdowns with nodes from the d3 data
     var option_item = [{category: "", name:""}].concat(d3_data.nodes);
-    console.log(option_item);
     selectNode1Form.selectAll("option")
       .data(option_item)
       .enter()
@@ -192,7 +187,7 @@ $(document).ready(function(){
       });
 
 
-
+    //configure a force object to represent interactions between nodes
     force = self.force = d3.layout.force()
         .gravity(.05)
         .distance(200)
@@ -201,6 +196,7 @@ $(document).ready(function(){
         .links(d3_data.links)
         .on("tick", tick);
 
+    //configure dragging behavior for a node with translation functions
     drag = d3.behavior.drag()
         .on("dragstart", dragstart)
         .on("drag", dragmove)
@@ -223,6 +219,7 @@ $(document).ready(function(){
       force.resume();
     }
 
+    //The node and link data structures
     node = vis.selectAll(".node");
     link = vis.selectAll(".link");
     nodes = force.nodes();
@@ -260,14 +257,18 @@ $(document).ready(function(){
       redraw();
     })
   });
-  // redraw force layout
+  // redraw force layout should be called whenever an update to the graph occurs
   function redraw() {
 
-    force.charge(-300).start();
-    nodes = force.nodes();
-    //links = force.links()
-    force.links(links);
-    link = link.data(links);
+    force.charge(-300).start(); //refresh the force simulation
+    
+    nodes = force.nodes(); //refresh the nodes array
+    
+    force.links(links); //load the force object with the links array
+    
+    link = link.data(links);//refresh the links array
+    
+    //append functionality like selection and shapes to links
     var link_group = link.enter().insert("g", ".node")
         .attr("class", function(d){
           return "link "+d.value;
@@ -290,7 +291,7 @@ $(document).ready(function(){
     node = node.data(nodes);
 
 
-
+    //append functionality like selection and shapes to nodes
     var node_group = node.enter().append("g")
         .attr("class", function(d){
           return "node " + d.category + " "+d.docid;
@@ -442,9 +443,11 @@ $(document).ready(function(){
     return contains;
   }
 
+  /*
+   * Sets the selected_node_1 variable on dropdown change
+   */
   function node1form_change(){
     var selectedValue = d3.event.target.value;
-    //TODO highlight
     if (selectedValue == ""){
       selected_node_1 = null;
       redraw();
@@ -457,6 +460,9 @@ $(document).ready(function(){
     }
   }
 
+  /*
+   * Sets the selected_node_2 variable on dropdown change
+   */
   function node2form_change(){
     var selectedValue = d3.event.target.value;
     if (selectedValue == ""){
@@ -471,6 +477,9 @@ $(document).ready(function(){
     }
   }
 
+  /*
+   * returns a node from the nodes array with a matching name as nodestring
+   */
   function get_node_from_string(nodestring){
     var matching_node = null;
     nodes.forEach(function(node){
@@ -502,7 +511,9 @@ $(document).ready(function(){
     redraw();
   }
 
-
+  /*
+   * Handles highlighting links on mouse hover
+   */
   function handleMouseOver(d){
     d3.select(this).selectAll("line")
       .style("stroke-width",8)
@@ -519,6 +530,9 @@ $(document).ready(function(){
         });
   }
 
+  /*
+   * Removes any temporary styling when mousing out of a mouse hover
+   */
   function handleMouseOut(d){
     d3.select(this).selectAll("line")
       .style("stroke-width",2)
@@ -528,6 +542,9 @@ $(document).ready(function(){
   }
 
 
+  /*
+   * removes all links going to or from the parameter node. Useful for deleting a node
+   */
   function spliceLinksForNode(node) {
     toSplice = links.filter(
       function(l) {
@@ -537,6 +554,9 @@ $(document).ready(function(){
         links.splice(links.indexOf(l), 1); });
   }
 
+  /*
+   * Keydown delete functionality deprecated
+   */
   function keydown() {
     //TODO readd functionality for delete button?
 /*
@@ -562,6 +582,9 @@ $(document).ready(function(){
     */
   }
 
+  /*
+   * Returns a link matching the src and target nodes and works bidirectionally
+   */
   function getLinkFromNodes(srcNode, tgtNode){
     var resultLink = null;
     links.forEach(function(l){
@@ -573,6 +596,9 @@ $(document).ready(function(){
     return resultLink;
   }
 
+  /*
+   * handles clicks on em tags
+   */
   function bind_node1_select() {
     //'this' represents the 'em' tag clicked
     selected_node_1 = get_node_from_string(this.innerHTML);

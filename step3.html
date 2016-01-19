@@ -15,9 +15,22 @@
 		<link rel="stylesheet" type="text/css" href="graph.css">
 	</head>
 	<body>
+		<div class="alert alert-info" id="instructions">
+			<h4>Instructions: Connect the Dots</h4>
+			<p>On the left is a set of documents describing relationships between various items (people, locations, organizations, etc.) Those same items are also shown on the right; each item is a dot on the visualization. Your task is to "connect the dots"; that is, to create links between the dots that visualize their relationships in the documents.</p>
+			<p>You can pick an item in any of 3 ways:</p>
+			<ol>
+				<li>click the item in the document</li>
+				<li>click the dot in the visualization, or </li>
+				<li>pick the item from the menu above the visualization.</li>
+			</ol>
+			<p>Next, pick the item you want to link it to. Finally, describe the link in a few words using the "relationship" box, and click "Create Link".</p>
+			<button class="btn btn-info" id="fadeOut">ok, I got it</button>
+		</div>
 		<div class="col-lg-4 panel-group" id="doc-panel">
 			<div id = "doc-contents" class="panel panel-default">
-				<p class="alert alert-info">Select Node1 from documents</p>
+				<!--<p class="alert alert-info">Select Node1 from documents</p>-->
+				<button type="button" class="btn btn-secondary" id="fadeIn" style="display:none">Show Instructions</button>
 				<button type="button" class="btn btn-secondary toggle-legend">Show Legend</button>
 				<div id = "legend" class="panel panel-default collapse">
 					<!--<div><button class="btn toggle-highlight">Hide All Category Highlight</button></div>-->

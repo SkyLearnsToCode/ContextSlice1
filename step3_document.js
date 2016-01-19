@@ -42,13 +42,14 @@ function toggleCategoryHighlight(event){
 }
 
 function toggleAllHighlight(event){
-    if ($(this).html() == "Hide All Category Highlight"){
+    console.log($(this).parent().text());
+    if ($(this).parent().text() == "Hide All Category Highlight"){
         $("em").removeClass("highlight");
-        $(this).html("Show All Category Highlight");
+        $(this).parent().html("<button class=\"category highlight All\"></button>Show All Category Highlight");
         $("button.category").addClass("unchecked");
     }else{
         $("em").addClass("highlight");
-        $(this).html("Hide All Category Highlight");
+        $(this).parent().html("<button class=\"category highlight All\"></button>Hide All Category Highlight");
         $("button.category").removeClass("unchecked");
     }
 }
@@ -56,4 +57,4 @@ function toggleAllHighlight(event){
 $("div#legend").delegate("button.category","click",toggleCategoryHighlight);
 
 //attach toggleAllHighlight handler our '.toggleAllHighlight' button in 'li' element for onclick event
-$("div#doc-contents").delegate("button.toggle-highlight","click",toggleAllHighlight);
+$("div#doc-contents").delegate("button.All","click",toggleAllHighlight);

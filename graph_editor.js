@@ -527,13 +527,13 @@ $(document).ready(function(){
     var n1s2 = "Node2 selected, please select Node1, or click again to deselect Node2";
 
     if (selected_node_1 == null && selected_node_2 == null){
-      $("p#instructions").html(n1n2);
+      $("p#graph-instructions").html(n1n2);
     }else if (selected_node_1 != null && selected_node_2 == null){
-      $("p#instructions").html(s1n2);
+      $("p#graph-instructions").html(s1n2);
     }else if (selected_node_1 != null && selected_node_2 != null){
-      $("p#instructions").html(s1s2);
+      $("p#graph-instructions").html(s1s2);
     }else{
-      $("p#instructions").html(n1s2);
+      $("p#graph-instructions").html(n1s2);
     }
   }
 

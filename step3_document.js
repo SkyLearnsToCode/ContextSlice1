@@ -32,6 +32,7 @@ $(document).ready(function(){
    $("button#fadeOut").click(function(){
     $("div#instructions").fadeOut("fast",function(){
         $("button#fadeIn").show();
+        $("p#graph-instructions").show();
     });
    })
 });

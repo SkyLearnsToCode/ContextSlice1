@@ -313,7 +313,7 @@ $(document).ready(function(){
       selected_node_2 = null;
       $("#node1").val("");
       $("#node2").val("");
-      redraw();
+      //redraw();
     })
   });
   // redraw force layout
@@ -362,6 +362,7 @@ $(document).ready(function(){
         .attr("r", 6)
         .on("mousedown",
           function(d) {
+            $("#edit-panel.collapse").collapse('show');
             // disable zoom
             vis.call(d3.behavior.zoom().on("zoom"), null);
             $("#newNote").val("");

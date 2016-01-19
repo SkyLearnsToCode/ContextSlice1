@@ -23,12 +23,12 @@ $(document).ready(function(){
             $("#edit-panel.collapse").collapse('hide');
         }
     });
-
+/*
    $("#cancel").click(function(){
     $("#edit-panel.collapse").collapse('hide');
     $("button.edit").html("Create New Links").css("visibility", "visible");
    })
-
+*/
    $("button#fadeOut").click(function(){
     $("div#instructions").fadeOut("fast",function(){
         $("button#fadeIn").show();

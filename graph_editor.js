@@ -522,10 +522,10 @@ $(document).ready(function(){
       }
     });
 */
-    var n1n2 = "Please click on name entities to select Node1";
-    var s1n2 = "Node1 selected, please select Node2, or click again to deselect Node1";
-    var s1s2 = "Ready to create or edit an edge, click again to deselect nodes or click a third node to update Node2";
-    var n1s2 = "Node2 selected, please select Node1, or click again to deselect Node2";
+    var n1n2 = "Please click on name entities to select Dot 1";
+    var s1n2 = "Dot 1 selected, please select Dot 2, or click again to deselect Dot 1";
+    var s1s2 = "Ready to create or edit an edge, click again to deselect nodes or click a third node to update Dot 2";
+    var n1s2 = "Dot 2 selected, please select Dot 1, or click again to deselect Dot 2";
 
     if (selected_node_1 == null && selected_node_2 == null){
       $("p#graph-instructions").html(n1n2);

@@ -313,6 +313,7 @@ $(document).ready(function(){
       selected_node_2 = null;
       $("#node1").val("");
       $("#node2").val("");
+      $("#newNote").val("");
       //redraw();
     })
   });

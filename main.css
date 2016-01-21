@@ -66,6 +66,11 @@ button span{
 
 }
 
+div.inline{
+	display:inline;
+	white-space: nowrap;
+}
+
 .submit{
 	float: right;
 }

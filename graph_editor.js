@@ -310,10 +310,12 @@ $(document).ready(function(){
     $("#reset").on("click", function(){
       selected_node_1 = null;
       selected_node_2 = null;
+      selected_link = null;
       $("#node1").val("");
       $("#node2").val("");
       $("#newNote").val("");
-      //redraw();
+      $("#editLink").hide();
+      redraw();
     })
   });
 

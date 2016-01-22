@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  /*
   var colorMap = {
     person : "#FFFF00",
     location : "#B8860B",
@@ -10,8 +11,9 @@ $(document).ready(function(){
     date : "#00CED1",
     other : "#f2a6df"
   }
+  }*/
 
-
+  // width and height of graph edit svg
   var width = 700,
       height = 700,
       fill = d3.scale.category20();
@@ -19,14 +21,18 @@ $(document).ready(function(){
   // mouse event vars
   var selected_node_1 = null,
       selected_node_2 = null,
-      selected_link = null,
-      current_link = null,
-      mousedown_link = null,
       mousedown_node = null,
       mouseup_node = null, //maybe not
-      clicked_flag = false,
-      clicked_node = 1;
 
+      selected_link = null,
+      current_link = null, //potential links between two selected nodes
+      mousedown_link = null,
+      
+      
+      clicked_flag = false, //not in use
+      clicked_node = 1; //not used
+
+  // drop-down list for node selection
   var selectNode1Form, selectNode2Form;
 
   // init svg
@@ -36,23 +42,22 @@ $(document).ready(function(){
       .attr("height",height)
       .attr("pointer-events", "all");
 
+  // zoom & pan the whole graph
   var zoom = d3.behavior.zoom().scaleExtent([0.2, 8]).on("zoom", rescale);
-
   var vis = outer
     .append('svg:g')
-      //.call(d3.behavior.zoom().on("zoom", rescale))
       .call(zoom)
       .on("dblclick.zoom", null)
     .append('svg:g')
       // .on("mousemove", mousemove);
       .on("mousedown", mousedown);
       // .on("mouseup", mouseup);
-
   vis.append('svg:rect')
       .attr('width', "100%")
       .attr('height', "100%")
       .attr('fill', 'white');
 
+  /* dropped feature
   // line displayed when dragging new nodes
   var drag_line = vis.append("line")
       .attr("class", "drag_line")
@@ -60,7 +65,7 @@ $(document).ready(function(){
       .attr("y1", 0)
       .attr("x2", 0)
       .attr("y2", 0);
-
+  */
 
   var force, drag;
   var d3_data;
@@ -68,23 +73,15 @@ $(document).ready(function(){
   var nodes, links, node, link;
   var edge_decription;
 
-
+  /* dropped feature
   // add keyboard callback
   d3.select(window)
       .on("keydown", keydown);
-
-
+  */
   // focus on svg
   // vis.node().focus();
 
-  function mousedown() {
-    if (!mousedown_node) { //TODO MAKE SURE YOU HAVE CLICKED_NODE SOMEWHERE TODO
-      // allow panning if nothing is selected
-      vis.call(d3.behavior.zoom().on("zoom"), rescale);
-      return;
-    }
-  }
-
+  /* dropped feature
   // function mousemove() {
   //   if (!mousedown_node) return;
   //
@@ -122,42 +119,12 @@ $(document).ready(function(){
   //   resetMouseVars();
   // }
   //
-  function resetMouseVars() {
-    mousedown_node = null;
-    mouseup_node = null;
-    mousedown_link = null;
-  }
-
-  function tick() {
-    link.select("line")
-        .attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
-    link.select("text")
-        .attr("x", function(d) { return (d.source.x+d.target.x)/2; })
-        .attr("y", function(d) { return (d.source.y+d.target.y)/2; });
-
-    node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-  }
-
-  // rescale g
-  function rescale() {
-    //trans=d3.event.translate;
-    //scale=d3.event.scale;
-    trans=zoom.translate();
-    scale=zoom.scale();
-    vis.attr("transform",
-        "translate(" + trans + ")"
-        + " scale(" + scale + ")");
-  }
-
-
-
+  */
 
   d3.json(jsonfile, function(json) {
 
     d3_data = json;
+
     // update document contents
     var doc_counter = 0;
     d3_data.contents.forEach(function(curdoc){
@@ -173,7 +140,7 @@ $(document).ready(function(){
       var outerdiv = d3.select("#doc-contents");
       outerdiv.append("h3")
           .attr("class","panel panel-heading doc-header")
-          .html("Doc"+doc_counter);
+          .html("Document "+doc_counter);
       var innerdiv = outerdiv.append("div")
           .attr("id","Doc"+doc_counter)
           .attr("class","collapse in");
@@ -185,18 +152,21 @@ $(document).ready(function(){
           .html(doc_contents);
     })
 
+    // add category highlighting
     var sels = document.getElementsByTagName('em');
     for (i = 0; i < sels.length; i++) {
         //add click listener function 'bind_node1_select' to all 'em' tags
         sels[i].addEventListener('click', bind_node1_select, false);
     }
 
+    // click on document header to collapse document texts
     d3.selectAll(".doc-header")
       .on("click",function(){
         var id = $(this).html();
           $("#"+id+".collapse").collapse('toggle');
-      });
+        });
 
+    /*
     d3.selectAll(".doc-collapse")
       .on("click",function () {
         if ($(this).html() == "Display All"){
@@ -206,13 +176,13 @@ $(document).ready(function(){
         }
         $(".collapse").collapse('toggle');
       });
+    */
 
     //Initialize the node dropdown forms with the incoming graph and their event handlers
+    // populate selection lists
+    var option_item = [{category: "", name:""}].concat(d3_data.nodes);
     selectNode1Form = d3.select("#node1")
       .on("change", node1form_change);
-
-    var option_item = [{category: "", name:""}].concat(d3_data.nodes);
-    //console.log(option_item);
     selectNode1Form.selectAll("option")
       .data(option_item)
       .enter()
@@ -275,6 +245,7 @@ $(document).ready(function(){
 
     redraw();
 
+    /*
     $("#editRelationship").on("click", function(){
 
       //not finished
@@ -298,6 +269,34 @@ $(document).ready(function(){
       //$("#node2").val("");
       redraw();
     })
+    */
+
+    //edit panel buttons
+    $("#editLink").on("click", function(){
+      if (selected_node_1 == null || selected_node_2 == null){
+        alert("Please select two dots to create a link");
+        return;
+      }
+
+      current_link = getLinkFromNodes(selected_node_1,selected_node_2)
+      
+      if (current_link == null){
+        current_link = {source: selected_node_1, target: selected_node_2, value: 1, description: $("#newNote").val()};
+        links.push(current_link);
+      }
+
+      selected_link = current_link;
+      selected_link.description = $("#newNote").val();
+      var index = links.indexOf(current_link);
+      links.splice(index,1,selected_link);
+      //selected_node_1 = null;
+      //selected_node_2 = null;
+      //selected_link = null;
+      $("#node1").val("");
+      $("#node2").val("");
+      $("#newNote").val("")
+      redraw();
+    })
 
     $("#deleteEdge").on("click", function(){
       links.splice(links.indexOf(selected_link), 1);
@@ -308,7 +307,7 @@ $(document).ready(function(){
       redraw();
     })
 
-    $("#cancel").on("click", function(){
+    $("#reset").on("click", function(){
       selected_node_1 = null;
       selected_node_2 = null;
       $("#node1").val("");
@@ -317,9 +316,9 @@ $(document).ready(function(){
       //redraw();
     })
   });
+
   // redraw force layout
   function redraw() {
-    
     force.charge(-300).start();
     nodes = force.nodes();
     //links = force.links()
@@ -336,8 +335,7 @@ $(document).ready(function(){
         .on("mouseout",handleMouseOut)
         .on("mousedown", edge_click);
       link_group
-        .append("line")
-        .style("stroke-width",2);
+        .append("line");
       link_group
         .append("text")
         .text(" ");
@@ -345,8 +343,6 @@ $(document).ready(function(){
     link.exit().remove();
 
     node = node.data(nodes);
-
-
 
     var node_group = node.enter().append("g")
         .attr("class", function(d){
@@ -363,19 +359,25 @@ $(document).ready(function(){
         .attr("r", 6)
         .on("mousedown",
           function(d) {
-            $("#edit-panel.collapse").collapse('show');
             // disable zoom
             vis.call(d3.behavior.zoom().on("zoom"), null);
-            $("#newNote").val("");
+            //open the editor panel
+            $("button.edit").html("Hide Edit Panel");
+            $("#edit-panel.collapse").collapse('show');
 
             mousedown_node = d;
             // if (mousedown_node == selected_node_1) selected_node_1 = null;
             // else selected_node_1 = mousedown_node;
 
+            // deselect current selections: 
             if (mousedown_node == selected_node_1){
               //deselect the current selection : selected_node_1
+              selected_node_1 = null;
+              selected_link = null;
+              $("#node1").val("");
               //$("#edit-panel.collapse").collapse('hide');
               //$("button.edit").html("Expand").css("visibility", "visible");
+              /*
               if (selected_node_2 == null){
                 selected_node_1 = null;
                 $("#node1").val("");
@@ -386,11 +388,13 @@ $(document).ready(function(){
                 selected_node_2 = null;
                 $("#node2").val("");
               }
+              */
             }else if (mousedown_node == selected_node_2){
               //deselect the current selection : selected_node_2
               //$("#edit-panel.collapse").collapse('hide');
               //$("button.edit").html("Expand").css("visibility", "visible");
               selected_node_2 = null;
+              selected_link = null;
               $("#node2").val("");
             }
             /*else if (selected_node_1 != null) {
@@ -407,8 +411,6 @@ $(document).ready(function(){
             */
             else if(selected_node_1 == null){
               //open the editor panel
-              $("button.edit").html("Hide Edit Panel");
-              $("#edit-panel.collapse").collapse('show');
               selected_node_1 = mousedown_node;
               $("#node1").val(selected_node_1.name);
               /*
@@ -423,18 +425,27 @@ $(document).ready(function(){
             }else{
               selected_node_2 = mousedown_node;
               $("#node2").val(selected_node_2.name);
-              var tmplink = {source: selected_node_1, target: selected_node_2, value: 1, description: " "};
-              if (contains_link(links, tmplink) == -1){
-                $("#createEdge").prop('disabled',false);
-                $("#deleteEdge").prop('disabled',true);
-                $("#editRelationship").prop('disabled',true);
-              }else{
-                $("#createEdge").prop('disabled',true);
-                $("#deleteEdge").prop('disabled',false);
-                $("#editRelationship").prop('disabled',false);
-              }
             }
 
+            if (selected_node_1 != null && selected_node_2 != null){
+              $("#editLink").show();
+              current_link = getLinkFromNodes(selected_node_1,selected_node_2);
+              if (current_link!=null){
+                console.log("Update Link");
+                $("#newNote").val(current_link.description);
+                $("#editLink").html("Update Link");
+                $("#deleteEdge").show();
+              }else{
+                console.log("Create Link");
+                $("#newNote").val("");
+                $("#editLink").html("Create Link");
+                $("#deleteEdge").hide();
+              }
+              selected_link = current_link;
+            }else{
+              $("#editLink").hide();
+              $("#deleteEdge").hide();
+            }
             //selected_link = null;
 
             // reposition drag line
@@ -444,10 +455,11 @@ $(document).ready(function(){
             //     .attr("y1", mousedown_node.y)
             //     .attr("x2", mousedown_node.x)
             //     .attr("y2", mousedown_node.y);
+            /*
             if (selected_node_1 == null && selected_node_2 == null){
               //$("#edit-panel.collapse").collapse('hide');
               $("button.edit").html("Create New Links");
-            }
+            }*/
             resetMouseVars();
             redraw();
           })
@@ -474,15 +486,17 @@ $(document).ready(function(){
               redraw();
             }
           })
+        /*
         .transition()
           .duration(750)
           .ease("elastic")
-          .attr("r", 10);
+          .attr("r", 10)
+          */;
 
     node.exit().transition()
         .attr("r", 0)
       .remove();
-
+      /*
     if (d3.event) {
       // prevent browser's default behavior
       d3.event.preventDefault();
@@ -506,23 +520,25 @@ $(document).ready(function(){
         $("#editRelationship").prop('disabled',false);
       }
     }
-    node
-      .classed("node_selected", function(d) {
-        if (d === selected_node_1 || d === selected_node_2){
-          return true;
-        }else{
-          return false;
-        }
-      });
-/*
-    link.classed("link_selected", function(d) {
-      if (d === selected_link){
+*/
+    node.classed("node_selected", function(d) {
+      if (d === selected_node_1 || d === selected_node_2){
         return true;
       }else{
         return false;
       }
     });
-*/
+
+    link.classed("link_selected", function(d) {
+      if (d === selected_link){
+        console.log(d);
+        return true;
+      }else{
+        return false;
+      }
+    });
+
+    // instructions for graph editing
     var n1n2 = "Please click on name entities to select Dot 1";
     var s1n2 = "Dot 1 selected, please select Dot 2, or click again to deselect Dot 1";
     var s1s2 = "Ready to create or edit an edge, click again to deselect nodes or click a third node to update Dot 2";
@@ -537,14 +553,46 @@ $(document).ready(function(){
     }else{
       $("p#graph-instructions").html(n1s2);
     }
+
   }
 
-  /*
+// functions
+  // allow panning if nothing is selected
+  function mousedown() {
+    if (!mousedown_node) { //TODO MAKE SURE YOU HAVE CLICKED_NODE SOMEWHERE TODO
+      vis.call(d3.behavior.zoom().on("zoom"), rescale);
+      return;
+    }
+  }
+
+  function resetMouseVars() {
+    mousedown_node = null;
+    mouseup_node = null;
+    mousedown_link = null;
+  }
+
+  function tick() {
+    link.select("line")
+        .attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+    link.select("text")
+        .attr("x", function(d) { return (d.source.x+d.target.x)/2; })
+        .attr("y", function(d) { return (d.source.y+d.target.y)/2; });
+
+    node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+  }
+
+    /*
   * returns 1 if linksArr contains this_link, otherwise, returns -1
   */
   function contains_link(linksArr, this_link)
   {
     var contains = -1;
+    if (this_link == null){
+      return -1;
+    }
     linksArr.forEach(function(that_link) {
       if((this_link.source.name == that_link.source.name
               && this_link.target.name == that_link.target.name) || (this_link.source.name == that_link.target.name
@@ -595,17 +643,16 @@ $(document).ready(function(){
     return matching_node;
   }
 
-
-
-
-
-
-
-
-
-
-
-
+  // rescale g
+  function rescale() {
+    //trans=d3.event.translate;
+    //scale=d3.event.scale;
+    trans=zoom.translate();
+    scale=zoom.scale();
+    vis.attr("transform",
+        "translate(" + trans + ")"
+        + " scale(" + scale + ")");
+  }
 
   // action to take on mouse click of an edge
   function edge_click(d){
@@ -649,10 +696,13 @@ $(document).ready(function(){
 
 
   function handleMouseOver(d){
+    /* move to css
     d3.select(this).selectAll("line")
       .style("stroke-width",8)
       .style("stroke","red");
+    */
     d3.select(this)
+      .classed("link_hover",true)
       .selectAll("text")
       .attr("class","tmp")
       .attr("x",(this.children[0].x1.baseVal.value+this.children[0].x2.baseVal.value)/2)
@@ -665,10 +715,13 @@ $(document).ready(function(){
   }
 
   function handleMouseOut(d){
+    /* move to css
     d3.select(this).selectAll("line")
       .style("stroke-width",2)
       .style("stroke","#ccc");
+    */
     d3.select(this)
+      .classed("link_hover",false)
       .select("text.tmp").html(" ");
   }
 
@@ -682,8 +735,8 @@ $(document).ready(function(){
         links.splice(links.indexOf(l), 1); });
   }
 
+/* dropped feature
   function keydown() {
-/*
     if (!selected_node_1 && !selected_link) return;
     switch (d3.event.keyCode) {
       case 8: // backspace
@@ -703,15 +756,15 @@ $(document).ready(function(){
         break;
       }
     }
-    */
+    
   }
-
+*/
   function getLinkFromNodes(srcNode, tgtNode){
     var resultLink = null;
     links.forEach(function(l){
       if ((l.source.name == srcNode.name && l.target.name == tgtNode.name) || (l.source.name == tgtNode.name && l.target.name == srcNode.name)){
         resultLink = l;
-        return;
+        return null;
       }
     });
     return resultLink;
@@ -771,7 +824,7 @@ $(document).ready(function(){
     view.x += center[0] - l[0];
     view.y += center[1] - l[1];
     interpolateZoom([view.x, view.y], view.k);
-}
+  }
 
     d3.selectAll('.zoom').on('click', zoomClick);
 });

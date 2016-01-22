@@ -1,21 +1,26 @@
 .link {
-  stroke: #ccc;
+	stroke: #ccc;
 }
 
 .node text {
-  pointer-events: none;
-  font: 10px sans-serif;
-  fill: black;
+	pointer-events: none;
+	font: 10px sans-serif;
+	fill: black;
 }
 
 
-.node_selected{
-  fill: #ff7f0e;
-  stroke: #ff7f0e;
+.node_selected circle{
+	stroke: #ff7f0e;
+	stroke-width: 6;
 }
 
 .link_selected line{
 	stroke: #ff7f0e;
+	stroke-width: 6;
+}
+
+.link_hover line{
+	stroke: red;
 	stroke-width: 6;
 }
 

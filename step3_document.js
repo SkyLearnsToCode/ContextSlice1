@@ -15,7 +15,7 @@ $(document).ready(function(){
     //opens editor when edge is clicked and collapses when OK button is pressed
  // makes a temporary button for what would be the node
    $("button.edit").click(function(){
-    if ($(this).html() == "Create New Links"){
+    if ($(this).html() == "Show Edit Panel to Create New Links"){
             $(this).html("Hide Edit Panel");
             $("#edit-panel.collapse").collapse('show');
         }else{

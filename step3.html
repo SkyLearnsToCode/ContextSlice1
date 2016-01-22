@@ -69,29 +69,31 @@
 				<h3 class="panel panel-heading">Connect The Dots</h3>
 				<div id = "edit-panel" class = "collapse">
 					<div class="panel panel-body" id="combo-box">
-						<form class="forsm-inline" role="form" >
+						<form class="form-inline" role="form" >
 							<div class="form-group">
-								<div class="col-sm-5">
-									<label class="control-label" for="node1">*Dot 1: </label>
-									<select class="form-control nodelist" id="node1">
-									</select>
-								</div>
-								<div class="col-sm-5">
-									<label class="control-label" for="node2">*Dot 2: </label>
-									<select class="form-control nodelist" id="node2">
-									</select>
-								</div>
-								<div class="col-sm-12">
-									<label class="control-label" for="edgeNote">Relationship: </label>
-									<input type="text" class="form-control" id="newNote" placeholder="Edit this field"/>
-									<button type="button" class="btn btn-default" id="editRelationship">Edit Relationship<br></button>
-								</div>
-								<div class="col-sm-12 collapse-btn">
-									<button type="button" class="btn btn-default" id="createEdge">Create Edge<br></button>
-									<button type="button" class="btn btn-default" id="deleteEdge">Delete Edge<br></button>
-									<button type="button" class="btn btn-default" id="cancel">Cancel<br></button>
-								</div>
-					 		</div>
+								<label class="control-label" for="node1">Dot 1: </label>
+								<select class="form-control nodelist" id="node1">
+								</select>
+							</div>
+							<div class="form-group">
+								<label class="control-label" for="node2">Dot 2: </label>
+								<select class="form-control nodelist" id="node2">
+								</select>
+							</div>
+							<div class="form-group">
+								<label class="control-label" for="edgeNote">Relationship: </label>
+								<input type="text" class="form-control" id="newNote" placeholder="Please describe how these two dots are connected..."/>
+								<button type="button" class="btn btn-mini inline" id="reset">Reset</button>
+								<button type="button" class="btn btn-mini inline" id="editLink">Create Link</button>
+								<button type="button" class="btn btn-mini inline" id="deleteEdge">Delete Link</button>
+							</div>
+							<!--
+							<div class="col-sm-12 collapse-btn">
+								<button type="button" class="btn btn-default" id="createEdge">Create Edge<br></button>
+								<button type="button" class="btn btn-default" id="deleteEdge">Delete Edge<br></button>
+								<button type="button" class="btn btn-default" id="cancel">Cancel<br></button>
+							</div>
+							-->
 
 						</form>
 					</div>

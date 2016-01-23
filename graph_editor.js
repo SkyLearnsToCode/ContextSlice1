@@ -286,12 +286,12 @@ $(document).ready(function(){
       var notif_message = "";
       current_link = getLinkFromNodes(selected_node_1,selected_node_2);
       
-      if (current_link == null){
+      if (current_link == null || current_link.description == ""){
         notif_message = "New link created between <em class=\"highlight "+selected_node_1.category+"\">"+selected_node_1.name+"</em> and <em class=\"highlight "+selected_node_2.category+"\">"+selected_node_2.name+"</em> with relationship : "+$("#newNote").val();
         current_link = {source: selected_node_1, target: selected_node_2, value: 1, description: $("#newNote").val()};
         links.push(current_link);
       }else{
-        notif_message = "<em class=\"highlight "+selected_node_1.category+"\">"+selected_node_1.name+"</em> and <em class=\"highlight "+selected_node_2.category+"\">"+selected_node_2+"</em>'s relationship is updated as : "+$("#newNote").val();
+        notif_message = "<em class=\"highlight "+selected_node_1.category+"\">"+selected_node_1.name+"</em> and <em class=\"highlight "+selected_node_2.category+"\">"+selected_node_2.name+"</em>'s relationship is updated as : "+$("#newNote").val();
       }
 
       selected_link = current_link;
@@ -305,6 +305,7 @@ $(document).ready(function(){
       selected_node_1 = null;
       selected_node_2 = null;
       selected_link = null;
+      current_link = null;
       $("#node1").val("");
       $("#node2").val("");
       $("#newNote").val("");
@@ -321,6 +322,8 @@ $(document).ready(function(){
 
       selected_node_1 = null;
       selected_node_2 = null;
+      selected_link = null;
+      current_link = null;
       $("#node1").val("");
       $("#node2").val("");
       redraw();
@@ -331,6 +334,7 @@ $(document).ready(function(){
       selected_node_1 = null;
       selected_node_2 = null;
       selected_link = null;
+      current_link = null;
       $("#node1").val("");
       $("#node2").val("");
       $("#newNote").val("");
@@ -341,27 +345,25 @@ $(document).ready(function(){
 
   // redraw force layout
   function redraw() {
-
     if (selected_node_1 != null && selected_node_2 != null){
       $("#editLink").show();
-      current_link = getLinkFromNodes(selected_node_1,selected_node_2);
-      if (current_link!=null){
-        console.log("Update Link");
-        $("#newNote").val(current_link.description);
+      selected_link = getLinkFromNodes(selected_node_1,selected_node_2);
+      if (selected_link!=null){
+        $("#newNote").val(selected_link.description);
         $("#editLink").html("Update Link");
         $("#deleteEdge").show();
       }else{
-        console.log("Create Link");
+        current_link = {source: selected_node_1, target: selected_node_2, value: 1, description: ""};
+        links.push(current_link);
         $("#newNote").val("");
         $("#editLink").html("Create Link");
         $("#deleteEdge").hide();
       }
-      selected_link = current_link;
     }else{
       $("#editLink").hide();
       $("#deleteEdge").hide();
     }
-            
+
     force.charge(-300).start();
     nodes = force.nodes();
     //links = force.links()
@@ -370,7 +372,15 @@ $(document).ready(function(){
     var link_group = link.enter().insert("g", ".node")
         .attr("class", function(d){
           return "link "+d.value;
-        })/*
+        })
+        .style("stroke-dasharray",function(d){
+          if (d.description == ""){
+            return 5;
+          }else {
+            return 0;
+          }
+        })
+        /*
         .attr("id", function(d){
           return d.source.name + " to " + d.target.name;
         })*/
@@ -408,6 +418,11 @@ $(document).ready(function(){
             $("button.edit").html("Hide Edit Panel");
             $("#edit-panel.collapse").collapse('show');
 
+            if (current_link != null && current_link.description == ""){
+              links.splice(links.indexOf(current_link), 1);
+              current_link = null;
+            }
+
             mousedown_node = d;
             // if (mousedown_node == selected_node_1) selected_node_1 = null;
             // else selected_node_1 = mousedown_node;
@@ -417,6 +432,8 @@ $(document).ready(function(){
             if (mousedown_node == selected_node_1){
               //deselect the current selection : selected_node_1
               selected_node_1 = selected_node_2;
+              selected_node_2 = null;
+              $("#node2").val("");
               selected_link = null;
               if (selected_node_1 == null){
                 $("#node1").val("");
@@ -570,7 +587,6 @@ $(document).ready(function(){
 
     link.classed("link_selected", function(d) {
       if (d === selected_link){
-        console.log(d);
         return true;
       }else{
         return false;
@@ -698,7 +714,6 @@ $(document).ready(function(){
 
   // action to take on mouse click of an edge
   function edge_click(d){
-    //console.log(d);
     $("#deleteEdge").prop('disabled',false);
     $("#editRelationship").prop('disabled',false);
     selected_node_1 = d.source;

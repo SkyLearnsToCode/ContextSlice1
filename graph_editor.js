@@ -273,13 +273,24 @@ $(document).ready(function(){
 
     //edit panel buttons
     $("#editLink").on("click", function(){
+      if ($("p#graph-instructions").hasClass("alert-success")){
+        $("p#graph-instructions").removeClass("alert-success");
+      }
+      if (!$("p#graph-instructions").hasClass("alert-warning")){
+        $("p#graph-instructions").addClass("alert-warning");
+      }
+      $("p#graph-instructions").fadeIn("slow");
       if ($("#node1").val() == "" || $("#node1").val() == ""){
-        $("p#graph-instructions").fadeIn();
         $("p#graph-instructions").html("Please select 2 nodes to create a link");
+        $("#newNote").on("focus",function(){
+          $("p#graph-instructions").fadeOut("slow")
+        });
         return;
       }else if ($("#newNote").val() == ""){
-        $("p#graph-instructions").fadeIn();
         $("p#graph-instructions").html("Please specify how the two selected dots are connected in \"Relationship\" field");
+        $("#newNote").on("focus",function(){
+          $("p#graph-instructions").fadeOut("slow")
+        });
         return;
       }
 
@@ -299,7 +310,13 @@ $(document).ready(function(){
       var index = links.indexOf(current_link);
       links.splice(index,1,selected_link);
 
-      $("p#graph-instructions").fadeIn();
+      if ($("p#graph-instructions").hasClass("alert-warning")){
+        $("p#graph-instructions").removeClass("alert-warning");
+      }
+      if (!$("p#graph-instructions").hasClass("alert-success")){
+        $("p#graph-instructions").addClass("alert-success");
+      }
+      $("p#graph-instructions").fadeIn("slow");
       $("p#graph-instructions").html(notif_message);
 
       selected_node_1 = null;
@@ -317,7 +334,7 @@ $(document).ready(function(){
       selected_link = null;
       $("#newNote").val("");
 
-      $("p#graph-instructions").fadeIn();
+      $("p#graph-instructions").fadeIn("slow");
       $("p#graph-instructions").html("Deleted link between <em class=\"highlight "+selected_node_1.category+"\">"+selected_node_1.name+"</em> and <em class=\"highlight "+selected_node_2.category+"\">"+selected_node_2.name+"</em>");
 
       selected_node_1 = null;
@@ -417,6 +434,8 @@ $(document).ready(function(){
             //open the editor panel
             $("button.edit").html("Hide Edit Panel");
             $("#edit-panel.collapse").collapse('show');
+
+            $("p#graph-instructions").fadeOut("slow");
 
             if (current_link != null && current_link.description == ""){
               links.splice(links.indexOf(current_link), 1);

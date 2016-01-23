@@ -232,7 +232,7 @@ $(document).ready(function(){
 
     function dragend(d, i) {
       //d.fixed = true; // of course set the node to fixed so the force doesn't include the node in its auto positioning stuff
-      
+
       tick();
       force.resume();
     }
@@ -350,6 +350,9 @@ $(document).ready(function(){
       selected_node_1 = null;
       selected_node_2 = null;
       selected_link = null;
+      if (current_link != null && current_link.description == ""){
+        links.splice(links.indexOf(current_link),1);
+      }
       current_link = null;
       $("#node1").val("");
       $("#node2").val("");
@@ -852,11 +855,24 @@ $(document).ready(function(){
   }
 
   function text_node_select() {
-    //'this' represents the 'em' tag clicked
     if (current_link != null && current_link.description == ""){
       links.splice(links.indexOf(current_link), 1);
       current_link = null;
     }
+
+    // if click on selected nodes, cancel that node
+    if(selected_node_1 != null && selected_node_1.name == this.innerHTML){
+      selected_node_1 = null;
+      $("#node1").val("");
+      redraw();
+      return;
+    }else if(selected_node_2 != null && selected_node_2.name == this.innerHTML){
+      selected_node_2 = null;
+      $("#node2").val("");
+      redraw();
+      return;
+    }
+
     if (selected_node_1 == null){
       selected_node_1 = get_node_from_string(this.innerHTML);
       //if a node matched the name within the 'em' tag then do the following:

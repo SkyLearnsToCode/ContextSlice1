@@ -47,9 +47,7 @@ function cancelCurrent(event){
 function addNewEntity(event){
 	event.preventDefault();
 	var class_name = $(this).attr("class").split(" ")[2];
-	if (class_name == "Misc"){
-		class_name = "Miscellaneous";
-	}
+	
 	var entitySelect = document.getSelection();
 	var entityStr = entitySelect.toString();
 	if(entitySelect.rangeCount && entityStr!=""){

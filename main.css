@@ -1,21 +1,21 @@
 .highlight.Person{
-	background-color: #FFFF00;
+	background-color: #cccc33;
 }
 
 .highlight.Location{
-	background-color: #B8860B;
+	background-color: #cc99ff;
 }
 
 .highlight.Organization{
-	background-color: #FF00FF;
+	background-color: #ffb3b3;
 }
 
 .highlight.Money{
-	background-color: #32CD32;
+	background-color: #47cc47;
 }
 
 .highlight.Misc{
-	background-color: #FFBF00;
+	background-color: #FF7355;
 }
 
 .highlight.Phone{
@@ -23,11 +23,11 @@
 }
 
 .highlight.Interesting{
-	background-color: #FF6347;
+	background-color: #F9A750;
 }
 
 .highlight.Date{
-	background-color: #00CED1;
+	background-color: #80dfff;
 }
 
 .highlight.Other{
@@ -48,6 +48,13 @@ form#legend{
 
 button span{
 	width: 20px;
+}
+
+em{
+	cursor: pointer;
+	border-radius: 6px;
+	padding: 2px;
+	box-shadow: 2px 2px 2px #888888;
 }
 
 .btn-sm{

@@ -8,7 +8,6 @@
 	fill: black;
 }
 
-
 .node_selected circle{
 	stroke: #ff7f0e;
 	stroke-width: 6;
@@ -25,23 +24,23 @@
 }
 
 .Person{
-	fill: #FFFF00;
+	fill: #cccc33;
 }
 
 .Location{
-	fill: #B8860B;
+	fill: #cc99ff;
 }
 
 .Organization{
-	fill: #FF00FF;
+	fill: #ffb3b3;
 }
 
 .Money{
-	fill: #32CD32;
+	fill: #47cc47;
 }
 
 .Misc{
-	fill: #FFBF00;
+	fill: #FF7355;
 }
 
 .Phone{
@@ -49,11 +48,11 @@
 }
 
 .Interesting{
-	fill: #FF6347;
+	fill: #F9A750;
 }
 
 .Date{
-	fill: #00CED1;
+	fill: #80dfff;
 }
 
 .zoom{

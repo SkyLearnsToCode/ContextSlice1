@@ -19,7 +19,7 @@ $(document).ready(function(){
             $(this).html("Hide Edit Panel");
             $("#edit-panel.collapse").collapse('show');
         }else{
-            $(this).html("Create New Links");
+            $(this).html("Show Edit Panel to Create New Links");
             $("#edit-panel.collapse").collapse('hide');
         }
     });
@@ -31,8 +31,7 @@ $(document).ready(function(){
 */
    $("button#fadeOut").click(function(){
     $("div#instructions").fadeOut("fast",function(){
-        $("button#fadeIn").show();
-        $("p#graph-instructions").show();
+        $("button#fadeIn").fadeIn();
     });
    })
 });

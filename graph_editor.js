@@ -273,41 +273,61 @@ $(document).ready(function(){
 
     //edit panel buttons
     $("#editLink").on("click", function(){
-      if (selected_node_1 == null || selected_node_2 == null){
-        alert("Please select two dots to create a link");
+      if ($("#node1").val() == "" || $("#node1").val() == ""){
+        $("p#graph-instructions").fadeIn();
+        $("p#graph-instructions").html("Please select 2 nodes to create a link");
+        return;
+      }else if ($("#newNote").val() == ""){
+        $("p#graph-instructions").fadeIn();
+        $("p#graph-instructions").html("Please specify how the two selected dots are connected in \"Relationship\" field");
         return;
       }
 
-      current_link = getLinkFromNodes(selected_node_1,selected_node_2)
+      var notif_message = "";
+      current_link = getLinkFromNodes(selected_node_1,selected_node_2);
       
       if (current_link == null){
+        notif_message = "New link created between <em class=\"highlight "+selected_node_1.category+"\">"+selected_node_1.name+"</em> and <em class=\"highlight "+selected_node_2.category+"\">"+selected_node_2.name+"</em> with relationship : "+$("#newNote").val();
         current_link = {source: selected_node_1, target: selected_node_2, value: 1, description: $("#newNote").val()};
         links.push(current_link);
+      }else{
+        notif_message = "<em class=\"highlight "+selected_node_1.category+"\">"+selected_node_1.name+"</em> and <em class=\"highlight "+selected_node_2.category+"\">"+selected_node_2+"</em>'s relationship is updated as : "+$("#newNote").val();
       }
 
       selected_link = current_link;
       selected_link.description = $("#newNote").val();
       var index = links.indexOf(current_link);
       links.splice(index,1,selected_link);
-      //selected_node_1 = null;
-      //selected_node_2 = null;
-      //selected_link = null;
+
+      $("p#graph-instructions").fadeIn();
+      $("p#graph-instructions").html(notif_message);
+
+      selected_node_1 = null;
+      selected_node_2 = null;
+      selected_link = null;
       $("#node1").val("");
       $("#node2").val("");
-      $("#newNote").val("")
+      $("#newNote").val("");
       redraw();
     })
 
     $("#deleteEdge").on("click", function(){
       links.splice(links.indexOf(selected_link), 1);
+      selected_link = null;
+      $("#newNote").val("");
+
+      $("p#graph-instructions").fadeIn();
+      $("p#graph-instructions").html("Deleted link between <em class=\"highlight "+selected_node_1.category+"\">"+selected_node_1.name+"</em> and <em class=\"highlight "+selected_node_2.category+"\">"+selected_node_2.name+"</em>");
+
       selected_node_1 = null;
       selected_node_2 = null;
-      //$("#node1").val("");
-      //$("#node2").val("");
+      $("#node1").val("");
+      $("#node2").val("");
       redraw();
     })
 
     $("#reset").on("click", function(){
+      $("p#graph-instructions").fadeOut();
       selected_node_1 = null;
       selected_node_2 = null;
       selected_link = null;
@@ -321,6 +341,27 @@ $(document).ready(function(){
 
   // redraw force layout
   function redraw() {
+
+    if (selected_node_1 != null && selected_node_2 != null){
+      $("#editLink").show();
+      current_link = getLinkFromNodes(selected_node_1,selected_node_2);
+      if (current_link!=null){
+        console.log("Update Link");
+        $("#newNote").val(current_link.description);
+        $("#editLink").html("Update Link");
+        $("#deleteEdge").show();
+      }else{
+        console.log("Create Link");
+        $("#newNote").val("");
+        $("#editLink").html("Create Link");
+        $("#deleteEdge").hide();
+      }
+      selected_link = current_link;
+    }else{
+      $("#editLink").hide();
+      $("#deleteEdge").hide();
+    }
+            
     force.charge(-300).start();
     nodes = force.nodes();
     //links = force.links()
@@ -372,11 +413,16 @@ $(document).ready(function(){
             // else selected_node_1 = mousedown_node;
 
             // deselect current selections: 
+            // the last two nodes clicked on are selected
             if (mousedown_node == selected_node_1){
               //deselect the current selection : selected_node_1
-              selected_node_1 = null;
+              selected_node_1 = selected_node_2;
               selected_link = null;
-              $("#node1").val("");
+              if (selected_node_1 == null){
+                $("#node1").val("");
+              }else{
+                $("#node1").val(selected_node_1.name);
+              }
               //$("#edit-panel.collapse").collapse('hide');
               //$("button.edit").html("Expand").css("visibility", "visible");
               /*
@@ -424,29 +470,20 @@ $(document).ready(function(){
               //set node 1 of the editor panel to be the name of the selected node
               $("#node1").val(selected_node_1.name);
               */
-            }else{
+            }else if(selected_node_2 == null){
               selected_node_2 = mousedown_node;
               $("#node2").val(selected_node_2.name);
-            }
-
-            if (selected_node_1 != null && selected_node_2 != null){
-              $("#editLink").show();
+            }else{
+              selected_node_1 = selected_node_2;
+              selected_node_2 = mousedown_node;
+              $("#node1").val(selected_node_1.name);
+              $("#node2").val(selected_node_2.name);
               current_link = getLinkFromNodes(selected_node_1,selected_node_2);
               if (current_link!=null){
-                console.log("Update Link");
                 $("#newNote").val(current_link.description);
-                $("#editLink").html("Update Link");
-                $("#deleteEdge").show();
               }else{
-                console.log("Create Link");
                 $("#newNote").val("");
-                $("#editLink").html("Create Link");
-                $("#deleteEdge").hide();
               }
-              selected_link = current_link;
-            }else{
-              $("#editLink").hide();
-              $("#deleteEdge").hide();
             }
             //selected_link = null;
 
@@ -540,7 +577,7 @@ $(document).ready(function(){
       }
     });
 
-    // instructions for graph editing
+    /* instructions for graph editing
     var n1n2 = "Please click on name entities to select Dot 1";
     var s1n2 = "Dot 1 selected, please select Dot 2, or click again to deselect Dot 1";
     var s1s2 = "Ready to create or edit an edge, click again to deselect nodes or click a third node to update Dot 2";
@@ -555,6 +592,7 @@ $(document).ready(function(){
     }else{
       $("p#graph-instructions").html(n1s2);
     }
+    */
 
   }
 
@@ -611,6 +649,8 @@ $(document).ready(function(){
     //TODO highlight
     if (selectedValue == ""){
       selected_node_1 = null;
+      $("#editLink").hide();
+      $("#deleteEdge").hide();
       redraw();
       return;
     }
@@ -671,6 +711,7 @@ $(document).ready(function(){
 
     $("button.edit").html("Hide Edit Panel");
     $("#edit-panel.collapse").collapse('show');
+
 /*
     if (edge_decription != null){
       d3.select(this)

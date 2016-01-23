@@ -10,13 +10,11 @@ $(document).ready(function(){
     interesting : "#FF6347",
     date : "#00CED1",
     other : "#f2a6df"
-  }
-  }*/
+  }}*/
 
   // width and height of graph edit svg
   var width = 700,
-      height = 700,
-      fill = d3.scale.category20();
+      height = 700;
 
   // mouse event vars
   var selected_node_1 = null,
@@ -155,8 +153,8 @@ $(document).ready(function(){
     // add category highlighting
     var sels = document.getElementsByTagName('em');
     for (i = 0; i < sels.length; i++) {
-        //add click listener function 'bind_node1_select' to all 'em' tags
-        sels[i].addEventListener('click', bind_node1_select, false);
+        //add click listener function 'text_node_select' to all 'em' tags
+        sels[i].addEventListener('click', text_node_select, false);
     }
 
     // click on document header to collapse document texts
@@ -233,7 +231,8 @@ $(document).ready(function(){
     }
 
     function dragend(d, i) {
-      d.fixed = true; // of course set the node to fixed so the force doesn't include the node in its auto positioning stuff
+      //d.fixed = true; // of course set the node to fixed so the force doesn't include the node in its auto positioning stuff
+      
       tick();
       force.resume();
     }
@@ -594,8 +593,7 @@ $(document).ready(function(){
         $("#deleteEdge").prop('disabled',false);
         $("#editRelationship").prop('disabled',false);
       }
-    }
-*/
+    }*/
     node.classed("node_selected", function(d) {
       if (d === selected_node_1 || d === selected_node_2){
         return true;
@@ -627,9 +625,7 @@ $(document).ready(function(){
     }else{
       $("p#graph-instructions").html(n1s2);
     }
-    */
-
-  }
+    */}
 
 // functions
   // allow panning if nothing is selected
@@ -680,6 +676,10 @@ $(document).ready(function(){
   }
 
   function node1form_change(){
+    if (current_link != null && current_link.description == ""){
+      links.splice(links.indexOf(current_link), 1);
+      current_link = null;
+    }
     var selectedValue = d3.event.target.value;
     //TODO highlight
     if (selectedValue == ""){
@@ -697,6 +697,10 @@ $(document).ready(function(){
   }
 
   function node2form_change(){
+    if (current_link != null && current_link.description == ""){
+      links.splice(links.indexOf(current_link), 1);
+      current_link = null;
+    }
     var selectedValue = d3.event.target.value;
     if (selectedValue == ""){
       selected_node_2 = null;
@@ -847,20 +851,54 @@ $(document).ready(function(){
     return resultLink;
   }
 
-  function bind_node1_select() {
+  function text_node_select() {
     //'this' represents the 'em' tag clicked
-    selected_node_1 = get_node_from_string(this.innerHTML);
-
-    //if a node matched the name within the 'em' tag then do the following:
-      //expand the dropdown graph editor
-      //set the node1 dropdown to be the option of selected_node_1.
-      //redraw the graph
-    if(selected_node_1 != null){
-     $("button.edit").html("Hide Edit Panel");
-     $("#edit-panel.collapse").collapse('show');
-     $("#node1").val(selected_node_1.name);
-     redraw();
+    if (current_link != null && current_link.description == ""){
+      links.splice(links.indexOf(current_link), 1);
+      current_link = null;
     }
+    if (selected_node_1 == null){
+      selected_node_1 = get_node_from_string(this.innerHTML);
+      //if a node matched the name within the 'em' tag then do the following:
+        //expand the dropdown graph editor
+        //set the node1 dropdown to be the option of selected_node_1.
+        //redraw the graph
+      if(selected_node_1 != null){
+       $("button.edit").html("Hide Edit Panel");
+       $("#edit-panel.collapse").collapse('show');
+       $("#node1").val(selected_node_1.name);
+     }
+    }else if (selected_node_2 == null){
+      selected_node_2 = get_node_from_string(this.innerHTML);
+      //if a node matched the name within the 'em' tag then do the following:
+        //expand the dropdown graph editor
+        //set the node1 dropdown to be the option of selected_node_1.
+        //redraw the graph
+      if(selected_node_2 != null){
+       $("button.edit").html("Hide Edit Panel");
+       $("#edit-panel.collapse").collapse('show');
+       $("#node2").val(selected_node_2.name);
+     }
+    }else{
+      selected_node_1 = selected_node_2;
+      selected_node_2 = get_node_from_string(this.innerHTML);
+      //if a node matched the name within the 'em' tag then do the following:
+        //expand the dropdown graph editor
+        //set the node1 dropdown to be the option of selected_node_1.
+        //redraw the graph
+      if(selected_node_2 != null){
+       $("button.edit").html("Hide Edit Panel");
+       $("#edit-panel.collapse").collapse('show');
+       $("#node1").val(selected_node_1.name);
+       $("#node2").val(selected_node_2.name);
+
+       current_link = getLinkFromNodes(selected_node_1,selected_node_2);
+       if (current_link != null && current_link.description!=""){
+        $("#newNote").val(current_link.description);
+       }
+      }
+    }
+    redraw();
   }
   function interpolateZoom (translate, scale) {
     var self = this;
@@ -902,6 +940,5 @@ $(document).ready(function(){
     view.y += center[1] - l[1];
     interpolateZoom([view.x, view.y], view.k);
   }
-
-    d3.selectAll('.zoom').on('click', zoomClick);
+  d3.selectAll('.zoom').on('click', zoomClick);
 });

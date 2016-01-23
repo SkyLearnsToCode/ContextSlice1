@@ -83,6 +83,22 @@
 							<div class="form-group">
 								<label class="control-label" for="edgeNote">Relationship: </label>
 								<input type="text" class="form-control" id="newNote" placeholder="Please describe how these two dots are connected..."/>
+								
+							</div>
+							<div class="form-group">
+								<label for="importance">Importance (1-5):</label>
+								<select name="importance" id="impOption">
+									<option>1</option>
+									<option>2</option>
+									<option selected="selected">3</option>
+									<option>4</option>
+									<option>5</option>
+								</select>
+								<span class="range">1</span>
+								<input type="range" id="impSlider" min="1" max="5" value="3" step="1" />
+								<span class="range">5</span>
+							</div>
+							<div>
 								<button type="button" class="btn btn-mini inline" id="reset">Reset</button>
 								<button type="button" class="btn btn-mini inline" id="editLink">Create Link</button>
 								<button type="button" class="btn btn-mini inline" id="deleteEdge">Delete Link</button>

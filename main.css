@@ -1,37 +1,37 @@
 .highlight.Person{
-	background-color: #cccc33;
+	background-color: #d9b8f1;
 }
 
 .highlight.Location{
-	background-color: #cc99ff;
+	background-color: #BDC03F;
 }
 
 .highlight.Organization{
-	background-color: #ffb3b3;
+	background-color: #ffe543;
 }
 
 .highlight.Money{
-	background-color: #47cc47;
+	background-color: #FF9B14;
 }
 
 .highlight.Misc{
-	background-color: #FF7355;
+	background-color: #F69AC1;
 }
 
 .highlight.Phone{
-	background-color: #A9A9F5;
+	background-color: #8EB4FF;
 }
 
 .highlight.Interesting{
-	background-color: #F9A750;
+	background-color: #f1f1b8;
 }
 
 .highlight.Date{
-	background-color: #80dfff;
+	background-color: #67E1D8;
 }
 
 .highlight.Other{
-	background-color: #f2a6df;
+	background-color: #EFE4D7;
 }
 
 .unused{
@@ -139,6 +139,16 @@ button.category{
 
 #graph-editor{
 	width: 90%;
+}
+
+#impOption{
+	margin: 5px;
+}
+
+#impSlider{
+	width: 150px;
+	display: inline;
+	margin: 0;
 }
 /***
 

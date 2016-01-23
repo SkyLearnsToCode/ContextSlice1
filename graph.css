@@ -24,35 +24,35 @@
 }
 
 .Person{
-	fill: #cccc33;
+	fill: #d9b8f1;
 }
 
 .Location{
-	fill: #cc99ff;
+	fill: #BDC03F;
 }
 
 .Organization{
-	fill: #ffb3b3;
+	fill: #ffe543;
 }
 
 .Money{
-	fill: #47cc47;
+	fill: #FF9B14;
 }
 
 .Misc{
-	fill: #FF7355;
+	fill: #F69AC1;
 }
 
 .Phone{
-	fill: #A9A9F5;
+	fill: #8EB4FF;
 }
 
 .Interesting{
-	fill: #F9A750;
+	fill: #f1f1b8;
 }
 
 .Date{
-	fill: #80dfff;
+	fill: #67E1D8;
 }
 
 .zoom{

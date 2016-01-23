@@ -33,7 +33,15 @@ $(document).ready(function(){
     $("div#instructions").fadeOut("fast",function(){
         $("button#fadeIn").fadeIn();
     });
-   })
+   });
+
+    $("#impOption").change(function() {
+      $("#impSlider").val($("#impOption").val());
+    });
+    $("#impSlider").change(function() {
+      $("#impOption").val($("#impSlider").val());
+    });
+
 });
 
 //Alternative to toggleCat(event)

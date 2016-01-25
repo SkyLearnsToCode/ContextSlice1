@@ -26,7 +26,7 @@
 					<button class="category highlight Phone"></button>Phone
 					<button class="category highlight Interesting"></button>Interesting
 					<button class="category highlight Date"></button>Date
-					<div><label>Recognize a new category? Please specify here: </label><input id="new-category" type="text" value=""><button class="category highlight Other"></button></div>
+					<div><label>Recognize a new category? Please specify here in one word: </label><input id="new-category" type="text" value="" placeholder="new-category"><button class="btn-sm highlight Other">add</button></div>
 				</fieldset>
 			</form>
 			<div class="panel panel-default">
@@ -40,7 +40,21 @@
 						<fieldset>
 							<legend id="category-placeholder"></legend>
 						</fieldset>
-						<ul id="entity-list">
+						<ul id="entity-list-Person" style="display:none">
+						</ul>
+						<ul id="entity-list-Location" style="display:none">
+						</ul>
+						<ul id="entity-list-Organization" style="display:none">
+						</ul>
+						<ul id="entity-list-Money" style="display:none">
+						</ul>
+						<ul id="entity-list-Misc" style="display:none">
+						</ul>
+						<ul id="entity-list-Phone" style="display:none">
+						</ul>
+						<ul id="entity-list-Interesting" style="display:none">
+						</ul>
+						<ul id="entity-list-Date" style="display:none">
 						</ul>
 					</form>
 				</div>

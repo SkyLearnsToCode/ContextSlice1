@@ -46,7 +46,7 @@ def cooccur(item1, item2):
 # 		item_item.append(row)
 # 	return item_item
 
-tree = ET.parse('sample_data_input/doc1-3.xml')
+tree = ET.parse('sample_data_input/crescent.xml')
 root = tree.getroot()
 
 #build aliases dictionary
@@ -89,7 +89,8 @@ contents = []
 for doc in root.iter('document'):
 	docid = doc[0].text
 	index = doc[3].text.index(":")
-	contents.append({"docid": docid, "docheader": doc[3].text[:index], "doctext": doc[3].text[index+1:]});
+	#contents.append({"docid": docid, "docheader": doc[3].text[:index], "doctext": doc[3].text[index+1:]});
+	contents.append({"docid": docid, "doctext": doc[3].text});
 	for child in doc:
 		item = child.text
 		tag = child.tag
@@ -110,15 +111,16 @@ graph["nodes"] = nodes;
 graph["contents"] = contents;
 link_count = 0
 
-for idx1, item1 in enumerate(items):
-    cooccurence = 0
-    row = []
-    for idx2, item2 in enumerate(items):
-        cooccurence = cooccur(item1, item2)
-        
-        if cooccurence is not 0:
-            graph["links"].append({"source":idx1,"target":idx2,"value":cooccurence, "description":" "})
-            link_count+=1
+
+#for idx1, item1 in enumerate(items):
+ #   cooccurence = 0
+  #  row = []
+   # for idx2, item2 in enumerate(items):
+    #    cooccurence = cooccur(item1, item2)
+     #   
+      #  if cooccurence is not 0:
+       #     graph["links"].append({"source":idx1,"target":idx2,"value":cooccurence, "description":""})
+        #    link_count+=1
             
 
 

@@ -128,11 +128,11 @@ $(document).ready(function(){
     d3_data.contents.forEach(function(curdoc){
       doc_counter ++;
       var doc_contents = curdoc.doctext;
-      var doc_header = curdoc.docheader;
+      //var doc_header = curdoc.docheader;
       d3_data.nodes.forEach(function(curnode){
         var entity_name = curnode.name;
         var entity_tag = "<em class=\"highlight "+curnode.category+"\">"+entity_name+"</em>";
-        doc_header = doc_header.replace(entity_name,entity_tag);
+        //doc_header = doc_header.replace(entity_name,entity_tag);
         doc_contents = doc_contents.replace(entity_name,entity_tag);
       })
       var outerdiv = d3.select("#doc-contents");
@@ -142,9 +142,9 @@ $(document).ready(function(){
       var innerdiv = outerdiv.append("div")
           .attr("id","Doc"+doc_counter)
           .attr("class","collapse in");
-      innerdiv.append("h5")
-            .attr("class","panel panel-footer")
-            .html(doc_header);
+      //innerdiv.append("h5")
+      //      .attr("class","panel panel-footer")
+      //      .html(doc_header);
       innerdiv.append("p")
           .attr("class","panel panel-body")
           .html(doc_contents);
@@ -160,8 +160,9 @@ $(document).ready(function(){
     // click on document header to collapse document texts
     d3.selectAll(".doc-header")
       .on("click",function(){
-        var id = $(this).html();
-          $("#"+id+".collapse").collapse('toggle');
+        var id = $(this).html().split(" ")[1];
+        id = "Doc"+id;
+        $("#"+id+".collapse").collapse('toggle');
         });
 
     /*
@@ -279,6 +280,7 @@ $(document).ready(function(){
         $("p#graph-instructions").addClass("alert-warning");
       }
       $("p#graph-instructions").fadeIn("slow");
+
       if ($("#node1").val() == "" || $("#node1").val() == ""){
         $("p#graph-instructions").html("Please select 2 nodes to create a link");
         $("#newNote").on("focus",function(){
@@ -318,45 +320,25 @@ $(document).ready(function(){
       $("p#graph-instructions").fadeIn("slow");
       $("p#graph-instructions").html(notif_message);
 
-      selected_node_1 = null;
-      selected_node_2 = null;
-      selected_link = null;
-      current_link = null;
-      $("#node1").val("");
-      $("#node2").val("");
-      $("#newNote").val("");
+      reset();
       redraw();
     })
 
     $("#deleteEdge").on("click", function(){
       links.splice(links.indexOf(selected_link), 1);
-      selected_link = null;
-      $("#newNote").val("");
-
       $("p#graph-instructions").fadeIn("slow");
       $("p#graph-instructions").html("Deleted link between <em class=\"highlight "+selected_node_1.category+"\">"+selected_node_1.name+"</em> and <em class=\"highlight "+selected_node_2.category+"\">"+selected_node_2.name+"</em>");
 
-      selected_node_1 = null;
-      selected_node_2 = null;
-      selected_link = null;
-      current_link = null;
-      $("#node1").val("");
-      $("#node2").val("");
+      reset();
       redraw();
     })
 
     $("#reset").on("click", function(){
       $("p#graph-instructions").fadeOut();
-      selected_node_1 = null;
-      selected_node_2 = null;
-      selected_link = null;
       if (current_link != null && current_link.description == ""){
         links.splice(links.indexOf(current_link),1);
       }
-      current_link = null;
-      $("#node1").val("");
-      $("#node2").val("");
-      $("#newNote").val("");
+      reset();
       $("#editLink").hide();
       redraw();
     })
@@ -955,6 +937,18 @@ $(document).ready(function(){
     view.x += center[0] - l[0];
     view.y += center[1] - l[1];
     interpolateZoom([view.x, view.y], view.k);
+  }
+
+  function reset(){
+    selected_node_1 = null;
+    selected_node_2 = null;
+    selected_link = null;
+    current_link = null;
+    $("#node1").val("");
+    $("#node2").val("");
+    $("#newNote").val("");
+    $("#impOption").val("3");
+    $("#impSlider").val(3);
   }
   d3.selectAll('.zoom').on('click', zoomClick);
 });

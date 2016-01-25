@@ -46,7 +46,7 @@ def cooccur(item1, item2):
 # 		item_item.append(row)
 # 	return item_item
 
-tree = ET.parse('sample_data_input/crescent.xml')
+tree = ET.parse('sample_data_input/doc1-3.xml')
 root = tree.getroot()
 
 #build aliases dictionary

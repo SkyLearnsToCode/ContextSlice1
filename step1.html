@@ -18,15 +18,15 @@
 				<p id="errorAlert"></p>
 				<fieldset class="panel-body">
 					<legend><h3 class="panel-heading">Categories</h3></legend>
-					<button class="category highlight Person"></button>Person
-					<button class="category highlight Location"></button>Location
-					<button class="category highlight Organization"></button>Organization
-					<button class="category highlight Money"></button>Money
-					<button class="category highlight Misc"></button>Miscellaneous
-					<button class="category highlight Phone"></button>Phone
-					<button class="category highlight Interesting"></button>Interesting
-					<button class="category highlight Date"></button>Date
-					<div><label>Recognize a new category? Please specify here in one word: </label><input id="new-category" type="text" value="" placeholder="new-category"><button class="btn-sm highlight Other">add</button></div>
+					<div class="inline"><button class="category highlight Person">Person</button>
+					<div class="inline"><button class="category highlight Location">Location</button></div>
+					<div class="inline"><button class="category highlight Organization">Organization</button></div>
+					<div class="inline"><button class="category highlight Money">Money</button></div>
+					<div class="inline"><button class="category highlight Misc">Miscellaneous</button></div>
+					<div class="inline"><button class="category highlight Phone">Phone</button></div>
+					<div class="inline"><button class="category highlight Interesting">Interesting</button></div>
+					<div class="inline"><button class="category highlight Date">Date</button></div>
+					<div><label>Recognize a new category? Please specify here in one word: </label><input id="new-category" type="text" value="" placeholder="new-category"><button class="category highlight Other">add</button></div>
 				</fieldset>
 			</form>
 			<div class="panel panel-default">
@@ -40,7 +40,9 @@
 						<fieldset>
 							<legend id="category-placeholder"></legend>
 						</fieldset>
-						<ul id="entity-list-Person" style="display:none">
+						<ul id="entity-list">
+						</ul>
+						<!--<ul id="entity-list-Person" style="display:none">
 						</ul>
 						<ul id="entity-list-Location" style="display:none">
 						</ul>
@@ -55,7 +57,7 @@
 						<ul id="entity-list-Interesting" style="display:none">
 						</ul>
 						<ul id="entity-list-Date" style="display:none">
-						</ul>
+						</ul>-->
 					</form>
 				</div>
 			</div>

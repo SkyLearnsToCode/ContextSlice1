@@ -15,11 +15,11 @@ $(document).ready(function(){
     //opens editor when edge is clicked and collapses when OK button is pressed
  // makes a temporary button for what would be the node
    $("button.edit").click(function(){
-    if ($(this).html() == "Show Edit Panel to Create New Links"){
+    if ($(this).html() == "Create New Links"){
             $(this).html("Hide Edit Panel");
             $("#edit-panel.collapse").collapse('show');
         }else{
-            $(this).html("Show Edit Panel to Create New Links");
+            $(this).html("Create New Links");
             $("#edit-panel.collapse").collapse('hide');
         }
     });
@@ -34,14 +34,16 @@ $(document).ready(function(){
         $("button#fadeIn").fadeIn();
     });
    });
-
-    $("#impOption").change(function() {
-      $("#impSlider").val($("#impOption").val());
-    });
+    var labels = ["Not Important At All","Of Little Importance","Of Average Importance","Very Important","Absolutely Essential"];
     $("#impSlider").change(function() {
-      $("#impOption").val($("#impSlider").val());
+        var impRate = $(this).val()-1;
+        if (impRate != 0 && impRate != 4){
+            $("#importance").html(labels[impRate]);
+            $("#importance").css("margin-left",35+impRate*8+"%");
+        }else{
+            $("#importance").html("");
+        }
     });
-
 });
 
 //Alternative to toggleCat(event)
@@ -55,16 +57,16 @@ function toggleCategoryHighlight(event){
 }
 
 function toggleAllHighlight(event){
-    console.log($(this).next().text());
-    if ($(this).next().text() == "Hide All Category Highlight"){
+    if ($(this).text() == "Hide All Category Highlight"){
         $("em").removeClass("highlight");
-        $(this).next().html("Show All Category Highlight");
+        $(this).html("Show All Category Highlight");
         $("button.category").addClass("unchecked");
     }else{
         $("em").addClass("highlight");
-        $(this).next().html("Hide All Category Highlight");
+        $(this).html("Hide All Category Highlight");
         $("button.category").removeClass("unchecked");
     }
+    $(this).toggleClass("unchecked");
 }
 
 function showInstructions(event){

@@ -6,7 +6,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<!-- jQuery library -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.js"></script>
 		<!-- Latest compiled JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 		<!-- D3.js -->
@@ -33,8 +33,7 @@
 				<button type="button" class="btn btn-info" id="fadeIn" style="display:none">Show Instructions</button>
 				<button type="button" class="btn btn-secondary toggle-legend">Show Legend</button>
 				<div id = "legend" class="panel panel-default collapse">
-					<!--<div><button class="btn toggle-highlight">Hide All Category Highlight</button></div>-->
-					<div class="inline"><button class="category highlight Person"></button><label class="legend-label">Person</label></div>
+					<!--<div class="inline"><button class="category highlight Person"></button><label class="legend-label">Person</label></div>
 					<div class="inline"><button class="category highlight Location"></button><label class="legend-label">Location</label></div>
 					<div class="inline"><button class="category highlight Organization"></button><label class="legend-label">Organization</label></div>
 					<div class="inline"><button class="category highlight Money"></button><label class="legend-label">Money</label></div>
@@ -42,7 +41,16 @@
 					<div class="inline"><button class="category highlight Phone"></button><label class="legend-label">Phone</label></div>
 					<div class="inline"><button class="category highlight Interesting"></button><label class="legend-label">Interesting</label></div>
 					<div class="inline"><button class="category highlight Date"></button><label class="legend-label">Date</label></div>
-					<div class="inline"><button class="category highlight All"></button><label class="legend-label">Hide All Category Highlight</label></div>
+					<div class="inline"><button class="category highlight All"></button><label class="legend-label">Hide All Category Highlight</label></div>-->
+					<div class="inline"><button class="category highlight Person">Person</button>
+					<div class="inline"><button class="category highlight Location">Location</button></div>
+					<div class="inline"><button class="category highlight Organization">Organization</button></div>
+					<div class="inline"><button class="category highlight Money">Money</button></div>
+					<div class="inline"><button class="category highlight Misc">Miscellaneous</button></div>
+					<div class="inline"><button class="category highlight Phone">Phone</button></div>
+					<div class="inline"><button class="category highlight Interesting">Interesting</button></div>
+					<div class="inline"><button class="category highlight Date">Date</button></div>
+					<div class="inline"><button class="category highlight All">Hide All Category Highlight</button></div></div>
 				</div>
 				<!--
 				<h3 class="panel panel-heading doc-header">Doc1</h3>
@@ -82,21 +90,25 @@
 							</div>
 							<div class="form-group">
 								<label class="control-label" for="edgeNote">Relationship: </label>
-								<input type="text" class="form-control" id="newNote" placeholder="Please describe how these two dots are connected..."/>
+								<input type="text" class="form-control" id="newNote" placeholder="How are these dots related?"/>
 								
 							</div>
-							<div class="form-group">
-								<label for="importance">Importance (1-5):</label>
-								<select name="importance" id="impOption" class="form-control">
-									<option>1</option>
-									<option>2</option>
-									<option selected="selected">3</option>
-									<option>4</option>
-									<option>5</option>
-								</select>
-								<span class="range">1</span>
-								<input type="range" id="impSlider" min="1" max="5" value="3" step="1" />
-								<span class="range">5</span>
+							<div class="importance-rating">
+								<label>How important is this relationship?</label>
+								<div id="slide-container">
+									<span class="extrememark">Not Important At All</span>
+									<input type="range" id="impSlider" min="1" max="5" value="1" step="1" />
+									<span class="extrememark">Absolutely Essential</span>
+
+								</div>
+								<div id="importance"></div>
+								<!--<div class="ticks">
+									<span>Not Important At All</span>
+									<span>Of Little Importance</span>
+									<span>Of Average Importance</span>
+									<span>Very Important</span>
+									<span>Absolutely Essential</span>
+								</div>-->
 							</div>
 							<div>
 								<button type="button" class="btn btn-mini inline" id="reset">Reset</button>
@@ -113,7 +125,7 @@
 						</form>
 					</div>
 				</div> <!-- added -->
-				<button class="btn edit" id="new-link-btn">Show Edit Panel to Create New Links</button>
+				<button class="btn edit" id="new-link-btn">Create New Links</button>
 				<div id="container">
 					<div id="zoom-btn">
 						<div><button id="zoom_in" class="btn-default zoom">+</button></div>

@@ -947,8 +947,7 @@ $(document).ready(function(){
     $("#node1").val("");
     $("#node2").val("");
     $("#newNote").val("");
-    $("#impOption").val("3");
-    $("#impSlider").val(3);
+    $("#impSlider").val(1);
   }
   d3.selectAll('.zoom').on('click', zoomClick);
 });

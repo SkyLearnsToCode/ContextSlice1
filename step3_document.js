@@ -36,7 +36,7 @@ $(document).ready(function(){
         $("button#fadeIn").fadeIn();
     });
    });
-    var labels = ["Not Important At All","Of Little Importance","Of Average Importance","Very Important","Absolutely Essential"];
+    var labels = ["Not Important At All","Of Little Importance","Of Average Importance","Very Important","Absolutely Important"];
     $("#impSlider").change(function() {
         var impRate = $(this).val()-1;
         $("#importance").html(labels[impRate]);

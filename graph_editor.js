@@ -133,7 +133,8 @@ $(document).ready(function(){
         var entity_name = curnode.name;
         var entity_tag = "<em class=\"highlight "+curnode.category+"\">"+entity_name+"</em>";
         //doc_header = doc_header.replace(entity_name,entity_tag);
-        doc_contents = doc_contents.replace(entity_name,entity_tag);
+        //doc_contents = doc_contents.replace(entity_name,entity_tag);
+        doc_contents = doc_contents.split(entity_name).join(entity_tag);
       })
       var outerdiv = d3.select("#doc-contents");
       outerdiv.append("h3")

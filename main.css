@@ -1,3 +1,7 @@
+body{
+	margin-top: 10px;
+}
+
 .highlight.Person{
 	background-color: #d9b8f1;
 }
@@ -26,7 +30,7 @@
 	background-color: #f1f1b8;
 }
 
-.highlight.Date{
+.Date.highlight{
 	background-color: #67E1D8;
 }
 
@@ -39,12 +43,11 @@
 }
 
 button.unchecked{
-	opacity: 0.3;
+	background-color: transparent;
 }
 
-form#legend{
-	text-align: center;
-
+#legend{
+	margin: 10px;
 }
 
 button span{
@@ -147,8 +150,15 @@ button.category{
 	display: inline;
 }
 
+#importance-rating{
+	vertical-align: middle;
+}
+
 #importance{
+	position: relative;
 	font-size: 12px;
+	font-style: italic;
+	text-align: center;
 }
 
 .extrememark{

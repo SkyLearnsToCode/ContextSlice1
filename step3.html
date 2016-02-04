@@ -31,26 +31,26 @@
 			<div id = "doc-contents" class="panel panel-default">
 				<!--<p class="alert alert-info">Select Node1 from documents</p>-->
 				<button type="button" class="btn btn-info" id="fadeIn" style="display:none">Show Instructions</button>
-				<button type="button" class="btn btn-secondary toggle-legend">Show Legend</button>
+				<button type="button" class="btn btn-default toggle-legend">Show Legend</button>
+				<button class="btn btn-default All" style="display:none">Hide All Category Highlight</button>
 				<div id = "legend" class="panel panel-default collapse">
-					<!--<div class="inline"><button class="category highlight Person"></button><label class="legend-label">Person</label></div>
-					<div class="inline"><button class="category highlight Location"></button><label class="legend-label">Location</label></div>
-					<div class="inline"><button class="category highlight Organization"></button><label class="legend-label">Organization</label></div>
-					<div class="inline"><button class="category highlight Money"></button><label class="legend-label">Money</label></div>
-					<div class="inline"><button class="category highlight Misc"></button><label class="legend-label">Miscellaneous</label></div>
-					<div class="inline"><button class="category highlight Phone"></button><label class="legend-label">Phone</label></div>
-					<div class="inline"><button class="category highlight Interesting"></button><label class="legend-label">Interesting</label></div>
-					<div class="inline"><button class="category highlight Date"></button><label class="legend-label">Date</label></div>
-					<div class="inline"><button class="category highlight All"></button><label class="legend-label">Hide All Category Highlight</label></div>-->
-					<div class="inline"><button class="category highlight Person">Person</button>
-					<div class="inline"><button class="category highlight Location">Location</button></div>
-					<div class="inline"><button class="category highlight Organization">Organization</button></div>
-					<div class="inline"><button class="category highlight Money">Money</button></div>
-					<div class="inline"><button class="category highlight Misc">Miscellaneous</button></div>
-					<div class="inline"><button class="category highlight Phone">Phone</button></div>
-					<div class="inline"><button class="category highlight Interesting">Interesting</button></div>
-					<div class="inline"><button class="category highlight Date">Date</button></div>
-					<div class="inline"><button class="category highlight All">Hide All Category Highlight</button></div></div>
+					<!--<div class="inline"><button class="btn btn-default category Person"></button><label class="legend-label">Person</label></div>
+					<div class="inline"><button class="btn btn-default category Location"></button><label class="legend-label">Location</label></div>
+					<div class="inline"><button class="btn btn-default category Organization"></button><label class="legend-label">Organization</label></div>
+					<div class="inline"><button class="btn btn-default category Money"></button><label class="legend-label">Money</label></div>
+					<div class="inline"><button class="btn btn-default category Misc"></button><label class="legend-label">Miscellaneous</label></div>
+					<div class="inline"><button class="btn btn-default category Phone"></button><label class="legend-label">Phone</label></div>
+					<div class="inline"><button class="btn btn-default category Interesting"></button><label class="legend-label">Interesting</label></div>
+					<div class="inline"><button class="btn btn-default category Date"></button><label class="legend-label">Date</label></div>
+					<div class="inline"><button class="btn btn-default category All"></button><label class="legend-label">Hide All Category Highlight</label></div>-->
+					<div class="inline"><button class="btn btn-default category Person highlight">Person</button></div>
+					<div class="inline"><button class="btn btn-default category Location highlight">Location</button></div>
+					<div class="inline"><button class="btn btn-default category Organization highlight">Organization</button></div>
+					<div class="inline"><button class="btn btn-default category Money highlight">Money</button></div>
+					<div class="inline"><button class="btn btn-default category Misc highlight">Miscellaneous</button></div>
+					<div class="inline"><button class="btn btn-default category Phone highlight">Phone</button></div>
+					<div class="inline"><button class="btn btn-default category Interesting highlight">Interesting</button></div>
+					<div class="inline"><button class="btn btn-default category Date highlight">Date</button></div>
 				</div>
 				<!--
 				<h3 class="panel panel-heading doc-header">Doc1</h3>
@@ -93,15 +93,14 @@
 								<input type="text" class="form-control" id="newNote" placeholder="How are these dots related?"/>
 								
 							</div>
-							<div class="importance-rating">
+							<div id="importance-rating">
 								<label>How important is this relationship?</label>
 								<div id="slide-container">
 									<span class="extrememark">Not Important At All</span>
-									<input type="range" id="impSlider" min="1" max="5" value="1" step="1" />
+									<input type="range" id="impSlider" min="1" max="5" value="3" step="1" />
 									<span class="extrememark">Absolutely Essential</span>
-
+									<div id="importance">Of Average Importance</div>
 								</div>
-								<div id="importance"></div>
 								<!--<div class="ticks">
 									<span>Not Important At All</span>
 									<span>Of Little Importance</span>

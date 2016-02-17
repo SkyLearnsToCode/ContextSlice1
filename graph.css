@@ -1,17 +1,16 @@
 .link {
-  stroke: #ccc;
+	stroke: #ccc;
 }
 
 .node text {
-  pointer-events: none;
-  font: 10px sans-serif;
-  fill: black;
+	pointer-events: none;
+	font: 10px sans-serif;
+	fill: black;
 }
 
-
-.node_selected{
-  fill: #ff7f0e;
-  stroke: #ff7f0e;
+.node_selected circle{
+	stroke: #ff7f0e;
+	stroke-width: 6;
 }
 
 .link_selected line{
@@ -19,34 +18,67 @@
 	stroke-width: 6;
 }
 
+.link_hover line{
+	stroke: red;
+	stroke-width: 6;
+}
+
 .Person{
-	fill: #FFFF00;
+	fill: #d9b8f1;
 }
 
 .Location{
-	fill: #B8860B;
+	fill: #BDC03F;
 }
 
 .Organization{
-	fill: #FF00FF;
+	fill: #ffe543;
 }
 
 .Money{
-	fill: #32CD32;
+	fill: #FF9B14;
 }
 
 .Misc{
-	fill: #FFBF00;
+	fill: #F69AC1;
 }
 
 .Phone{
-	fill: #A9A9F5;
+	fill: #8EB4FF;
 }
 
 .Interesting{
-	fill: #FF6347;
+	fill: #f1f1b8;
 }
 
 .Date{
-	fill: #00CED1;
+	fill: #67E1D8;
+}
+
+.zoom{
+	position: relative;
+}
+*{
+	font-size: 15px;
+}
+
+#new-link-btn{
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+.zoom-btn{
+	margin-top: 10px;
+}
+
+.zoom{
+	margin-top: 5px;
+	margin-left: 10px;
+	width: 30px;
+	background-color: #f2f2f2;
+}
+
+#graph-editor{
+	min-height:700px;
+	overflow: auto;
 }

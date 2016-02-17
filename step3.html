@@ -6,19 +6,51 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<!-- jQuery library -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.js"></script>
 		<!-- Latest compiled JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 		<!-- D3.js -->
 		<script src="https://d3js.org/d3.v2.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="category-colors.css">
+		<link rel="stylesheet" type="text/css" href="main.css">
 		<link rel="stylesheet" type="text/css" href="graph.css">
 	</head>
 	<body>
+		<div class="alert alert-info" id="instructions">
+			<h4>Instructions: Connect the Dots</h4>
+			<p>On the left is a set of documents describing relationships between various items (people, locations, organizations, etc.) Those same items are also shown on the right; each item is a dot on the visualization. Your task is to "connect the dots"; that is, to create links between the dots that visualize their relationships in the documents.</p>
+			<p>You can pick an item in any of 3 ways:</p>
+			<ol>
+				<li>click the item in the document</li>
+				<li>click the dot in the visualization, or </li>
+				<li>pick the item from the menu above the visualization.</li>
+			</ol>
+			<p>Next, pick the item you want to link it to. Finally, describe the link in a few words using the "relationship" box, and click "Create Link".</p>
+			<button class="btn btn-info" id="fadeOut">ok, I got it</button>
+		</div>
 		<div class="col-lg-4 panel-group" id="doc-panel">
 			<div id = "doc-contents" class="panel panel-default">
-				<div class="alert alert-info">
-				  	<p>Select Node1 from documents</p>
+				<!--<p class="alert alert-info">Select Node1 from documents</p>-->
+				<button type="button" class="btn btn-info" id="fadeIn" style="display:none">Show Instructions</button>
+				<button type="button" class="btn btn-default toggle-legend">Show Legend</button>
+				<button class="btn btn-default All" style="display:none">Hide All Category Highlight</button>
+				<div id = "legend" class="panel panel-default collapse">
+					<!--<div class="inline"><button class="btn btn-default category Person"></button><label class="legend-label">Person</label></div>
+					<div class="inline"><button class="btn btn-default category Location"></button><label class="legend-label">Location</label></div>
+					<div class="inline"><button class="btn btn-default category Organization"></button><label class="legend-label">Organization</label></div>
+					<div class="inline"><button class="btn btn-default category Money"></button><label class="legend-label">Money</label></div>
+					<div class="inline"><button class="btn btn-default category Misc"></button><label class="legend-label">Miscellaneous</label></div>
+					<div class="inline"><button class="btn btn-default category Phone"></button><label class="legend-label">Phone</label></div>
+					<div class="inline"><button class="btn btn-default category Interesting"></button><label class="legend-label">Interesting</label></div>
+					<div class="inline"><button class="btn btn-default category Date"></button><label class="legend-label">Date</label></div>
+					<div class="inline"><button class="btn btn-default category All"></button><label class="legend-label">Hide All Category Highlight</label></div>-->
+					<div class="inline"><button class="btn btn-default category Person highlight">Person</button></div>
+					<div class="inline"><button class="btn btn-default category Location highlight">Location</button></div>
+					<div class="inline"><button class="btn btn-default category Organization highlight">Organization</button></div>
+					<div class="inline"><button class="btn btn-default category Money highlight">Money</button></div>
+					<div class="inline"><button class="btn btn-default category Misc highlight">Miscellaneous</button></div>
+					<div class="inline"><button class="btn btn-default category Phone highlight">Phone</button></div>
+					<div class="inline"><button class="btn btn-default category Interesting highlight">Interesting</button></div>
+					<div class="inline"><button class="btn btn-default category Date highlight">Date</button></div>
 				</div>
 				<!--
 				<h3 class="panel panel-heading doc-header">Doc1</h3>
@@ -38,65 +70,70 @@
 				</div>
 			-->
 			</div>
-				<div id = "legend" class="panel panel-default">
-				<ul class="list-inline" style="border-style: none">
-					<li>
-						<button class="btn toggleAllHighlight">Hide All Category Highlight</button>
-					</li>
-					<li>
-						<button class="btn-sm category highlight Person">person</button>
-						<button class="btn-sm category highlight Location">location</button>
-						<button class="btn-sm category highlight Organization">organization</button>
-						<button class="btn-sm category highlight Money">money</button>
-						<button class="btn-sm category highlight Misc">miscellanea</button>
-						<button class="btn-sm category highlight Phone">phone</button>
-						<button class="btn-sm category highlight Interesting">interesting</button>
-						<button class="btn-sm category highlight Date">date</button>
-					 </li>
-				</ul> <!--when you click on an edge, editor pops up, click on OK collapses (including GraphEditor heading-->
-			</div>
 		</div>
-		<div class="col-lg-8 panel-group" id="edit-panel">
+		<div class="col-lg-8 panel-group" id="edit-panel-div">
 			<div class="panel panel-default">
-				<div class="alert alert-info">
-					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-				  	<p id="instructions"></p>
-				</div>
-				<h3 class="panel panel-heading">Connect Name Entities</h3>
+				<p class="alert" id="graph-instructions" style="display:none"></p>
+				<h3 class="panel panel-heading">Connect The Dots</h3>
 				<div id = "edit-panel" class = "collapse">
-				<div class="panel panel-body" id="combo-box">
-					<form class="form-inline" role="form" >
-						<div class="form-group">
-							<div class="col-sm-6">
-								<label class="control-label" for="node1">*Node1: </label>
+					<div class="panel panel-body" id="combo-box">
+						<form class="form-inline" role="form" >
+							<div class="form-group">
+								<label class="control-label" for="node1">Dot 1: </label>
 								<select class="form-control nodelist" id="node1">
 								</select>
 							</div>
-							<div class="col-sm-6">
-								<label class="control-label" for="node2">*Node2: </label>
+							<div class="form-group">
+								<label class="control-label" for="node2">Dot 2: </label>
 								<select class="form-control nodelist" id="node2">
 								</select>
 							</div>
-							<div class="col-sm-12">
+							<div class="form-group">
 								<label class="control-label" for="edgeNote">Relationship: </label>
-								<input type="text" class="form-control" id="newNote" placeholder="Edit this field"/>
-								<button type="button" class="btn btn-default" id="editRelationship">Edit Relationship<br></button>
+								<input type="text" class="form-control" id="newNote" placeholder="How are these dots related?"/>
+								
 							</div>
-							<div class="col-sm-12">
+							<div id="importance-rating">
+								<label>How important is this relationship?</label>
+								<div id="slide-container">
+									<span class="extrememark">Not Important At All</span>
+									<input type="range" id="impSlider" min="1" max="5" value="3" step="1" />
+									<span class="extrememark">Absolutely Important</span>
+									<div id="importance">Of Average Importance</div>
+								</div>
+								<!--<div class="ticks">
+									<span>Not Important At All</span>
+									<span>Of Little Importance</span>
+									<span>Of Average Importance</span>
+									<span>Very Important</span>
+									<span>Absolutely Essential</span>
+								</div>-->
+							</div>
+							<div>
+								<button type="button" class="btn btn-mini inline" id="reset">Reset</button>
+								<button type="button" class="btn btn-mini inline" id="editLink">Create Link</button>
+								<button type="button" class="btn btn-mini inline" id="deleteEdge">Delete Link</button>
+							</div>
+							<!--
+							<div class="col-sm-12 collapse-btn">
 								<button type="button" class="btn btn-default" id="createEdge">Create Edge<br></button>
 								<button type="button" class="btn btn-default" id="deleteEdge">Delete Edge<br></button>
 								<button type="button" class="btn btn-default" id="cancel">Cancel<br></button>
 							</div>
-						</div>
-
-					</form>
+							--> 
+						</form>
+					</div>
+				</div> <!-- added -->
+				<button class="btn edit" id="new-link-btn">Create New Links</button>
+				<div id="container">
+					<div id="zoom-btn">
+						<div><button id="zoom_in" class="btn-default zoom">+</button></div>
+						<div><button id="zoom_out" class="btn-default zoom">-</button></div>
+					</div>
+					<div id="graph-editor"></div>
 				</div>
-			</div> <!-- added -->
-			<button class="btn btn edit">Expand</button>
-				<div class="panel panel-body" id="graph-editor"></div>
 			</div>
 		</div>
-	<script type="text/javascript" src="main.js"></script>
 	<script type="text/javascript" src="step3_document.js"></script>
 	<script type="text/javascript" src="graph_editor.js"></script>
 	<!--<script type="text/javascript" src="graph_update.js"></script>

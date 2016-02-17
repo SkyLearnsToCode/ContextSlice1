@@ -68,7 +68,7 @@ $(document).ready(function(){
 
   var force, drag;
   var d3_data;
-  var jsonfile = filenames[2];
+  var jsonfile = filenames[3];
   var nodes, links, node, link;
   var edge_decription;
 

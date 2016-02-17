@@ -2,6 +2,11 @@ body{
 	margin-top: 10px;
 }
 
+#edit-panel-div{
+	position: fixed;
+	right: 0px;
+}
+
 .highlight.Person{
 	background-color: #d9b8f1;
 }

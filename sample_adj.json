@@ -1,0 +1,120 @@
+{
+    "nodes": [
+        {
+            "category": "Phone",
+            "docid": "se4",
+            "name": "804-759-6302"
+        },
+        {
+            "category": "Date",
+            "docid": "se4",
+            "name": "22 April, 2003"
+        },
+        {
+            "category": "Date",
+            "docid": "se4",
+            "name": "24 April, 2003"
+        },
+        {
+            "category": "Phone",
+            "docid": "se4",
+            "name": "703-659-2317"
+        },
+        {
+            "category": "Phone",
+            "docid": "se4",
+            "name": "804-774-8920"
+        },
+        {
+            "category": "Misc",
+            "docid": "se4",
+            "name": "Arabic"
+        },
+        {
+            "category": "Phone",
+            "docid": "se4",
+            "name": "718-352-8479"
+        },
+        {
+            "category": "Phone",
+            "docid": "se4",
+            "name": "01 1207670734"
+        },
+        {
+            "category": "Date",
+            "docid": "se4",
+            "name": "April 30"
+        },
+        {
+            "category": "Person",
+            "docid": "se3",
+            "name": "Hans Pakes"
+        },
+        {
+            "category": "Location",
+            "docid": "se3",
+            "name": "The Netherlands"
+        },
+        {
+            "category": "Person",
+            "docid": "se3",
+            "name": "Bagwant Dhaliwal"
+        },
+        {
+            "category": "Person",
+            "docid": "se3",
+            "name": "Clark Webster"
+        },
+        {
+            "category": "Location",
+            "docid": "se3",
+            "name": "Richmond"
+        },
+        {
+            "category": "Location",
+            "docid": "se3",
+            "name": "Virginia"
+        },
+        {
+            "category": "Location",
+            "docid": "se3",
+            "name": "Amsterdam"
+        },
+        {
+            "category": "Location",
+            "docid": "se3",
+            "name": "Queens"
+        },
+        {
+            "category": "Location",
+            "docid": "se3",
+            "name": "New York City"
+        },
+        {
+            "category": "Person",
+            "docid": "se3",
+            "name": "Mukhtar Galab"
+        },
+        {
+            "category": "Location",
+            "docid": "se3",
+            "name": "Charlottesville"
+        },
+        {
+            "category": "Date",
+            "docid": "se3",
+            "name": "21 April, 2003"
+        }
+    ],
+    "contents": [
+        {
+            "doctext": "Report Date 24 April, 2003. Phone calls on 22 April, 2003 from 703-659-2317 to the following numbers: 804-759-6302; 804-774-8920; 718-352-8479; and 01 1207670734. The same brief voice message was given in Arabic in each call. A translation of this message reads: \"I will be in my office on April 30 at 9:OOAM. Try to be on time\".",
+            "docid": "se4"
+        },
+        {
+            "doctext": "Report Date 21 April, 2003: Frequent recent phone calls from 703-659-2317 to the following numbers: 804-759-6302 [Richmond, VA., listed in the name Clark Webster]; 804-774-8920 [Charlottesville, VA, listed in the name Mukhtar Galab]; 718-352-8479 [Queens, NYC, listed in the name Bagwant Dhaliwal. Two overseas calls were made to 01 1207670734 [Amsterdam, The Netherlands, listed in the name Hans Pakes].",
+            "docid": "se3"
+        }
+    ],
+    "links": []
+}

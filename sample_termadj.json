@@ -1,0 +1,60 @@
+{
+    "nodes": [
+        {
+            "category": "Date",
+            "docid": "fbi24",
+            "name": "27 April, 2003"
+        },
+        {
+            "category": "Location",
+            "docid": "fbi24",
+            "name": "Virginia"
+        },
+        {
+            "category": "Organization",
+            "docid": "fbi24",
+            "name": "FBI"
+        },
+        {
+            "category": "Location",
+            "docid": "fbi24",
+            "name": "Keswick"
+        },
+        {
+            "category": "Organization",
+            "docid": "fbi24",
+            "name": "Budget Storage Units"
+        },
+        {
+            "category": "Misc",
+            "docid": "fbi24",
+            "name": "C-4"
+        },
+        {
+            "category": "Date",
+            "docid": "fbi7",
+            "name": "15 April, 2003"
+        },
+        {
+            "category": "Date",
+            "docid": "fbi7",
+            "name": "11 April, 2003"
+        },
+        {
+            "category": "Organization",
+            "docid": "fbi7",
+            "name": "The Powhatan Company"
+        }
+    ],
+    "contents": [
+        {
+            "doctext": "Report Date 27 April, 2003. FBI: In an examination of storage unit #I74 at the Budget Storage Units in Keswick, VA, fifty pounds of C-4 plastic explosive were found along with some fusing devices.",
+            "docid": "fbi24"
+        },
+        {
+            "doctext": "Report Date 15 April, 2003. FBI: The Powhatan Company is a manufacturer of military explosives of various types, including C-4. It is located just outside of Keswick. Virginia. On 11 April, 2003 this company reported that 200 pounds of C-4 could not be accounted for during a recent inventory.",
+            "docid": "fbi7"
+        }
+    ],
+    "links": []
+}

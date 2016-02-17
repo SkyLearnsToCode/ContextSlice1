@@ -1,0 +1,140 @@
+{
+    "nodes": [
+        {
+            "category": "Location",
+            "docid": "fbi18",
+            "name": "Denver"
+        },
+        {
+            "category": "Location",
+            "docid": "fbi18",
+            "name": "Colorado"
+        },
+        {
+            "category": "Person",
+            "docid": "fbi18",
+            "name": "Masood Yaser"
+        },
+        {
+            "category": "Location",
+            "docid": "fbi18",
+            "name": "Coal Mine Road"
+        },
+        {
+            "category": "Date",
+            "docid": "fbi18",
+            "name": "20 April, 2003"
+        },
+        {
+            "category": "Date",
+            "docid": "fbi18",
+            "name": "22 April, 2003"
+        },
+        {
+            "category": "Date",
+            "docid": "fbi18",
+            "name": "25 April, 2003"
+        },
+        {
+            "category": "Organization",
+            "docid": "fbi18",
+            "name": "FBI"
+        },
+        {
+            "category": "Location",
+            "docid": "fbi18",
+            "name": "Camp George West Military Reservation"
+        },
+        {
+            "category": "Location",
+            "docid": "fbi18",
+            "name": "Colfax Avenue"
+        },
+        {
+            "category": "Organization",
+            "docid": "fbi18",
+            "name": "U-haul"
+        },
+        {
+            "category": "Organization",
+            "docid": "cia6",
+            "name": "CIA"
+        },
+        {
+            "category": "Location",
+            "docid": "cia6",
+            "name": "Afghanistan"
+        },
+        {
+            "category": "Location",
+            "docid": "cia6",
+            "name": "US"
+        },
+        {
+            "category": "Organization",
+            "docid": "cia6",
+            "name": "Taliban"
+        },
+        {
+            "category": "Location",
+            "docid": "cia6",
+            "name": "New Jersey"
+        },
+        {
+            "category": "Location",
+            "docid": "cia6",
+            "name": "Germany"
+        },
+        {
+            "category": "Location",
+            "docid": "cia6",
+            "name": "Hamburg"
+        },
+        {
+            "category": "Location",
+            "docid": "cia6",
+            "name": "Bremerhaven"
+        },
+        {
+            "category": "Misc",
+            "docid": "cia6",
+            "name": "Stinger"
+        },
+        {
+            "category": "Organization",
+            "docid": "cia6",
+            "name": "Marvel Corporation"
+        },
+        {
+            "category": "Location",
+            "docid": "cia6",
+            "name": "Trenton Avenue"
+        },
+        {
+            "category": "Location",
+            "docid": "cia6",
+            "name": "Trenton"
+        },
+        {
+            "category": "Organization",
+            "docid": "cia6",
+            "name": "German Intelligence"
+        },
+        {
+            "category": "Location",
+            "docid": "cia6",
+            "name": "Rhinelander Platz."
+        }
+    ],
+    "contents": [
+        {
+            "doctext": "Report dated 25 April, 2003. FBI: A U-Haul truck was found abandoned on Colfax Avenue in Denver, Colorado nor far from the Camp George West Military Reservation. The truck had two blown front tires. Examination of the truck's contents revealed 16 land mines. The U-haul rental Agency in Denver was contacted and they reported that this truck had been rented in Denver on 20 April, 2003 by a man who used, as identification, a Colorado driver's license in the name Masood Yaser. The address on this license is: 1660 Coal Mine Road, Apartment 206. The owner of this apartment complex stated on 22 April, 2003 that Masood Yaser had rented Apartment # 206, but had left one week ago and did not leave a forwarding address.",
+            "docid": "fbi18"
+        },
+        {
+            "doctext": "Report Date 22 April, 2003: CIA From German Intelligence: On 20 April, 2003, German intelligence reported that a container chosen at random for inspection at the docks in Bremerhaven, Germany contained a crate in which there were four Stinger missiles. The box was addressed to Marvel Corporation, 1632 Trenton Avenue, Trenton, New Jersey, USA. The shipper's address was given as: 16 Rhinelander Platz., Hamburg, Germany. German intelligence advises that there is no such address in Hamburg. The serial numbers on the four Stinger missiles identifies them as being from among the nearly 400 Stinger missiles, now missing, which were given in the late 1980s to Taliban fighters in Afghanistan.",
+            "docid": "cia6"
+        }
+    ],
+    "links": []
+}

@@ -1,3 +1,4 @@
+var filenames = ["sample_sameperson.json","sample_freqrank.json","sample_adj.json","sample_termadj.json"];
 $(document).ready(function(){
   /*
   var colorMap = {
@@ -67,7 +68,7 @@ $(document).ready(function(){
 
   var force, drag;
   var d3_data;
-  var jsonfile = "graph_small.json";
+  var jsonfile = filenames[0];
   var nodes, links, node, link;
   var edge_decription;
 
